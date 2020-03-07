@@ -37,7 +37,7 @@ public class Flight {
     }
 
     public static Flight parse(String text) {
-        String[] content = text.split("|");
+        String[] content = text.split(",");
         return new Flight(
                 Integer.parseInt(content[0]),
                 content[1],
