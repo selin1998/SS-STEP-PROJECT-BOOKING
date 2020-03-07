@@ -3,12 +3,26 @@ package DAO;
 import java.util.List;
 
 public class Booking {
-    private int idFlight;
-    private int idBooking;
-    private String username;
-    private String namePassenger;
-    private String lastnamePassenger;
-    private List<Passenger> passengers;
-    private List<Flight> flights;
+    int idFlight;
+    int idBooking;
+    String username;
+    String namePassenger;
+    String lastnamePassenger;
+    List<Passenger> passengers;
+    List<Flight> flights;
 
+    public Booking(int idFlight, int idBooking, String username, String namePassenger, String lastnamePassenger, List<Passenger> passengers, List<Flight> flights) {
+        this.idFlight = idFlight;
+        this.idBooking = idBooking;
+        this.username = username;
+        this.namePassenger = namePassenger;
+        this.lastnamePassenger = lastnamePassenger;
+        this.passengers = passengers;
+        this.flights = flights;
+    }
+
+    public String toString() {
+        return String.format("| %-10d |%-10s |%-10s |%-15s |%-10d |%-10s|",
+                idFlight,idBooking,username,namePassenger,lastnamePassenger,passengers,flights);
+    }
 }
