@@ -3,8 +3,8 @@ package DAO;
 import java.util.List;
 
 public class Booking {
-    int idFlight;
-    int idBooking;
+    final int idFlight;
+    final int idBooking;
     String username;
     String namePassenger;
     String lastnamePassenger;
@@ -23,6 +23,6 @@ public class Booking {
 
     public String toString() {
         return String.format("| %-10d |%-10s |%-10s |%-15s |%-10d |%-10s|",
-                idFlight,idBooking,username,namePassenger,lastnamePassenger,passengers,flights);
+                idFlight, idBooking, username, namePassenger, lastnamePassenger, passengers, flights);
     }
 }
