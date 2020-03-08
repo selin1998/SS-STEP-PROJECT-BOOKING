@@ -18,13 +18,7 @@ public class BookingDAO implements DAO<Booking> {
 
     @Override
     public List<Booking> getAll() {
-        try {
-            return new BufferedReader(new FileReader(new File(filename))).lines()
-                    .map(s -> Booking.parse(s))
-                    .collect(Collectors.toList());
-        } catch (IOException e) {
-            throw new RuntimeException("No bookings were found");
-        }
+       return null;
     }
 
     @Override

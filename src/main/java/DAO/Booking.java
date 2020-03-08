@@ -1,57 +1,49 @@
 package DAO;
 
-import java.util.List;
 import java.util.Objects;
 
 public class Booking {
-    int idFlight;
-    int idBooking;
-    String username;
-    String namePassenger;
-    String lastnamePassenger;
-    List<Passenger> passengers;
-    List<Flight> flights;
+    private static int counter = 0;
 
-    public Booking(int idFlight, int idBooking, String username, String namePassenger, String lastnamePassenger)  //, List<Passenger> passengers, List<Flight> flights
-     {
-        this.idFlight = idFlight;
-        this.idBooking = idBooking;
-        this.username = username;
-        this.namePassenger = namePassenger;
-        this.lastnamePassenger = lastnamePassenger;
-//        this.passengers = passengers;
-//        this.flights = flights;
+    int idBooking;
+//    LocalDateTime bookedTime;
+    User user;
+    Passenger passenger;
+    Flight flight;
+
+    public Booking(User user, Passenger passenger, Flight flight) {
+        this.idBooking = counter++;
+        this.user = user;
+        this.passenger = passenger;
+        this.flight = flight;
     }
 
-    public static Booking parse(String text) {
-        String[] content = text.split("|");
-        return new Booking(
-                Integer.parseInt(content[0]),
-                Integer.parseInt(content[1]),
-                content[2],
-                content[3],
-                content[4]
-//                content[5],
-//                content[6]
-        );
+    public Booking(int idBooking, User user, Passenger passenger, Flight flight) {
+        this.idBooking = idBooking;
+        this.user = user;
+        this.passenger = passenger;
+        this.flight = flight;
     }
 
     public String displayBookingInfo() {
-        return String.format("| %-10d |%-10s |%-10s |%-15s |%-10d |%-10s|",
-                idFlight, idBooking, username, namePassenger, lastnamePassenger, passengers, flights);
+        return String.format("Booking ID: %s\nPassenger: %s %s\nFlight Details: %s ",
+                idBooking, passenger.firstName.toUpperCase(), passenger.lastName.toUpperCase(),
+                flight);
     }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Booking booking = (Booking) o;
-        return idFlight == booking.idFlight &&
-                idBooking == booking.idBooking;
+        return idBooking == booking.idBooking &&
+                user.equals(booking.user) &&
+                passenger.equals(booking.passenger) &&
+                flight.equals(booking.flight);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idFlight, idBooking);
+        return Objects.hash(idBooking, user, passenger, flight);
     }
+
 }
