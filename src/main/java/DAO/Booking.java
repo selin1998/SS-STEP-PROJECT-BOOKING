@@ -25,10 +25,20 @@ public class Booking {
         this.flight = flight;
     }
 
+//    public static Booking parse(String text) {
+//        String[] content = text.split("|");
+//        return new Booking(
+//                Integer.parseInt(content[0]),
+//                content[1],
+//                content[2],
+//                content[3]
+//
+//        );
+//    }
+
     public String displayBookingInfo() {
-        return String.format("Booking ID: %s\nPassenger: %s %s\nFlight Details: %s ",
-                idBooking, passenger.firstName.toUpperCase(), passenger.lastName.toUpperCase(),
-                flight);
+        return String.format("| %-10d |%-10s |%-10s |%-15s |",
+                idBooking, passenger.name.toUpperCase(), passenger.lastname.toUpperCase(), flight);
     }
     @Override
     public boolean equals(Object o) {

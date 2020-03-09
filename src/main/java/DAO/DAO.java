@@ -11,9 +11,9 @@ public interface DAO<T> {
     boolean create(T t);
     boolean delete (T t);
     boolean deleteByID (int index);
-    void saveData(T t,File file);
-    void readData(T t, File file);
-    void loadData(T t,File file);
+    void saveData(List<T> t,File file);
+    void readData(List<T> t, File file);
+    void loadData(List<T> t,File file);
 
 
 
