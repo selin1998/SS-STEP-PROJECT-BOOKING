@@ -6,10 +6,15 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class FlightDAO implements DAO<Flight> {
-    String filename;
+    String filename="./INFO/flight.txt";
     @Override
-    public Optional<Flight> get(int id) {
-        return getAll().stream().filter(f->f.flightId==id).findFirst();
+    public Optional<Flight> get(String id) {
+        return getAll().stream().filter(f->f.flightId.equals(id)).findFirst();
+    }
+
+    @Override
+    public Optional<Flight> get(Flight flight) {
+        return getAll().stream().filter(f->f.equals(flight)).findAny();
     }
 
     @Override
@@ -24,11 +29,11 @@ public class FlightDAO implements DAO<Flight> {
     }
 
     @Override
-    public void delete(int index) {
+    public void delete(String index) {
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter(new File(filename)));
             getAll().stream()
-                    .filter(f -> f.flightId != index)
+                    .filter(f -> f.flightId.equals(index))
                     .forEach(f -> {
                         try {
                             bw.write(f.displayFlightInfo());
@@ -43,20 +48,6 @@ public class FlightDAO implements DAO<Flight> {
         }
     }
 
-    @Override
-    public void loadData(Flight flight) {
-
-    }
-
-    @Override
-    public void readData(Flight flight) {
-
-    }
-
-    @Override
-    public void saveData(Flight flight) {
-
-    }
 
 
     @Override

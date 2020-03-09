@@ -6,20 +6,20 @@ import java.util.Objects;
 import java.util.TimeZone;
 
 public class Flight {
-    int flightId;
-    int numberOfFreePlaces;
-    String destination;
-    long arrivalTime;
-    long departureTime;
+  public  String flightId;
+   public int numberOfFreePlaces;
+  public  String destination;
+  public  long departureTime;
+  public  String airline;
 
 
 
-    public Flight(int flightId,  String destination, long departureTime, long arrivalTime,int numberOfFreePlaces) {
+    public Flight(String flightId,  long departureTime, String destination, String airline,int numberOfFreePlaces) {
         this.flightId = flightId;
         this.numberOfFreePlaces = numberOfFreePlaces;
         this.destination = destination;
-        this.arrivalTime = arrivalTime;
         this.departureTime = departureTime;
+        this.numberOfFreePlaces=numberOfFreePlaces;
 
     }
 
@@ -27,22 +27,22 @@ public class Flight {
     public String getFormatDate(long time){
 
         LocalDateTime localDateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(time), TimeZone.getDefault().toZoneId());
-        return String.format("%d/%d/%d %d:%d", localDateTime.getDayOfMonth(), localDateTime.getMonthValue(), localDateTime.getYear(), localDateTime.getHour(), localDateTime.getMinute());
+        return String.format("%d:%d", localDateTime.getHour(), localDateTime.getMinute());
 
     }
 
     public String displayFlightInfo(){
 
-       return String.format("| %-10d |%-12s |%-15s |%-15s |%-5d |", flightId,destination,getFormatDate(departureTime),getFormatDate(arrivalTime),numberOfFreePlaces);
+       return String.format("| %-10s |%-12s |%-15s |%-15s |%-5d |", flightId,getFormatDate(departureTime),destination,airline,numberOfFreePlaces);
     }
 
     public static Flight parse(String text) {
         String[] content = text.split(",");
         return new Flight(
-                Integer.parseInt(content[0]),
-                content[1],
-                Integer.parseInt(content[2]),
-                Integer.parseInt(content[3]),
+                content[0],
+                Integer.parseInt(content[1]),
+                content[2],
+                content[3],
                 Integer.parseInt(content[4])
 
         );
@@ -54,15 +54,12 @@ public class Flight {
         if (o == null || getClass() != o.getClass()) return false;
         Flight flight = (Flight) o;
         return flightId == flight.flightId &&
-                departureTime == flight.departureTime &&
-                arrivalTime == flight.arrivalTime &&
-                numberOfFreePlaces == flight.numberOfFreePlaces &&
                 destination.equals(flight.destination);
     }
 
     @Override
     public String toString() {
-        return String.format("Flight{idFlight=%d, destination=%s ,departureTime=%s, arrivalTime=%s, numberOfFreePlaces=%d}", flightId,destination, getFormatDate(departureTime), getFormatDate(arrivalTime), numberOfFreePlaces);
+        return String.format("Flight{idFlight=%d, departureTime=%s,destination=%s , airline=%s, numberOfFreePlaces=%d}", flightId, getFormatDate(departureTime),destination,airline, numberOfFreePlaces);
     }
 
 }
