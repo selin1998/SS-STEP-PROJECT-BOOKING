@@ -14,11 +14,13 @@ public class Main {
         FlightController fc= new FlightController();
         fc.displayAllFlights();
         System.out.println("-------------");
-        fc.displaySearchedFlight("Lisbon","Azul");
+        System.out.println(fc.displaySearchedFlight("Tunis", "Lufthansa","3"));
         System.out.println("-------------");
         fc.displayFlightbyId(5);
 //        DAO <Flight> dao=new FlightDAO("./INFO/flight.bin");
 //        System.out.println(dao.getAll());
+        System.out.println("-------------");
+        fc.displayFlightsBy("Moscow","Aeroflot");
 
 
     }
