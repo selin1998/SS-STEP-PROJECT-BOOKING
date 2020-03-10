@@ -24,8 +24,22 @@ public class FileConverter  {
             flist.add(Flight.parse(line));
 
         }
+//        for (Flight flight : flist) {
+//            System.out.println(flight.toString());
+//        }
 
         oos.writeObject(flist);
+
+//        FileInputStream fis = new FileInputStream(ofile);
+//        ObjectInputStream ois = new ObjectInputStream(fis);
+//        Object readed = ois.readObject();
+//        ArrayList<Flight> data = (ArrayList<Flight>) readed;
+//        for (Flight datum : data) {
+//            System.out.println(datum);
+//        }
+//
+//
+//        //  oos.writeObject(flist);
 
 
 

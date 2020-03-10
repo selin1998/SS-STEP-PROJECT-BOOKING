@@ -4,95 +4,65 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class FlightDAO implements DAO<Flight> {
-    ArrayList<Flight> flightList=new ArrayList<Flight>();
 
+    private File file;
 
-
-    @Override
-    public Flight get(int id) {
-        return flightList.get(id);
+    public FlightDAO(String filename) {
+        file = new File(filename);
     }
 
+    @Override
+    public Optional<Flight> get(int index) {
+        return Optional.ofNullable(getAll().get(index));
+    }
+
+    @Override
+    public List<Flight> getAllBy(Predicate<Flight> p) {
+        return getAll().stream().filter(p).collect(Collectors.toList());
+    }
 
     @Override
     public List<Flight> getAll() {
-       return flightList;
-    }
-
-    @Override
-    public void delete(String index) {
         try {
-            flightList.remove(index);
-
-        }
-        catch (IndexOutOfBoundsException ex){
-            System.out.println("Entered index is out of list length");
+            FileInputStream is = new FileInputStream(file);
+            ObjectInputStream ois = new ObjectInputStream(is);
+            Object readed = ois.readObject();
+            ArrayList<Flight> data = (ArrayList<Flight>) readed;
+            ois.close();
+            is.close();
+            return data;
+        } catch (IOException | ClassNotFoundException e) {
+            return new ArrayList<Flight>();
         }
     }
 
     @Override
     public void delete(Flight flight) {
-        flightList.remove(flight);
-
+        List<Flight> data = getAll().stream().filter(f -> ! f.equals(flight)).collect(Collectors.toList());
+        write(data);
     }
-
 
     @Override
     public void save(Flight flight) {
-        if (flightList.contains(flight)){
-            flightList.set(flightList.indexOf(flight),flight);
-
-        }
-        else {
-            flightList.add(flight);
-        }
-        saveData();
+        List<Flight> data = getAll();
+        data.add(flight);
+        write(data);
     }
 
-    @Override
-    public void saveData() {
-
-            try {
-                FileOutputStream outputStream=new FileOutputStream("./INFO/flight.bin");
-                ObjectOutputStream objectOutputStream=new ObjectOutputStream(outputStream);
-                objectOutputStream.writeObject(flightList);
-                objectOutputStream.close();
-                outputStream.close();
-            }
-
-        catch (Exception ex){
-            System.out.println("File not found!");
-        }
-
-    }
-
-
-    @Override
-    public ArrayList<Flight> readData() {
-        ArrayList<Flight> listLoaded=null ;
+    private void write(List<Flight> data) {
         try {
-            File file = new File("./INFO/flight.bin");
-            FileInputStream inputStream=new FileInputStream( file);
-            ObjectInputStream objectInputStream=new ObjectInputStream(inputStream);
-            listLoaded = (ArrayList<Flight>)objectInputStream.readObject();
-            objectInputStream.close();
-            inputStream.close();
-
-        }
-        catch (FileNotFoundException ex){
-            System.out.println("File not found! filepath wrong");
-
+            FileOutputStream outputStream=new FileOutputStream(file);
+            ObjectOutputStream objectOutputStream=new ObjectOutputStream(outputStream);
+            objectOutputStream.writeObject(data);
+            objectOutputStream.close();
+            outputStream.close();
         } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            throw new RuntimeException("IOException:", e);
         }
-        return listLoaded;
+
     }
-
-
-
 }
