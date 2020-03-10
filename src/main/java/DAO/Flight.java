@@ -1,25 +1,26 @@
 package DAO;
 
+import java.io.Serializable;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.TimeZone;
 
-public class Flight {
+public class Flight implements Serializable {
   public  String flightId;
    public int numberOfFreePlaces;
   public  String destination;
-  public  long departureTime;
+  public  String departureTime;
   public  String airline;
 
 
 
-    public Flight(String flightId,  long departureTime, String destination, String airline,int numberOfFreePlaces) {
+    public Flight(String flightId,  String departureTime, String destination, String airline,int numberOfFreePlaces) {
         this.flightId = flightId;
         this.numberOfFreePlaces = numberOfFreePlaces;
         this.destination = destination;
         this.departureTime = departureTime;
-        this.numberOfFreePlaces=numberOfFreePlaces;
+        this.airline=airline;
 
     }
 
@@ -33,14 +34,14 @@ public class Flight {
 
     public String displayFlightInfo(){
 
-       return String.format("| %-10s |%-12s |%-15s |%-15s |%-5d |", flightId,getFormatDate(departureTime),destination,airline,numberOfFreePlaces);
+       return String.format("| %-10s | %-8s | %-15s | %-25s | %-5d |", flightId,departureTime,destination,airline,numberOfFreePlaces);
     }
 
     public static Flight parse(String text) {
         String[] content = text.split(",");
         return new Flight(
                 content[0],
-                Integer.parseInt(content[1]),
+                content[1],
                 content[2],
                 content[3],
                 Integer.parseInt(content[4])
@@ -59,7 +60,7 @@ public class Flight {
 
     @Override
     public String toString() {
-        return String.format("Flight{idFlight=%d, departureTime=%s,destination=%s , airline=%s, numberOfFreePlaces=%d}", flightId, getFormatDate(departureTime),destination,airline, numberOfFreePlaces);
+        return String.format("| %-10s | %-8s | %-15s | %-25s | %-5d |", flightId,departureTime,destination,airline,numberOfFreePlaces);
     }
 
 }

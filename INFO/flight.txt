@@ -1,4 +1,3 @@
-Flight,Time,Destination,Carrier,Seats
 LH8296,04:55,Johannesburg,Lufthansa,4
 FR1568,06:05,Las Palmas,Ryanair,100
 TP0573,06:10,Lisbon,TAP Portugal,100

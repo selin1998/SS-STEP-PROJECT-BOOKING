@@ -5,12 +5,13 @@ import java.util.Optional;
 
 public interface DAO<T> {
 
-    Optional<T> get(String index);
-    Optional<T> get(T t);
+    T get(int index);
     List<T> getAll();
-    void create(T t);
+    void save(T t);
     void delete (T t);
     void delete (String index);
+    void saveData();
+    List<T> readData( );
 
 
 
