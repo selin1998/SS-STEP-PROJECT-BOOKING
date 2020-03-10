@@ -25,17 +25,6 @@ public class Booking {
         this.flight = flight;
     }
 
-//    public static Booking parse(String text) {
-//        String[] content = text.split("|");
-//        return new Booking(
-//                Integer.parseInt(content[0]),
-//                content[1],
-//                content[2],
-//                content[3]
-//
-//        );
-//    }
-
     public String displayBookingInfo() {
         return String.format("| %-10d |%-10s |%-10s |%-15s |",
                 idBooking, passenger.name.toUpperCase(), passenger.lastname.toUpperCase(), flight);
@@ -56,4 +45,9 @@ public class Booking {
         return Objects.hash(idBooking, user, passenger, flight);
     }
 
+    @Override
+    public String toString() {
+        return String.format("| %-10d |%-10s |%-10s |%-15s |",
+                idBooking, passenger.name.toUpperCase(), passenger.lastname.toUpperCase(), flight);
+    }
 }

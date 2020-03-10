@@ -6,8 +6,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class BookingDAO implements DAO<Booking> {
-    File fileBooking = new File("./INFO", "bookings.txt");
+public class BookingDAO implements DAO_B<Booking> {
+    File fileBooking;
+
+    public BookingDAO(String filename) {
+        this.fileBooking = new File(filename);
+    }
 
     List<Booking> bookings = new ArrayList<>();
 
@@ -20,6 +24,10 @@ public class BookingDAO implements DAO<Booking> {
     @Override
     public List<Booking> getAll() {
         return bookings;
+    }
+
+    public List<Booking> getBookingsbyUser(String username){
+        return getAll().stream().filter(b->b.user.username.equals(username)).collect(Collectors.toList());
     }
 
     @Override
@@ -39,13 +47,6 @@ public class BookingDAO implements DAO<Booking> {
         return bookings.removeIf(b -> bookingID == b.idBooking);
     }
 
-    @Override
-    public boolean delete(Booking booking) {
-        if (booking == null) {
-            return false;
-        } else return bookings.remove(booking);
-    }
-
     public void loadBookingsFromFile() {
         if (fileBooking.exists()) {
             loadData(bookings, fileBooking);
@@ -56,7 +57,7 @@ public class BookingDAO implements DAO<Booking> {
         saveData(bookings,fileBooking);
     }
 
-    @Override
+
     public void loadData(List<Booking> bookingList, File file) {
         try {
             FileInputStream fis = new FileInputStream(file);
@@ -76,12 +77,7 @@ public class BookingDAO implements DAO<Booking> {
 
     }
 
-    @Override
-    public void readData(List<Booking> bookingList, File file) {
 
-    }
-
-    @Override
     public void saveData(List<Booking> bookingList, File file) {
         try {
             file.getParentFile().mkdirs();
