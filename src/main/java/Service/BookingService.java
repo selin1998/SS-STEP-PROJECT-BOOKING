@@ -1,8 +1,10 @@
 package Service;
 
+import Controller.FlightController;
 import DAO.Booking;
 import DAO.BookingDAO;
 import DAO.DAO_B;
+import DAO.SearchAndBook;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -10,8 +12,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class BookingService implements Serializable {
+public class BookingService extends SearchAndBook implements Serializable {
     BookingDAO daoBooking=new BookingDAO("./INFO/bookings.txt.txt");
+
 
     public List<String> getAllBookings(){
         return daoBooking.getAll().stream().map(b->b.toString()).collect(Collectors.toList());
@@ -43,5 +46,7 @@ public class BookingService implements Serializable {
     public void loadBookings(){
         daoBooking.loadBookingsFromFile();
     }
+
+
 
 }
