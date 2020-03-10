@@ -7,47 +7,47 @@ public class Booking {
 
     int idBooking;
 //    LocalDateTime bookedTime;
-    User user;
-    Passenger passenger;
-    Flight flight;
+    String username;
+    String passengerId;
+    String flightId;
 
-    public Booking(User user, Passenger passenger, Flight flight) {
-        this.idBooking = counter++;
-        this.user = user;
-        this.passenger = passenger;
-        this.flight = flight;
+    public Booking(String userId, String passengerId, String flightId) {
+        this.username = userId;
+        this.passengerId = passengerId;
+        this.flightId = flightId;
     }
 
-    public Booking(int idBooking, User user, Passenger passenger, Flight flight) {
+    public Booking(int idBooking, String userId, String passengerId, String flightId) {
         this.idBooking = idBooking;
-        this.user = user;
-        this.passenger = passenger;
-        this.flight = flight;
+        this.username = userId;
+        this.passengerId = passengerId;
+        this.flightId = flightId;
     }
 
     public String displayBookingInfo() {
         return String.format("| %-10d |%-10s |%-10s |%-15s |",
-                idBooking, passenger.name.toUpperCase(), passenger.lastname.toUpperCase(), flight);
+                idBooking,username, passengerId,flightId);
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Booking)) return false;
         Booking booking = (Booking) o;
         return idBooking == booking.idBooking &&
-                user.equals(booking.user) &&
-                passenger.equals(booking.passenger) &&
-                flight.equals(booking.flight);
+                Objects.equals(username, booking.username) &&
+                Objects.equals(passengerId, booking.passengerId) &&
+                Objects.equals(flightId, booking.flightId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idBooking, user, passenger, flight);
+        return Objects.hash(idBooking, username, passengerId, flightId);
     }
 
     @Override
     public String toString() {
         return String.format("| %-10d |%-10s |%-10s |%-15s |",
-                idBooking, passenger.name.toUpperCase(), passenger.lastname.toUpperCase(), flight);
+                idBooking,username, passengerId,flightId);
     }
 }

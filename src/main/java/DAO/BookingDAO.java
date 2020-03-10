@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class BookingDAO implements DAO_B<Booking> {
@@ -14,6 +15,7 @@ public class BookingDAO implements DAO_B<Booking> {
     }
 
     List<Booking> bookings = new ArrayList<>();
+    List<Flight> flights=new ArrayList<>();
 
 
     @Override
@@ -27,7 +29,7 @@ public class BookingDAO implements DAO_B<Booking> {
     }
 
     public List<Booking> getBookingsbyUser(String username){
-        return getAll().stream().filter(b->b.user.username.equals(username)).collect(Collectors.toList());
+        return getAll().stream().filter(b->b.username.equals(username)).collect(Collectors.toList());
     }
 
     @Override
@@ -92,6 +94,7 @@ public class BookingDAO implements DAO_B<Booking> {
             throw new IllegalArgumentException("Something wrong with stream");
         }
     }
+
 
 
 }
