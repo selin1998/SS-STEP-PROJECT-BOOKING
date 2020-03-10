@@ -8,8 +8,8 @@ public class FlightController {
     FlightService service=new FlightService();
 
     public void displayAllFlights(){
-        service.getAllFlights().stream().forEach(x->System.out.println(x));
-    }
+        service.getAllFlights();
+    }  //.stream().forEach(x->System.out.println(x))
     public void displayFlightbyId(int index){
         System.out.println(service.getFlightbyId(index));
 

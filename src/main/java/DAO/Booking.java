@@ -8,25 +8,25 @@ public class Booking {
     int idBooking;
 //    LocalDateTime bookedTime;
     String username;
-    String passengerId;
+    Passenger passenger;
     String flightId;
 
-    public Booking(String userId, String passengerId, String flightId) {
-        this.username = userId;
-        this.passengerId = passengerId;
+    public Booking(String username, Passenger passenger, String flightId) {
+        this.username = username;
+        this.passenger = passenger;
         this.flightId = flightId;
     }
 
-    public Booking(int idBooking, String userId, String passengerId, String flightId) {
+    public Booking(int idBooking, String username, Passenger passenger, String flightId) {
         this.idBooking = idBooking;
-        this.username = userId;
-        this.passengerId = passengerId;
+        this.username = username;
+        this.passenger = passenger;
         this.flightId = flightId;
     }
 
     public String displayBookingInfo() {
         return String.format("| %-10d |%-10s |%-10s |%-15s |",
-                idBooking,username, passengerId,flightId);
+                idBooking,username, passenger.pass_ID,flightId);
     }
 
     @Override
@@ -36,18 +36,18 @@ public class Booking {
         Booking booking = (Booking) o;
         return idBooking == booking.idBooking &&
                 Objects.equals(username, booking.username) &&
-                Objects.equals(passengerId, booking.passengerId) &&
+                Objects.equals(passenger, booking.passenger) &&
                 Objects.equals(flightId, booking.flightId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idBooking, username, passengerId, flightId);
+        return Objects.hash(idBooking, username, passenger, flightId);
     }
 
     @Override
     public String toString() {
         return String.format("| %-10d |%-10s |%-10s |%-15s |",
-                idBooking,username, passengerId,flightId);
+                idBooking,username, passenger.pass_ID,flightId);
     }
 }
