@@ -2,6 +2,8 @@ package Controller;
 
 import Service.FlightService;
 
+import java.util.List;
+
 public class FlightController {
     FlightService service=new FlightService();
 
@@ -12,8 +14,12 @@ public class FlightController {
         System.out.println(service.getFlightbyId(index));
 
     }
-    public void displaySearchedFlight(String dest,String airline){
-        service.searchFlight(dest,airline).forEach(x-> System.out.println(x));
+    public List<String> displaySearchedFlight(String dest,String airline,String numberofplaces){
+        List<String> strings = service.searchFlight(dest, airline,numberofplaces);
+        return strings;
+    }
+    public void displayFlightsBy( String destination, String airline){
+        System.out.println(service.getAllby(destination, airline));
     }
 
 }
