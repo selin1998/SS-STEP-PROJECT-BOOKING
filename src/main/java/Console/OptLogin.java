@@ -15,4 +15,9 @@ public class OptLogin implements Option {
     public void execution() {
 
     }
+
+    @Override
+    public boolean isExit() {
+        return false;
+    }
 }

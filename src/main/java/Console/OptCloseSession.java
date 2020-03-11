@@ -15,4 +15,9 @@ public class OptCloseSession implements Option{
     public void execution() {
 
     }
+
+    @Override
+    public boolean isExit() {
+        return false;
+    }
 }

@@ -17,4 +17,9 @@ public class OptBookFlight implements Option {
 
 
     }
+
+    @Override
+    public boolean isExit() {
+        return false;
+    }
 }
