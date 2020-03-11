@@ -15,8 +15,18 @@ public class Main {
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
        FlightController fc= new FlightController("./INFO/flight.bin");
-    //   fc.displayFlightbyId("LH0100");
-    //    fc.displayFlightsBy("Berlin","Lufthansa",5);
+       FlightService service= new FlightService("./INFO/flight.bin");
+        System.out.println(service.availableSeatsFlight("LH8296"));
+
+        //   fc.displayFlightbyId("LH0100");
+      //  fc.displayFlightsBy("Berlin","Lufthansa",5);
+       // fc.displayFlightbyId("LH8296");
+//        service.decreaseAvailableSeats("SK3616",5);
+//
+//        fc.displayAllFlights();
+//        System.out.println();
+//        fc.displayFlightbyId("SK3616");
+    //    System.out.println(service.countFlights());
 //       HashMap<Integer,String> map= fc.getFlightsBymap("Berlin","Lufthansa",5);
 //        System.out.println(map.get(3).split("\\|")[1]);
 
@@ -42,8 +52,8 @@ public class Main {
 //        OptOnlineBoard o=new OptOnlineBoard();
 //        o.execution();
 
-        OptBookFlight obf=new OptBookFlight();
-        obf.execution();
+//        OptSearchFlight osf=new OptSearchFlight();
+//        osf.execution();
 
 //        ConsoleApp app= new ConsoleApp();
 //        app.start();

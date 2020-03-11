@@ -17,7 +17,8 @@ public class FlightDAO implements DAO<Flight> {
 
 
     public Optional<Flight> get(String id) {
-        return getAll().stream().filter(x->x.flightId.equals(id)).findAny();
+        return getAll().stream().filter(x->x.flightId.equalsIgnoreCase(id)).findAny();
+
     }
 
     @Override
@@ -53,8 +54,8 @@ public class FlightDAO implements DAO<Flight> {
     }
 
     @Override
-    public void delete(Flight flight) {
-        List<Flight> data = getAll().stream().filter(f -> ! f.equals(flight)).collect(Collectors.toList());
+    public void delete(String id) {
+        List<Flight> data = getAll().stream().filter(f -> !f.flightId.equalsIgnoreCase(id)).collect(Collectors.toList());
         write(data);
     }
 
