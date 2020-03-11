@@ -5,6 +5,7 @@ import DAO.Passenger;
 import Service.BookingService;
 import Service.FlightService;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class BookingController {
@@ -42,6 +43,13 @@ public class BookingController {
 
     public void searchFlightsforBooking(String destination, String airline, int numberPlaces) {
         controllerFlight.displayFlightsBy(destination, airline, numberPlaces);
+    }
+
+    public String getFlightForBooking(int serialNo,String dest,String airway,int count){
+        HashMap<Integer, String> data;
+        data = controllerFlight.getFlightsBymap(dest,airway,count);
+        String flight = data.get(serialNo);
+        return flight;
     }
 
 

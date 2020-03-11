@@ -57,12 +57,11 @@ public class OptBookFlight implements Option {
              lastname=scanner.nextLine();
             passengersList.add(new Passenger(firstname,lastname));
         }
-        data = controllerFlight.getFlightsBymap(dest,airway,count);
-        String flight = data.get(serialNo);
+        String flight = controllerBooking.getFlightForBooking(serialNo, dest, airway, count);
         Booking book1=new Booking(passengersList,flight);
         controllerBooking.saveBooking(book1);
         controllerBooking.displayAllBookings();
-        //bookingList.add(book1);
+
 
 
 

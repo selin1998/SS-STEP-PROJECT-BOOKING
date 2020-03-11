@@ -13,7 +13,7 @@ public class Booking implements Serializable {
     List<Passenger> passenger;
     String flightId;
 
-    private static int counter = 0;
+    private  int counter = 0;
 
     {
          counter++;
