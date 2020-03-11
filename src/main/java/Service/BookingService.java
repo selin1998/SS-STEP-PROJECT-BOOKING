@@ -11,12 +11,12 @@ import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 public class BookingService implements Serializable {
-    BookingDAO1 daoBooking=new BookingDAO1("./INFO/bookings.bin");
+   // BookingDAO1 daoBooking=new BookingDAO1("./INFO/booking.bin");
 
-    BookingDAO1 daoB;
+    BookingDAO1 daoBooking;
     public BookingService(String filename) {
 
-        daoB = new BookingDAO1(filename);
+        daoBooking = new BookingDAO1(filename);
     }
 
 

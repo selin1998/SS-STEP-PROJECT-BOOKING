@@ -1,8 +1,9 @@
 package DAO;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Passenger {
+public class Passenger implements Serializable {
     String name;
     String lastname;
     int passportId;
@@ -28,7 +29,7 @@ public class Passenger {
 
     }
 
-    public Passenger(String name) {   //, String lastname
+    public Passenger(String name, String lastname) {
         this.name = name;
         this.lastname = lastname;
     }

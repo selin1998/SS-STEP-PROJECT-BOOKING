@@ -1,10 +1,11 @@
 package DAO;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
-public class Booking {
-    private static int counter = 1;
+public class Booking implements Serializable {
+
 
     int idBooking;
 //    LocalDateTime bookedTime;
@@ -12,8 +13,14 @@ public class Booking {
     List<Passenger> passenger;
     String flightId;
 
+    private static int counter = 0;
+
+    {
+         counter++;
+    }
+
     public Booking( List<Passenger> passenger, String flightId) {  //String username,
-        this.idBooking=counter++;
+        this.idBooking=counter;
         //this.username = username;
         this.passenger = passenger;
         this.flightId = flightId;

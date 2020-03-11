@@ -7,12 +7,13 @@ import DAO.Passenger;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class OptBookFlight implements Option {
     final String DASHES2 = new String(new char[93]).replace("\0", "-");
 
     FlightController controllerFlight = new FlightController("./INFO/flight.bin");
-    BookingController controllerBooking=new BookingController("./INFO/bookings.bin");
+    BookingController controllerBooking=new BookingController("./INFO/booking.bin");
     HashMap<Integer, String> data;
     ArrayList<Booking> bookingList=new ArrayList<>();
     ArrayList<Passenger> passengersList=new ArrayList<>();
@@ -45,15 +46,16 @@ public class OptBookFlight implements Option {
         fc.displayFlightsBy(dest, airway, count);
         //BOOKING PART
         System.out.println("Enter Serial NO of flight you would like to book or press 0 to return to main menu:");
-        int serialNo = 2;
+        int serialNo = sc.nextInt();
         String firstname;
         String lastname;
+        Scanner scanner=new Scanner(System.in);
         for (int i = 0; i < count; i++) {
             System.out.println("Enter the firstname:");
-            firstname=sc.nextLine();
-//            System.out.println("Enter the lastname:");
-//             lastname=sc.nextLine();
-            passengersList.add(new Passenger(firstname)); //,lastname
+            firstname=scanner.nextLine();
+            System.out.println("Enter the lastname:");
+             lastname=scanner.nextLine();
+            passengersList.add(new Passenger(firstname,lastname));
         }
         data = controllerFlight.getFlightsBymap(dest,airway,count);
         String flight = data.get(serialNo);
