@@ -1,32 +1,34 @@
 package DAO;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Booking {
-    private static int counter = 0;
+    private static int counter = 1;
 
     int idBooking;
 //    LocalDateTime bookedTime;
-    String username;
-    Passenger passenger;
+   // String username;
+    List<Passenger> passenger;
     String flightId;
 
-    public Booking(String username, Passenger passenger, String flightId) {
-        this.username = username;
+    public Booking( List<Passenger> passenger, String flightId) {  //String username,
+        this.idBooking=counter++;
+        //this.username = username;
         this.passenger = passenger;
         this.flightId = flightId;
     }
 
-    public Booking(int idBooking, String username, Passenger passenger, String flightId) {
+    public Booking(int idBooking,  List<Passenger> passenger, String flightId) {  //String username,
         this.idBooking = idBooking;
-        this.username = username;
+        //this.username = username;
         this.passenger = passenger;
         this.flightId = flightId;
     }
 
     public String displayBookingInfo() {
-        return String.format("| %-10d |%-10s |%-10s |%-15s |",
-                idBooking,username, passenger.pass_ID,flightId);
+        return String.format("| %-10d |%-20s |%-10s |",
+                idBooking, passenger.toString(),flightId);   //username,
     }
 
     @Override
@@ -35,19 +37,19 @@ public class Booking {
         if (!(o instanceof Booking)) return false;
         Booking booking = (Booking) o;
         return idBooking == booking.idBooking &&
-                Objects.equals(username, booking.username) &&
+              //  Objects.equals(username, booking.username) &&
                 Objects.equals(passenger, booking.passenger) &&
                 Objects.equals(flightId, booking.flightId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idBooking, username, passenger, flightId);
-    }
+        return Objects.hash(idBooking,  passenger, flightId);
+    }  //username,
 
     @Override
     public String toString() {
-        return String.format("| %-10d |%-10s |%-10s |%-15s |",
-                idBooking,username, passenger.pass_ID,flightId);
+        return String.format("| %-10d |%-20s |%-10s |",
+                idBooking, passenger.toString(),flightId);   //username,
     }
 }

@@ -3,12 +3,14 @@ package DAO;
 import java.io.File;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 public interface DAO_B<T> {
 
     Optional<T> get(int index);
+    List<T> getAllBy(Predicate<T> p);
     List<T> getAll();
-    boolean create(T t);
-    boolean deleteByID (int index);
+    void save(T t);
+    boolean delete (int index);
 
 }

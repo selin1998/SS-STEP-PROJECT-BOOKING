@@ -64,7 +64,7 @@ public class FlightService implements Serializable {
         }
         void changeAvailableSeats(Flight flight, int count){
             flight.numberOfFreePlaces+=count;
-//            dao.saveData();
+          //  dao.saveData();
 
         }
         void saveFlight(Flight flight){

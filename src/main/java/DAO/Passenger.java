@@ -28,7 +28,7 @@ public class Passenger {
 
     }
 
-    public Passenger(String name, String lastname) {
+    public Passenger(String name) {   //, String lastname
         this.name = name;
         this.lastname = lastname;
     }
@@ -54,5 +54,10 @@ public class Passenger {
     @Override
     public int hashCode() {
         return Objects.hash(passportId);
+    }
+
+    public String toString(){
+        return String.format("| %-12s |%-15s |", name,lastname);
+
     }
 }

@@ -27,19 +27,16 @@ public class FlightController {
 
     }
 
-    public void displayFlightsBy( String destination, String airline,int seats){
+    public void displayFlightsBy( String destination, String airline,int seats) {
         AtomicInteger index = new AtomicInteger(0);
-        map= new HashMap<Integer, String>();
-
-          service.getAllby(destination, airline,seats).stream().forEach(x->System.out.printf("| %-8d %s\n", index.addAndGet(1),x));
+        service.getAllby(destination, airline, seats).stream().forEach(x -> System.out.printf("| %-8d %s\n", index.addAndGet(1), x));
     }
 
     public HashMap<Integer,String> getFlightsBymap( String destination, String airline,int seats){
         AtomicInteger index = new AtomicInteger(0);
         map= new HashMap<Integer, String>();
         service.getAllby(destination, airline,seats).stream().forEach(x->map.put(index.addAndGet(1),x));
-       // System.out.println(map.toString());
-
+       // System.out.println(map.toString());+
         return map;
         //   service.getAllby(destination, airline,seats).stream().forEach(x->System.out.printf("| %-8d %s\n", index.addAndGet(1),x));
     }

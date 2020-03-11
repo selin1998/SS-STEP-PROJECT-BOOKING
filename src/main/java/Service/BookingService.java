@@ -1,19 +1,23 @@
 package Service;
 
 import Controller.FlightController;
-import DAO.Booking;
-import DAO.BookingDAO;
-import DAO.DAO_B;
-import DAO.SearchAndBook;
+import DAO.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
-public class BookingService extends SearchAndBook implements Serializable {
-    BookingDAO daoBooking=new BookingDAO("./INFO/bookings.txt.txt");
+public class BookingService implements Serializable {
+    BookingDAO1 daoBooking=new BookingDAO1("./INFO/bookings.bin");
+
+    BookingDAO1 daoB;
+    public BookingService(String filename) {
+
+        daoB = new BookingDAO1(filename);
+    }
 
 
     public List<String> getAllBookings(){
@@ -21,13 +25,20 @@ public class BookingService extends SearchAndBook implements Serializable {
     }
 
     public String getBookingByID(int index){
-        return daoBooking.get(index).toString();
+        try {
+            return daoBooking.get(index).get().toString();
+        }
+        catch (NoSuchElementException ex){
+            System.out.println("Flight with such ID Not Found!");
+            return null;
+        }
+//        return daoBooking.get(index).toString();
     }
 
-    public List<String> getBookingsByUser(String username)   //User user
-    {
-        return daoBooking.getBookingsbyUser(username).stream().map(x->x.toString()).collect(Collectors.toList());
-    }
+//    public List<String> getBookingsByUser(String username)   //User user
+//    {
+//        return daoBooking.getBookingsbyUser(username).stream().map(x->x.toString()).collect(Collectors.toList());
+//    }
 
     public boolean makeBooking(Booking booking) {
 
@@ -35,17 +46,17 @@ public class BookingService extends SearchAndBook implements Serializable {
     }
 
     public boolean cancelBooking(int id) {
-        return daoBooking.deleteByID(id);
+        return daoBooking.delete(id);
     }
 
 
-    public void saveBookings(){
-        daoBooking.saveBookingstoFile();
+    public void saveBookings(Booking booking){
+        daoBooking.save(booking);
     }
 
-    public void loadBookings(){
-        daoBooking.loadBookingsFromFile();
-    }
+//    public void loadBookings(){
+//        daoBooking.loadBookingsFromFile();
+//    }
 
 
 

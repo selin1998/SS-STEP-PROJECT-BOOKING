@@ -17,8 +17,8 @@ public class Main {
        FlightController fc= new FlightController("./INFO/flight.bin");
     //   fc.displayFlightbyId("LH0100");
     //    fc.displayFlightsBy("Berlin","Lufthansa",5);
-       HashMap<Integer,String> map= fc.getFlightsBymap("Berlin","Lufthansa",5);
-        System.out.println(map.get(3).split("\\|")[1]);
+//       HashMap<Integer,String> map= fc.getFlightsBymap("Berlin","Lufthansa",5);
+//        System.out.println(map.get(3).split("\\|")[1]);
 
 //        System.out.println("--------");
 ////       OptOnlineBoard o= new OptOnlineBoard();
@@ -42,8 +42,8 @@ public class Main {
 //        OptOnlineBoard o=new OptOnlineBoard();
 //        o.execution();
 
-//        OptSearchFlight osf=new OptSearchFlight();
-//        osf.execution();
+        OptBookFlight obf=new OptBookFlight();
+        obf.execution();
 
 //        ConsoleApp app= new ConsoleApp();
 //        app.start();

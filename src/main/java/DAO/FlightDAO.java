@@ -18,7 +18,6 @@ public class FlightDAO implements DAO<Flight> {
 
     public Optional<Flight> get(String id) {
         return getAll().stream().filter(x->x.flightId.equals(id)).findAny();
-
     }
 
     @Override
