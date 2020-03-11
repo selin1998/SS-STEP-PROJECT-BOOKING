@@ -10,5 +10,5 @@ public interface DAO<T> {
     List<T> getAllBy(Predicate<T> p);
     List<T> getAll();
     void save(T t);
-    void delete (T t);
+    void delete (String id);
 }

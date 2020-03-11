@@ -18,6 +18,7 @@ public class FlightService implements Serializable {
 
 
     DAO<Flight> dao;
+
     public FlightService(String filename) {
 
         dao = new FlightDAO(filename);
@@ -39,7 +40,7 @@ public class FlightService implements Serializable {
                 return null;
             }
 
-
+          //  return dao.get(id).get().toString();
         }
 
        public List<String> getAllby( String destination,String airline, int numberofPlaces){
@@ -57,17 +58,28 @@ public class FlightService implements Serializable {
 
         }
 
-        int availableSeatsFlight(Flight flight){
+      public  int availableSeatsFlight(String id){
 
-            return flight.numberOfFreePlaces;
-
-        }
-        void changeAvailableSeats(Flight flight, int count){
-            flight.numberOfFreePlaces+=count;
-//            dao.saveData();
+            return dao.get(id).get().numberOfFreePlaces;
 
         }
-        void saveFlight(Flight flight){
+      public  void decreaseAvailableSeats(String id, int count){
+           Flight f= dao.get(id).get();
+           dao.delete(f.flightId);
+           f.numberOfFreePlaces-=count;
+           saveFlight(f);
+
+        }
+
+      public   void increaseAvailableSeats(String id, int count){
+            Flight f= dao.get(id).get();
+            dao.delete(f.flightId);
+            f.numberOfFreePlaces+=count;
+            saveFlight(f);
+        }
+
+
+      public   void saveFlight(Flight flight){
             dao.save(flight);
 
         }
