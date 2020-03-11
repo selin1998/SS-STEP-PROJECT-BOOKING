@@ -15,14 +15,27 @@ public class FlightDAO implements DAO<Flight> {
         file = new File(filename);
     }
 
+
+    public Optional<Flight> get(String id) {
+        return getAll().stream().filter(x->x.flightId.equals(id)).findAny();
+
+    }
+
     @Override
     public Optional<Flight> get(int index) {
-        return Optional.ofNullable(getAll().get(index));
+        return get(index);
     }
 
     @Override
     public List<Flight> getAllBy(Predicate<Flight> p) {
-        return getAll().stream().filter(p).collect(Collectors.toList());
+        List<Flight> data=new ArrayList<Flight>();
+        for (Flight flight : getAll()) {
+            if(p.test(flight)){
+                data.add(flight);
+            }
+        }
+        return data;
+      //  return getAll().stream().filter(p.test(getAll())).collect(Collectors.toList());
     }
 
     @Override

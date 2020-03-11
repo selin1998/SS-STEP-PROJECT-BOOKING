@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -25,34 +26,37 @@ public class FlightService implements Serializable {
 
         }
 
-        public String getFlightbyId(int index){
-            return dao.get(index).toString();
+        public String getFlightbyId(String id){
+
+            try {
+                return dao.get(id).get().toString();
+            }
+            catch (NoSuchElementException ex){
+                System.out.println("Flight with such ID Not Found!");
+                return null;
+            }
+
 
         }
 
-       public List<String> getAllby( String destination,String airline){
-        //   Predicate<Flight> b= x->x.equals(date);
-           Predicate<Flight> a=x->x.equals(destination);
+       public List<String> getAllby( String destination,String airline, int numberofPlaces){
 
-           Predicate<Flight> d=x->x.equals(airline);
-         //  Predicate<Flight> c=x->x.equals(numberofplaces);
+           Predicate<Flight> a=x->x.destination.equals(destination);
+          Predicate<Flight> b=x->x.airline.equals(airline);
+          Predicate<Flight> c=x->x.numberOfFreePlaces>=numberofPlaces;
 
-
-           return dao.getAllBy(a.and(d)).stream().map(x -> x.toString()).collect(Collectors.toList());
-
-
-
+           return dao.getAllBy(a.and(b).and(c)).stream().map(x -> x.toString()).collect(Collectors.toList());
 
        }
 
-        public List<String> searchFlight(String destination, String airline,String numberofPlaces){
-          return  dao.getAll().stream().filter(f->f.destination.equals(destination)).filter(f->f.airline.equals(airline)).filter(f->f.numberOfFreePlaces.equals(numberofPlaces)).map(x->x.toString()).collect(Collectors.toList());
+        public List<String> searchFlight(String destination, String airline,int numberofPlaces){
+          return  dao.getAll().stream().filter(f->f.destination.equals(destination)).filter(f->f.airline.equals(airline)).filter(f->f.numberOfFreePlaces==numberofPlaces).map(x->x.toString()).collect(Collectors.toList());
 
         }
 
         int availableSeatsFlight(Flight flight){
 
-            return Integer.parseInt(flight.numberOfFreePlaces);
+            return flight.numberOfFreePlaces;
 
         }
         void changeAvailableSeats(Flight flight, int count){

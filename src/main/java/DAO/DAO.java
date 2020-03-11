@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 
 public interface DAO<T> {
     Optional<T> get(int index);
+    Optional<T> get(String id);
     List<T> getAllBy(Predicate<T> p);
     List<T> getAll();
     void save(T t);

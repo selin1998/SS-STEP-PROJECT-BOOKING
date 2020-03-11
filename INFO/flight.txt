@@ -6,7 +6,7 @@ LH6994,06:10,Lisbon,Lufthansa,100
 AD7205,06:10,Lisbon,Azul,11
 LH0092,06:15,Munich,Lufthansa,30
 ET1571,06:15,Munich,Ethiopian Airlines,12
-LH0172,06:15,Berlin,Lufthansa,100
+LH0172,06:15,Berlin,Lufthansa,3
 ET1579,06:15,Berlin,Ethiopian Airlines,34
 FR4184,06:15,Agadir,Ryanair,100
 FR1530,06:25,Athens,Ryanair,70
@@ -156,7 +156,7 @@ LH0390,07:20,Luxembourg,Lufthansa,100
 UA9506,07:20,Luxembourg,United Airlines,100
 NH7874,07:20,Luxembourg,ANA,100
 LG1910,07:20,Luxembourg,Luxair,100
-LH,1004,07:25,Brussels,Lufthansa,100
+LH1004,07:25,Brussels,Lufthansa,100
 SQ2038,07:25,Brussels,Singapore Airlines,100
 UA9492,07:25,Brussels,United Airlines,100
 TG7696,07:25,Brussels,Thai Airways International,100
@@ -225,9 +225,9 @@ UA8794,08:05,Florence,United Airlines,100
 NH6203,08:05,Florence,ANA,100
 CA6192,08:05,Florence,Air China,100
 X36188,08:10,Luxor,TUIfly,100
-LH1058,08:15,Nice,Lufthansa,100
+LH1058,08:15,Nice,Lufthansa,10
 UA9200,08:15,Nice,United Airlines,100
-SQ2,100,08:15,Nice,Singapore Airlines,100
+SQ2100,08:15,Nice,Singapore Airlines,100
 NH5416,08:15,Nice,ANA,100
 AC9372,08:15,Nice,Air Canada,100
 LH0038,08:15,Berlin,Lufthansa,100
@@ -243,20 +243,20 @@ LH0296,08:25,Turin,Lufthansa,100
 UA8792,08:25,Turin,United Airlines,100
 NH6163,08:25,Turin,ANA,100
 LG1409,08:25,Turin,Luxair,100
-CA6205,08:25,Turin,Air China,100
-AC9528,08:25,Turin,Air Canada,100
+CA6205,08:25,Turin,Air China,15
+AC9528,08:25,Turin,Air Canada,2
 DE1502,08:30,Palma Mallorca,Condor,100
 UA0945,08:30,Chicago,United Airlines,100
 LH9152,08:30,Chicago,Lufthansa,100
 AC5983,08:30,Chicago,Air Canada,100
 LH0306,08:30,Catania,Lufthansa,100
 U25542,08:30,Berlin,easyJet,100
-LH1086,08:35,Marseille,Lufthansa,100
+LH1086,08:35,Marseille,Lufthansa,30
 UA9104,08:35,Marseille,United Airlines,100
 SQ2092,08:35,Marseille,Singapore Airlines,100
 NH5873,08:35,Marseille,ANA,100
 ET1570,08:35,Marseille,Ethiopian Airlines,100
-AC9410,08:35,Marseille,Air Canada,100
+AC9410,08:35,Marseille,Air Canada,21
 LH1364,08:35,Krakow,Lufthansa,100
 LO5400,08:35,Krakow,LOT - Polish Airlines,100
 UA9385,08:35,Krakow,United Airlines,100
@@ -373,12 +373,6 @@ NH5400,09:10,Billund,ANA,100
 AC9563,09:10,Billund,Air Canada,100
 OS0262,09:15,Salzburg,Austrian,100
 LH1592,09:15,Salzburg,Lufthansa,100
-LH1202,09:15,Basel", Switzerland/Mulhouse,Lufthansa,100
-NH5404,09:15,Basel", Switzerland/Mulhouse,ANA,100
-AC9010,09:15,Basel", Switzerland/Mulhouse,Air Canada,100
-UA9329,09:15,Basel", Switzerland/Mulhouse,United Airlines,100
-LX3911,09:15,Basel", Switzerland/Mulhouse,SWISS,100
-CA6039,09:15,Basel", Switzerland/Mulhouse,Air China,100
 LH0246,09:15,Milan,Lufthansa,100
 AC9306,09:15,Milan,Air Canada,100
 UA9140,09:15,Milan,United Airlines,100
@@ -398,14 +392,14 @@ SA7532,09:15,Dresden,South African Airways,100
 LH0098,09:15,Munich,Lufthansa,100
 AC9006,09:15,Munich,Air Canada,100
 OS0262,09:15,Salzburg,Austrian,100
-LH1592,09:15,Salzburg,Lufthansa,100
+LH1592,09:15,Salzburg,Lufthansa,1
 LH1028,09:15,Paris,Lufthansa,100
 UA9357,09:15,Paris,United Airlines,100
-LH0228,09:15,Trieste,Lufthansa,100
+LH0228,09:15,Trieste,Lufthansa,11
 LH0062,09:15,Muenster,Lufthansa,100
 UA9501,09:15,Muenster,United Airlines,100
 SA7514,09:15,Muenster,South African Airways,100
-NH6229,09:15,Muenster,ANA,100
+NH6229,09:15,Muenster,ANA,23
 AC9567,09:15,Muenster,Air Canada,100
 LH1250,09:20,Linz,Lufthansa,100
 UA8888,09:20,Linz,United Airlines,100
@@ -413,7 +407,7 @@ SQ2102,09:20,Linz,Singapore Airlines,100
 OS7212,09:20,Linz,Austrian,100
 NH5452,09:20,Linz,ANA,100
 AC9008,09:20,Linz,Air Canada,100
-LH,1008,09:25,Brussels,Lufthansa,100
+LH1008,09:25,Brussels,Lufthansa,100
 WY5506,09:25,Brussels,Oman Air,100
 UA8819,09:25,Brussels,United Airlines,100
 SN7002,09:25,Brussels,Brussels Airlines,100
@@ -631,7 +625,7 @@ UA8958,10:15,Nuremberg,United Airlines,100
 SA7524,10:15,Nuremberg,South African Airways,100
 LH1486,10:15,Minsk,Lufthansa,100
 LH0492,10:15,Vancouver,Lufthansa,100
-LH0,100,10:15,Munich,Lufthansa,100
+LH0100,10:15,Munich,Lufthansa,2
 AC9214,10:15,Munich,Air Canada,100
 UA9178,10:15,Munich,United Airlines,100
 TG7934,10:15,Munich,Thai Airways International,100
@@ -703,15 +697,15 @@ SQ2382,10:35,Warsaw,Singapore Airlines,100
 UA6848,10:35,Warsaw,United Airlines,100
 LH1094,10:35,Toulouse,Lufthansa,100
 AC9017,10:35,Toulouse,Air Canada,100
-UA9388,10:35,Toulouse,United Airlines,100
-SQ2088,10:35,Toulouse,Singapore Airlines,100
+UA9388,10:35,Toulouse,United Airlines,15
+SQ2088,10:35,Toulouse,Singapore Airlines,10
 SK3788,10:35,Toulouse,SAS,100
 NH5418,10:35,Toulouse,ANA,100
 ET1578,10:35,Toulouse,Ethiopian Airlines,100
 QR0070,10:35,Doha,Qatar Airways,100
 UL3570,10:35,Doha,SriLankan Airlines,100
 LH0890,10:40,Riga,Lufthansa,100
-UA9192,10:40,Riga,United Airlines,100
+UA9192,10:40,Riga,United Airlines,20
 NH6054,10:40,Riga,ANA,100
 AC9343,10:40,Riga,Air Canada,100
 LH0430,10:40,Chicago,Lufthansa,100
@@ -740,7 +734,6 @@ MH5286,10:45,Abu Dhabi,Malaysia Airlines,100
 XY3002,10:45,Abu Dhabi,flynas,100
 VA7002,10:45,Abu Dhabi,Virgin Australia,100
 LH9654,10:45,Abu Dhabi,Lufthansa,100
-HX,1002,10:45,Abu Dhabi,Hong Kong Airlines,100
 HM5085,10:45,Abu Dhabi,Air Seychelles,100
 9W6359,10:45,Abu Dhabi,Jet Airways (India),100
 LH0962,10:45,Edinburgh,Lufthansa,100
@@ -1082,11 +1075,6 @@ CX0288,12:45,Hong Kong,Cathay Pacific,100
 LH0184,12:45,Berlin,Lufthansa,100
 UA8887,12:45,Berlin,United Airlines,100
 AC9247,12:45,Berlin,Air Canada,100
-LH1204,12:50,Basel", Switzerland/Mulhouse,Lufthansa,100
-UA8786,12:50,Basel", Switzerland/Mulhouse,United Airlines,100
-SK3104,12:50,Basel", Switzerland/Mulhouse,SAS,100
-LX3913,12:50,Basel", Switzerland/Mulhouse,SWISS,100
-AC9368,12:50,Basel", Switzerland/Mulhouse,Air Canada,100
 LH0418,12:50,Dulles,Lufthansa,100
 UA8827,12:50,Dulles,United Airlines,100
 TG7710,12:50,Dulles,Thai Airways International,100
@@ -1102,8 +1090,8 @@ UA9229,12:50,Madrid,United Airlines,100
 SK3695,12:50,Madrid,SAS,100
 OS7461,12:50,Madrid,Austrian,100
 AC9284,12:50,Madrid,Air Canada,100
-OS0130,12:50,Vienna,Austrian,100
-LH6348,12:50,Vienna,Lufthansa,100
+OS0130,12:50,Vienna,Austrian,2
+LH6348,12:50,Vienna,Lufthansa,3
 LH0426,12:55,Philadelphia,Lufthansa,100
 LX4040,12:55,Philadelphia,SWISS,100
 UA9198,12:55,Philadelphia,United Airlines,100
@@ -1206,7 +1194,7 @@ LH0806,13:20,Stockholm,Lufthansa,100
 AC9149,13:20,Stockholm,Air Canada,100
 A31426,13:20,Stockholm,Aegean Airlines,100
 UA9352,13:20,Stockholm,United Airlines,100
-SK3,100,13:20,Stockholm,SAS,100
+SK3100,13:20,Stockholm,SAS,100
 LG1407,13:20,Stockholm,Luxair,100
 LH1252,13:20,Linz,Lufthansa,100
 UA9373,13:20,Linz,United Airlines,100
@@ -1328,7 +1316,7 @@ FR2418,13:55,Manchester,Ryanair,100
 LH0018,14:00,Hamburg,Lufthansa,100
 TP7672,14:00,Hamburg,TAP Portugal,100
 LH0908,14:00,London,Lufthansa,100
-UA9,100,14:00,London,United Airlines,100
+UA9100,14:00,London,United Airlines,100
 CA0966,14:05,Beijing,Air China,100
 TP8326,14:05,Beijing,TAP Portugal,100
 LH7322,14:05,Beijing,Lufthansa,100
@@ -1386,7 +1374,7 @@ TP7019,15:10,Cairo,TAP Portugal,100
 LH7174,15:10,Cairo,Lufthansa,100
 AC6514,15:10,Cairo,Air Canada,100
 W64330,15:10,Sofia,Wizz Air,100
-FR4,100,15:15,Malaga,Ryanair,100
+FR4100,15:15,Malaga,Ryanair,100
 LH0110,15:15,Munich,Lufthansa,100
 LA8689,15:15,Munich,LATAM Airlines,100
 CZ0464,15:20,Shanghai,China Southern Airlines,100
@@ -1699,11 +1687,6 @@ UA8843,17:30,New York,United Airlines,100
 SN7232,17:30,New York,Brussels Airlines,100
 LX1075,17:30,Zurich,SWISS,100
 LH5776,17:30,Zurich,Lufthansa,100
-LH1206,17:35,Basel", Switzerland/Mulhouse,Lufthansa,100
-SK3106,17:35,Basel", Switzerland/Mulhouse,SAS,100
-NH6109,17:35,Basel", Switzerland/Mulhouse,ANA,100
-UA9313,17:35,Basel", Switzerland/Mulhouse,United Airlines,100
-LX3915,17:35,Basel", Switzerland/Mulhouse,SWISS,100
 OZ0542,17:35,Seoul,Asiana Airlines,100
 LH8370,17:35,Mumbai,Lufthansa,100
 LH0066,17:35,Muenster,Lufthansa,100
@@ -1969,13 +1952,9 @@ NH5462,20:50,Bilbao,ANA,100
 CA6281,20:50,Bilbao,Air China,100
 LX1077,20:50,Zurich,SWISS,100
 LH5778,20:50,Zurich,Lufthansa,100
-LH1208,20:50,Basel", Switzerland/Mulhouse,Lufthansa,100
-SK3108,20:50,Basel", Switzerland/Mulhouse,SAS,100
-LX3917,20:50,Basel", Switzerland/Mulhouse,SWISS,100
-CA6211,20:50,Basel", Switzerland/Mulhouse,Air China,100
 LH0068,20:50,Muenster,Lufthansa,100
 TP7866,20:50,Muenster,TAP Portugal,100
-LH,1002,20:50,Amsterdam,Lufthansa,100
+LH1002,20:50,Amsterdam,Lufthansa,100
 A31406,20:50,Amsterdam,Aegean Airlines,100
 TG7660,20:50,Amsterdam,Thai Airways International,100
 JP9772,20:50,Amsterdam,Adria Airways,100

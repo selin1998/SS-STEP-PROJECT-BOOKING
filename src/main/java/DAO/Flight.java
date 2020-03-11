@@ -8,14 +8,14 @@ import java.util.TimeZone;
 
 public class Flight implements Serializable {
   public  String flightId;
-   public String numberOfFreePlaces;
+   public int numberOfFreePlaces;
   public  String destination;
   public  String departureTime;
   public  String airline;
 
 
 
-    public Flight(String flightId,  String departureTime, String destination, String airline,String numberOfFreePlaces) {
+    public Flight(String flightId,  String departureTime, String destination, String airline,int numberOfFreePlaces) {
         this.flightId = flightId;
         this.numberOfFreePlaces = numberOfFreePlaces;
         this.destination = destination;
@@ -34,7 +34,7 @@ public class Flight implements Serializable {
 
     public String displayFlightInfo(){
 
-       return String.format("| %-10s | %-8s | %-15s | %-25s | %-5s |", flightId,departureTime,destination,airline,numberOfFreePlaces);
+       return String.format("| %-10s | %-8s | %-15s | %-28s | %-5d |", flightId,departureTime,destination,airline,numberOfFreePlaces);
     }
 
     public static Flight parse(String text) {
@@ -44,7 +44,7 @@ public class Flight implements Serializable {
                 content[1],
                 content[2],
                 content[3],
-                content[4]
+                Integer.parseInt(content[4].trim())
 
         );
     }
@@ -60,7 +60,7 @@ public class Flight implements Serializable {
 
     @Override
     public String toString() {
-        return String.format("| %-10s | %-8s | %-15s | %-25s | %-5s |", flightId,departureTime,destination,airline,numberOfFreePlaces);
+        return String.format("| %-10s | %-8s | %-15s | %-28s | %-5d |", flightId,departureTime,destination,airline,numberOfFreePlaces);
     }
 
 }
