@@ -13,6 +13,11 @@ public class OptExit implements Option {
 
     @Override
     public void execution() {
+        System.out.println("Bye!");
+    }
 
+    @Override
+    public boolean isExit() {
+        return true;
     }
 }

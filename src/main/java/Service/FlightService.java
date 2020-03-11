@@ -16,11 +16,14 @@ import java.util.stream.Stream;
 
 public class FlightService implements Serializable {
 
-    private File file;
+
+    DAO<Flight> dao;
+    public FlightService(String filename) {
+
+        dao = new FlightDAO(filename);
+    }
 
 
-
-    DAO<Flight> dao = new FlightDAO("./INFO/flight.bin");
         public List<String> getAllFlights(){
             return dao.getAll().stream().map(x -> x.toString()).collect(Collectors.toList());
 
@@ -41,8 +44,8 @@ public class FlightService implements Serializable {
 
        public List<String> getAllby( String destination,String airline, int numberofPlaces){
 
-           Predicate<Flight> a=x->x.destination.equals(destination);
-          Predicate<Flight> b=x->x.airline.equals(airline);
+           Predicate<Flight> a=x->x.destination.equalsIgnoreCase(destination);
+          Predicate<Flight> b=x->x.airline.equalsIgnoreCase(airline);
           Predicate<Flight> c=x->x.numberOfFreePlaces>=numberofPlaces;
 
            return dao.getAllBy(a.and(b).and(c)).stream().map(x -> x.toString()).collect(Collectors.toList());
