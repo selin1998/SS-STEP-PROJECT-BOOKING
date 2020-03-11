@@ -1,9 +1,9 @@
 package DAO;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Passenger {
-
+public class Passenger implements Serializable {
     String name;
     String lastname;
     int passportId;
@@ -24,10 +24,16 @@ public class Passenger {
     public Passenger(int pass_ID,String name, String lastname,int passportId) {
         this.name = name;
         this.lastname = lastname;
-       this.pass_ID=pass_ID;
+        this.pass_ID=pass_ID;
         this.passportId=passportId;
 
     }
+
+    public Passenger(String name, String lastname) {
+        this.name = name;
+        this.lastname = lastname;
+    }
+
     public static Passenger parse(String text) {
         String[] content = text.split("|");
         return new Passenger(
@@ -49,5 +55,10 @@ public class Passenger {
     @Override
     public int hashCode() {
         return Objects.hash(passportId);
+    }
+
+    public String toString(){
+        return String.format("| %-12s |%-15s |", name,lastname);
+
     }
 }

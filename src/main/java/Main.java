@@ -1,8 +1,10 @@
 import Console.*;
+import Controller.BookingController;
 import Controller.FlightController;
 import DAO.DAO;
 import DAO.FlightDAO;
 import DAO.Flight;
+import Service.BookingService;
 import Service.FlightService;
 
 import java.io.FileInputStream;
@@ -16,6 +18,8 @@ public class Main {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
        FlightController fc= new FlightController("./INFO/flight.bin");
        FlightService service= new FlightService("./INFO/flight.bin");
+        BookingController bc=new BookingController(".INFO/bookings.bin");
+        BookingService serviceBooking=new BookingService(".INFO/bookings.bin");
         System.out.println(service.availableSeatsFlight("LH8296"));
 
         //   fc.displayFlightbyId("LH0100");
@@ -52,8 +56,8 @@ public class Main {
 //        OptOnlineBoard o=new OptOnlineBoard();
 //        o.execution();
 
-//        OptSearchFlight osf=new OptSearchFlight();
-//        osf.execution();
+        OptBookFlight obf=new OptBookFlight();
+        obf.execution();
 
 //        ConsoleApp app= new ConsoleApp();
 //        app.start();
