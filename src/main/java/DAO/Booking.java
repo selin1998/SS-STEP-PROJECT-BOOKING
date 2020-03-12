@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class Booking implements Serializable {
-
+    final String DASHES = new String(new char[82]).replace("\0", "-");
 
     int idBooking;
 //    LocalDateTime bookedTime;
@@ -57,7 +57,21 @@ public class Booking implements Serializable {
     @Override
     public String toString() {
 
-        return String.format("Booking ID: %d \n|%-20s\n%s ",
-                idBooking, passenger.toString(),flightId);   //username,
+
+        String str=String.format("| %-10s | %-8s | %-15s | %-28s | %-5s |", "FlightID", "Date", "Destination", "Airline", "Seats");
+        String dash=DASHES;
+        StringBuilder booking= new StringBuilder();
+        booking.append(String.format("Booking ID: %d \n",idBooking));
+
+
+        for (Passenger p: passenger) {
+            booking.append(p.toString());
+            booking.append("\n");
+        }
+        booking.append(String.format("%s\n%s\n%s\n%s\n ",dash,str,dash,flightId));
+
+        return booking.toString();
+//        return String.format("Booking ID: %d \n|%-20s\n%s\n%s\n%s\n%s\n ",
+//                idBooking, passenger.toString(),dash,str,dash,flightId);
     }
 }

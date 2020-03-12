@@ -51,7 +51,7 @@ public class OptBookFlight implements Option {
         String firstname;
         String lastname;
         Scanner scanner=new Scanner(System.in);
-        for (int i = 0; i < count; i++) {
+        for (int i = 1; i <=count; i++) {
             System.out.printf("Passenger %d:\n",i);
             System.out.println("Enter the firstname:");
             firstname=scanner.nextLine();
