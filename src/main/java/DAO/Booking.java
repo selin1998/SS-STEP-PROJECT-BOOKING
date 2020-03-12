@@ -13,9 +13,9 @@ public class Booking implements Serializable {
   //  BookingController controllerBooking=new BookingController("./INFO/book.bin");
 
 
-    int idBooking;
-    List<Passenger> passenger;
-    String flightId;
+   public int idBooking;
+  public  List<Passenger> passenger;
+   public  String flight;
 
     private static int counter;
 
@@ -24,24 +24,18 @@ public class Booking implements Serializable {
         counter = all.stream().map(b -> b.idBooking).max((id1, id2) -> id1 - id2).orElse(0);
     }
 
-    public Booking( List<Passenger> passenger, String flightId) {
-        counter=counter+1;
-        this.idBooking=counter;
+    public Booking( List<Passenger> passenger, String flight) {
+
+        this.idBooking=++counter;
         //this.username = username;
         this.passenger = passenger;
-        this.flightId = flightId;
+        this.flight = flight;
     }
 
-//    public Booking(int idBooking,  List<Passenger> passenger, String flightId) {  //String username,
-//        this.idBooking = idBooking;
-//        //this.username = username;
-//        this.passenger = passenger;
-//        this.flightId = flightId;
-//    }
 
     public String displayBookingInfo() {
         return String.format("| %-10d |%-20s |%-10s |",
-                idBooking, passenger.toString(),flightId);   //username,
+                idBooking, passenger.toString(),flight);   //username,
     }
 
     @Override
@@ -52,12 +46,12 @@ public class Booking implements Serializable {
         return idBooking == booking.idBooking &&
               //  Objects.equals(username, booking.username) &&
                 Objects.equals(passenger, booking.passenger) &&
-                Objects.equals(flightId, booking.flightId);
+                Objects.equals(flight, booking.flight);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idBooking,  passenger, flightId);
+        return Objects.hash(idBooking,  passenger, flight);
     }  //username,
 
     @Override
@@ -74,7 +68,7 @@ public class Booking implements Serializable {
             booking.append(p.toString());
             booking.append("\n");
         }
-        booking.append(String.format("%s\n%s\n%s\n%s\n ",dash,str,dash,flightId));
+        booking.append(String.format("%s\n%s\n%s\n%s\n ",dash,str,dash,flight));
 
         return booking.toString();
 //        return String.format("Booking ID: %d \n|%-20s\n%s\n%s\n%s\n%s\n ",

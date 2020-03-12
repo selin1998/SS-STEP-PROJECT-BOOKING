@@ -83,14 +83,4 @@ public class BookingDAO1 implements DAO_B<Booking> {
         }
     }
 
-//    public void readBookingID() throws IOException {
-//        File file = new File(".INFO/booking.bin");
-//        FileReader fr = new FileReader(file);
-//        BufferedReader r = new BufferedReader(fr);
-//
-//        String line;
-//        while ((line=r.readLine())!=null) {
-//
-//        }
-//    }
 }

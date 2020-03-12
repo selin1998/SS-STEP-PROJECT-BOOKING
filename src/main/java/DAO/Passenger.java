@@ -9,11 +9,6 @@ public class Passenger implements Serializable {
     int passportId;
     int pass_ID;
 
-    private static int count = 0;
-
-    {
-        this.pass_ID = ++count;
-    }
 
 
     public String displayPassengerInfo(){

@@ -1,6 +1,7 @@
 package Console;
 
 import Controller.BookingController;
+import Service.BookingService;
 
 import java.util.Scanner;
 
@@ -19,9 +20,17 @@ public class OptCancelBooking implements Option {
 
     @Override
     public void execution() {
-        System.out.println("Enter the booking id for cancel booking:");
+        System.out.println("Enter the booking id for canceling booking:");
         int id = sc.nextInt();
+
+        int seats= bc.getBookingbyId(id).passenger.size();
+        String idFlight=  bc.getBookingbyId(id).flight.split("\\|")[1].trim();
+        fc.inreaseSeats(idFlight,seats);
         bc.cancelBooking(id);
+
+
+
+
 
     }
 

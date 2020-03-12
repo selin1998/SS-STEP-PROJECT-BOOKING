@@ -63,8 +63,13 @@ public class OptBookFlight implements Option {
 
         Booking book1=new Booking(passengersList,flight);
 
+        String flightId = flight.split("\\|")[1].trim();
+
+        fc.decreaseSeats(flightId,count);
+
         bc.saveBooking(book1);
         bc.displayAllBookings();
+
         passengersList.clear();
 
 
@@ -77,33 +82,5 @@ public class OptBookFlight implements Option {
     }
 
 
-//    FlightController controllerFlight=new FlightController("./INFO/flight.bin");
-//    HashMap<Integer,String> data;
-//
-//    @Override
-//    public int optNumber() {
-//        return 4;
-//    }
-//
-//    @Override
-//    public String text() {
-//        return "BOOK FLIGHT";
-//    }
-//
-//    @Override
-//    public void execution() {
-////        optSearchFlight.execution();
-//        System.out.println("Enter Serial NO of flight you would like to book or press 0 to return to main menu:");
-//        int serialNo= sc.nextInt();
-//       data=controllerFlight.getFlightsBymap();
-//
-//
-//
-//    }
-//
-//    @Override
-//    public boolean isExit() {
-//        return false;
-//    }
 
 }

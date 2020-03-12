@@ -13,7 +13,8 @@ import java.util.stream.Collectors;
 public class BookingService implements Serializable {
    // BookingDAO1 daoBooking=new BookingDAO1("./INFO/booking.bin");
 
-    BookingDAO1 daoBooking;
+    DAO_B<Booking> daoBooking;
+
     public BookingService(String filename) {
 
         daoBooking = new BookingDAO1(filename);
@@ -24,40 +25,45 @@ public class BookingService implements Serializable {
         return daoBooking.getAll().stream().map(b->b.toString()).collect(Collectors.toList());
     }
 
-    public String getBookingByID(int index){
-        try {
-            return daoBooking.get(index).get().toString();
-        }
-        catch (NoSuchElementException ex){
-            System.out.println("Flight with such ID Not Found!");
-            return null;
-        }
-//        return daoBooking.get(index).toString();
+
+
+
+    public Booking getBookingByID(int index){
+
+
+            return daoBooking.get(index).get();
+
+
     }
 
 
-//    public List<String> getBookingsByUser(String username)   //User user
-//    {
-//        return daoBooking.getBookingsbyUser(username).stream().map(x->x.toString()).collect(Collectors.toList());
-//    }
 
-    public boolean makeBooking(Booking booking) {
-
-        return daoBooking.create(booking);
-    }
 
     public void cancelBooking(int id) {
          daoBooking.delete(id);
     }
 
 
+
+//    public int passengerSize(int id) {
+//
+//
+//        return daoBooking.get(id).get().passenger.size();
+//
+//
+//    }
+//
+//    public String bookingFlightid(int id){
+//        return daoBooking.get(id).get().flight;
+//    }
+
+
+
+
     public void saveBookings(Booking booking){
         daoBooking.save(booking);
     }
 
-//    public void loadBookings(){
-//        daoBooking.loadBookingsFromFile();
-//    }
 
 
 
