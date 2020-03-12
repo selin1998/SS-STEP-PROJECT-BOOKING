@@ -1,37 +1,43 @@
 package DAO;
 
+import Controller.BookingController;
+
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
 public class Booking implements Serializable {
     final String DASHES = new String(new char[82]).replace("\0", "-");
+  //  BookingController controllerBooking=new BookingController("./INFO/book.bin");
+
 
     int idBooking;
-//    LocalDateTime bookedTime;
-   // String username;
     List<Passenger> passenger;
     String flightId;
 
-    private static int counter = 0;
+    private static int counter;
 
     {
-        counter++;
+        ArrayList<Booking> all = new BookingDAO1("./INFO/booking.bin").getAll();
+        counter = all.stream().map(b -> b.idBooking).max((id1, id2) -> id1 - id2).orElse(0);
     }
 
-    public Booking( List<Passenger> passenger, String flightId) {  //String username,
+    public Booking( List<Passenger> passenger, String flightId) {
+        counter=counter+1;
         this.idBooking=counter;
         //this.username = username;
         this.passenger = passenger;
         this.flightId = flightId;
     }
 
-    public Booking(int idBooking,  List<Passenger> passenger, String flightId) {  //String username,
-        this.idBooking = idBooking;
-        //this.username = username;
-        this.passenger = passenger;
-        this.flightId = flightId;
-    }
+//    public Booking(int idBooking,  List<Passenger> passenger, String flightId) {  //String username,
+//        this.idBooking = idBooking;
+//        //this.username = username;
+//        this.passenger = passenger;
+//        this.flightId = flightId;
+//    }
 
     public String displayBookingInfo() {
         return String.format("| %-10d |%-20s |%-10s |",

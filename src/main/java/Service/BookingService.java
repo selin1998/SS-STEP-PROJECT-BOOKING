@@ -35,6 +35,7 @@ public class BookingService implements Serializable {
 //        return daoBooking.get(index).toString();
     }
 
+
 //    public List<String> getBookingsByUser(String username)   //User user
 //    {
 //        return daoBooking.getBookingsbyUser(username).stream().map(x->x.toString()).collect(Collectors.toList());
@@ -45,8 +46,8 @@ public class BookingService implements Serializable {
         return daoBooking.create(booking);
     }
 
-    public boolean cancelBooking(int id) {
-        return daoBooking.delete(id);
+    public void cancelBooking(int id) {
+         daoBooking.delete(id);
     }
 
 

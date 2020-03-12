@@ -11,6 +11,6 @@ public interface DAO_B<T> {
     List<T> getAllBy(Predicate<T> p);
     List<T> getAll();
     void save(T t);
-    boolean delete (int index);
+    void delete (int index);
 
 }

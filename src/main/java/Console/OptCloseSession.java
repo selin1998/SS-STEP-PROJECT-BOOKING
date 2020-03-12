@@ -3,7 +3,7 @@ package Console;
 public class OptCloseSession implements Option{
     @Override
     public int optNumber() {
-        return 8;
+        return 6;
     }
 
     @Override

@@ -12,8 +12,8 @@ import java.util.Scanner;
 public class OptBookFlight implements Option {
     final String DASHES2 = new String(new char[93]).replace("\0", "-");
 
-    FlightController controllerFlight = new FlightController("./INFO/flight.bin");
-    BookingController controllerBooking=new BookingController("./INFO/booking.bin");
+ //   FlightController controllerFlight = new FlightController("./INFO/flight.bin");
+   // BookingController controllerBooking=new BookingController("./INFO/booking.bin");
     HashMap<Integer, String> data;
     ArrayList<Booking> bookingList=new ArrayList<>();
     ArrayList<Passenger> passengersList=new ArrayList<>();
@@ -59,11 +59,13 @@ public class OptBookFlight implements Option {
              lastname=scanner.nextLine();
             passengersList.add(new Passenger(firstname,lastname));
         }
-        String flight = controllerBooking.getFlightForBooking(serialNo, dest, airway, count);
-        Booking book1=new Booking(passengersList,flight);
-        controllerBooking.saveBooking(book1);
-        controllerBooking.displayAllBookings();
+        String flight = bc.getFlightForBooking(serialNo, dest, airway, count);
 
+        Booking book1=new Booking(passengersList,flight);
+
+        bc.saveBooking(book1);
+        bc.displayAllBookings();
+        passengersList.clear();
 
 
 

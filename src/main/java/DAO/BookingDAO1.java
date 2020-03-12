@@ -20,8 +20,10 @@ public class BookingDAO1 implements DAO_B<Booking> {
         return getAll().stream().filter(x->x.idBooking==id).findAny();
     }
 
+
+
     @Override
-    public List<Booking> getAll() {
+    public ArrayList<Booking> getAll() {
         try {
             FileInputStream is = new FileInputStream(file);
             ObjectInputStream ois = new ObjectInputStream(is);
@@ -36,13 +38,9 @@ public class BookingDAO1 implements DAO_B<Booking> {
     }
 
     @Override
-    public boolean delete(int id) {
-        if (!get(id).isPresent()) return false;
-        bookings.removeIf(b -> id == b.idBooking);
-        List<Booking> data=bookings;
-        write(data);
-        return true;
-//        List<Booking> data = getAll().stream().filter(f -> ! f.equals(id)).collect(Collectors.toList());
+    public void delete(int id) {
+        List<Booking> listBookings = getAll().stream().filter(b -> !(b.idBooking == id)).collect(Collectors.toList());
+        write(listBookings);
     }
 
     @Override
@@ -84,4 +82,15 @@ public class BookingDAO1 implements DAO_B<Booking> {
             return true;
         }
     }
+
+//    public void readBookingID() throws IOException {
+//        File file = new File(".INFO/booking.bin");
+//        FileReader fr = new FileReader(file);
+//        BufferedReader r = new BufferedReader(fr);
+//
+//        String line;
+//        while ((line=r.readLine())!=null) {
+//
+//        }
+//    }
 }

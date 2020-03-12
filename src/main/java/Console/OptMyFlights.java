@@ -1,9 +1,12 @@
 package Console;
 
+import Controller.BookingController;
+
 public class OptMyFlights implements Option {
+
     @Override
     public int optNumber() {
-        return 6;
+        return 5;
     }
 
     @Override
@@ -13,7 +16,8 @@ public class OptMyFlights implements Option {
 
     @Override
     public void execution() {
-
+        System.out.println("Your bookings:");
+        bc.displayAllBookings();
     }
 
     @Override

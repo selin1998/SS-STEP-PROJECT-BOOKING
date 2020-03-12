@@ -7,8 +7,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="ss" />
-        <module name="SS" />
         <module name="SS-STEP-PROJECT-BOOKING" />
+        <module name="SS" />
         <module name="STEP-PROJECT-BOOKING" />
       </profile>
     </annotationProcessing>
