@@ -13,10 +13,10 @@ public class Booking implements Serializable {
     List<Passenger> passenger;
     String flightId;
 
-    private  int counter = 0;
+    private static int counter = 0;
 
     {
-         counter++;
+        counter++;
     }
 
     public Booking( List<Passenger> passenger, String flightId) {  //String username,
@@ -56,7 +56,8 @@ public class Booking implements Serializable {
 
     @Override
     public String toString() {
-        return String.format("| %-10d |%-20s |%-10s |",
+
+        return String.format("Booking ID: %d \n|%-20s\n%s ",
                 idBooking, passenger.toString(),flightId);   //username,
     }
 }

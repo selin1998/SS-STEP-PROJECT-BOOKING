@@ -16,11 +16,11 @@ import java.util.HashMap;
 public class Main {
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-       FlightController fc= new FlightController("./INFO/flight.bin");
-       FlightService service= new FlightService("./INFO/flight.bin");
-        BookingController bc=new BookingController(".INFO/bookings.bin");
-        BookingService serviceBooking=new BookingService(".INFO/bookings.bin");
-        System.out.println(service.availableSeatsFlight("LH8296"));
+//       FlightController fc= new FlightController("./INFO/flight.bin");
+//       FlightService service= new FlightService("./INFO/flight.bin");
+//        BookingController bc=new BookingController(".INFO/bookings.bin");
+//        BookingService serviceBooking=new BookingService(".INFO/bookings.bin");
+//        System.out.println(service.availableSeatsFlight("LH8296"));
 
         //   fc.displayFlightbyId("LH0100");
       //  fc.displayFlightsBy("Berlin","Lufthansa",5);
@@ -56,11 +56,11 @@ public class Main {
 //        OptOnlineBoard o=new OptOnlineBoard();
 //        o.execution();
 
-        OptBookFlight obf=new OptBookFlight();
-        obf.execution();
+//        OptBookFlight obf=new OptBookFlight();
+//        obf.execution();
 
-//        ConsoleApp app= new ConsoleApp();
-//        app.start();
+        ConsoleApp app= new ConsoleApp();
+        app.start();
 
 //     FlightDAO dao=new FlightDAO("./INFO/flight.bin");
 //       System.out.println(dao.getAllBy(x -> x.destination.equals("Munich")));

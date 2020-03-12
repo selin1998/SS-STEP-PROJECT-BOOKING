@@ -3,6 +3,8 @@ package Console;
 import Controller.FlightController;
 import DAO.Flight;
 
+import java.util.Scanner;
+
 public class OptFlightInfo implements Option {
     final String DASHES = new String(new char[82]).replace("\0", "-");
     @Override
@@ -17,6 +19,7 @@ public class OptFlightInfo implements Option {
 
     @Override
     public void execution() {
+        Scanner sc=new Scanner(System.in);
         System.out.println("Please enter the flight id to get info:");
         String input=sc.nextLine();
         System.out.println(DASHES);

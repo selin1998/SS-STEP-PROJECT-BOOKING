@@ -58,7 +58,7 @@ public class Passenger implements Serializable {
     }
 
     public String toString(){
-        return String.format("| %-12s |%-15s |", name,lastname);
+        return String.format(" %-12s %-15s ", name,lastname);
 
     }
 }

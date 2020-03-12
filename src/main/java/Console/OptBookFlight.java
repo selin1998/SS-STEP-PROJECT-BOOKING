@@ -32,6 +32,7 @@ public class OptBookFlight implements Option {
     @Override
     public void execution() {
         //SEARCH PART
+        Scanner sc=new Scanner(System.in);
         System.out.println("Enter destination, airline and number of passengers to search for matching flights: ");
         System.out.println("Destination:");
         String dest = sc.nextLine();
@@ -51,6 +52,7 @@ public class OptBookFlight implements Option {
         String lastname;
         Scanner scanner=new Scanner(System.in);
         for (int i = 0; i < count; i++) {
+            System.out.printf("Passenger %d:\n",i);
             System.out.println("Enter the firstname:");
             firstname=scanner.nextLine();
             System.out.println("Enter the lastname:");
