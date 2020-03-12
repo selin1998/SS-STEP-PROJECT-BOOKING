@@ -5,6 +5,7 @@ import DAO.Passenger;
 import Service.BookingService;
 import Service.FlightService;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 
@@ -26,15 +27,15 @@ public class BookingController {
 
     public void displayBookinsByID(int id) {
         System.out.println(service.getBookingByID(id));
-
     }
+
 
     public boolean makeBooking(Booking booking) {
         return service.makeBooking(booking);
     }
 
-    public boolean cancelBooking(int id) {
-        return service.cancelBooking(id);
+    public void cancelBooking(int id) {
+        service.cancelBooking(id);
     }
 
     public void saveBooking(Booking booking) {

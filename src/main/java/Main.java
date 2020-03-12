@@ -18,8 +18,9 @@ public class Main {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
 //       FlightController fc= new FlightController("./INFO/flight.bin");
 //       FlightService service= new FlightService("./INFO/flight.bin");
-//        BookingController bc=new BookingController(".INFO/bookings.bin");
-//        BookingService serviceBooking=new BookingService(".INFO/bookings.bin");
+  //      BookingController bc=new BookingController(".INFO/booking.bin");
+ //       bc.displayAllBookings();
+//        BookingService serviceBooking=new BookingService(".INFO/booking.bin");
 //        System.out.println(service.availableSeatsFlight("LH8296"));
 
         //   fc.displayFlightbyId("LH0100");
