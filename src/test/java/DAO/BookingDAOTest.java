@@ -61,6 +61,9 @@ class BookingDAOTest {
         assertEquals(3,bookingDAO.getAll().size());
 
         bookingDAO.delete(3);
+        assertEquals(2,bookingDAO.getAll().size());
+
+
 
     }
 }
