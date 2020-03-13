@@ -1,13 +1,9 @@
 package Service;
 
-import Controller.FlightController;
 import DAO.*;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 public class BookingService implements Serializable {
@@ -17,7 +13,7 @@ public class BookingService implements Serializable {
 
     public BookingService(String filename) {
 
-        daoBooking = new BookingDAO1(filename);
+        daoBooking = new BookingDAO(filename);
     }
 
 

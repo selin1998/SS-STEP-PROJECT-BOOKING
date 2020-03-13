@@ -1,15 +1,9 @@
 package Controller;
 
 import DAO.Booking;
-import DAO.BookingDAO1;
-import DAO.DAO;
-import DAO.Passenger;
 import Service.BookingService;
-import Service.FlightService;
 
-import java.io.Serializable;
 import java.util.HashMap;
-import java.util.List;
 
 public class BookingController {
     BookingService service;

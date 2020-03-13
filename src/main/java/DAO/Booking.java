@@ -1,10 +1,7 @@
 package DAO;
 
-import Controller.BookingController;
-
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
@@ -20,7 +17,7 @@ public class Booking implements Serializable {
     private static int counter;
 
     {
-        ArrayList<Booking> all = new BookingDAO1("./INFO/booking.bin").getAll();
+        ArrayList<Booking> all = new BookingDAO("./INFO/booking.bin").getAll();
         counter = all.stream().map(b -> b.idBooking).max((id1, id2) -> id1 - id2).orElse(0);
     }
 

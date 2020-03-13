@@ -7,11 +7,11 @@ import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public class BookingDAO1 implements DAO_B<Booking> {
+public class BookingDAO implements DAO_B<Booking> {
     private File file;
     List<Booking> bookings = new ArrayList<>();
 
-    public BookingDAO1(String filename) {
+    public BookingDAO(String filename) {
         file = new File(filename);
     }
 
