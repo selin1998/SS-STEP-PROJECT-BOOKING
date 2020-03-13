@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 public class BookingDAO implements DAO_B<Booking> {
     private File file;
-    List<Booking> bookings = new ArrayList<>();
+   // List<Booking> bookings = new ArrayList<>();
 
     public BookingDAO(String filename) {
         file = new File(filename);
@@ -65,10 +65,10 @@ public class BookingDAO implements DAO_B<Booking> {
 
     public boolean create(Booking booking) {
         if (booking == null) return false;
-        if (bookings.contains(booking)) {
+        if (getAll().contains(booking)) {
             return false;
         } else {
-            bookings.add(booking);
+            getAll().add(booking);
             return true;
         }
     }
