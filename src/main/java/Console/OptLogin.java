@@ -28,8 +28,8 @@ public class OptLogin implements UserOption {
             ConsoleApp c= new ConsoleApp();
 
 
-                c.flightAndBooking();
-
+                c.flightAndBooking(new Pair(username,password));
+              //  c.isExitUser=false;
         }
         else{
             System.out.println("Wrong username or password!");

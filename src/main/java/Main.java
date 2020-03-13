@@ -6,6 +6,8 @@ import DAO.FlightDAO;
 import DAO.Flight;
 import Service.BookingService;
 import Service.FlightService;
+import DAO.Pair;
+import DAO.Booking;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -66,6 +68,13 @@ public class Main {
 
        ConsoleApp app= new ConsoleApp();
         app.start();
+
+//        HashMap<Pair, Integer> map=new HashMap<Pair, Integer>();
+//        Pair pair=new Pair("selinka","qwerty");
+//        map.put(pair,1);
+//        map.put(pair,2);
+//        System.out.println(map);
+
 
 //
 //      BookingService bs=new BookingService("./INFO/booking.bin");

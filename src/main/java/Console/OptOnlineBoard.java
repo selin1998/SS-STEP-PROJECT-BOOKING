@@ -1,8 +1,11 @@
 package Console;
 
 import Controller.FlightController;
+import DAO.Pair;
 
 public class OptOnlineBoard implements Option {
+
+
 
     @Override
     public int optNumber() {
@@ -15,7 +18,7 @@ public class OptOnlineBoard implements Option {
     }
 
     @Override
-    public void execution() {
+    public void execution(Pair pair) {
         System.out.println("ONLINE-BOARD");
         System.out.println(DASHES);
         System.out.println(String.format("| %-10s | %-8s | %-15s | %-28s | %-5s |", "FlightID", "Date", "Destination", "Airline", "Seats"));

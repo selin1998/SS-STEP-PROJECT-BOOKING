@@ -1,12 +1,14 @@
 package Console;
 
+import DAO.Pair;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
 public class ConsoleApp {
     List<UserOption> userOptions = UserOptions.all();
-    List<Option> options = Options.all();
+    List<Option> options=Options.all() ;
     Boolean isExit=false;
     Boolean isExitUser=false;
 
@@ -39,7 +41,7 @@ public class ConsoleApp {
 
 
 
-        public void flightAndBooking(){
+        public void flightAndBooking(Pair pair){
             Menu m= new Menu();
             Scanner sc1=new Scanner(System.in);
             while(!isExit){
@@ -53,13 +55,17 @@ public class ConsoleApp {
                         .findFirst();
 
                 opt.ifPresent(Option::text);
-                opt.ifPresent(Option::execution);
+                opt.get().execution(pair);
+
                 isExit=opt.get().isExit();
                 isExitUser=isExit;
 
 
             }
         }
+
+
+
 
 
     }

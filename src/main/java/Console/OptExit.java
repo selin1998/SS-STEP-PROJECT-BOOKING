@@ -1,6 +1,10 @@
 package Console;
 
-public class OptExit implements Option, UserOption {
+import DAO.Pair;
+
+public class OptExit implements UserOption, Option {
+
+    public Pair pair;
     @Override
     public int optNumber() {
         return 7;
@@ -12,8 +16,9 @@ public class OptExit implements Option, UserOption {
     }
 
     @Override
-    public void execution() {
+    public void execution(Pair pair) {
         System.out.println("Bye!");
+        this.pair=pair;
     }
 
 
@@ -22,10 +27,12 @@ public class OptExit implements Option, UserOption {
         return 3;
     }
 
+
+
     @Override
     public void operation() {
 
-        execution();
+        execution( pair);
 
 
     }

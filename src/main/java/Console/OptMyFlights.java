@@ -1,8 +1,11 @@
 package Console;
 
 import Controller.BookingController;
+import DAO.Pair;
 
 public class OptMyFlights implements Option {
+
+
 
     @Override
     public int optNumber() {
@@ -15,9 +18,9 @@ public class OptMyFlights implements Option {
     }
 
     @Override
-    public void execution() {
+    public void execution(Pair pair) {
         System.out.println("Your bookings:");
-        bc.displayAllBookings();
+        bc.displayBookigsbyPair(pair);
     }
 
     @Override

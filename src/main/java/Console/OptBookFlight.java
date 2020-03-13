@@ -3,6 +3,7 @@ package Console;
 import Controller.BookingController;
 import Controller.FlightController;
 import DAO.Booking;
+import DAO.Pair;
 import DAO.Passenger;
 
 import java.util.ArrayList;
@@ -10,10 +11,12 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class OptBookFlight implements Option {
+
+
+
     final String DASHES2 = new String(new char[93]).replace("\0", "-");
 
- //   FlightController controllerFlight = new FlightController("./INFO/flight.bin");
-   // BookingController controllerBooking=new BookingController("./INFO/booking.bin");
+
     HashMap<Integer, String> data;
     ArrayList<Booking> bookingList=new ArrayList<>();
     ArrayList<Passenger> passengersList=new ArrayList<>();
@@ -30,7 +33,7 @@ public class OptBookFlight implements Option {
     }
 
     @Override
-    public void execution() {
+    public void execution(Pair pair) {
         //SEARCH PART
         Scanner sc=new Scanner(System.in);
         System.out.println("Enter destination, airline and number of passengers to search for matching flights: ");
@@ -62,14 +65,14 @@ public class OptBookFlight implements Option {
             }
             String flight = bc.getFlightForBooking(serialNo, dest, airway, count);
 
-            Booking book1=new Booking(passengersList,flight);
+            Booking book1=new Booking(passengersList,flight,pair);
 
             String flightId = flight.split("\\|")[1].trim();
 
             fc.decreaseSeats(flightId,count);
 
             bc.saveBooking(book1);
-            bc.displayAllBookings();
+            bc.displayBookigsbyPair(pair);
 
             passengersList.clear();
 
