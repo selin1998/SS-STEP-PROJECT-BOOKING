@@ -1,9 +1,16 @@
 package Controller;
 
 import DAO.Booking;
+import DAO.BookingDAO1;
+import DAO.DAO;
+import DAO.Pair;
+import DAO.Passenger;
 import Service.BookingService;
+import Service.FlightService;
 
+import java.io.Serializable;
 import java.util.HashMap;
+import java.util.List;
 
 public class BookingController {
     BookingService service;
@@ -36,6 +43,19 @@ public class BookingController {
 
     public void searchFlightsforBooking(String destination, String airline, int numberPlaces) {
         controllerFlight.displayFlightsBy(destination, airline, numberPlaces);
+    }
+
+    public void displayBookigsbyPair(Pair pair){
+        System.out.println(service.getBookingsByPair(pair));
+
+    }
+
+    public boolean userPossession (Pair pair,int id){
+        return service.userPossession(pair,id);
+    }
+
+    public String getBookingbyPairandId(Pair pair, int id){
+        return service.getBookingbyPairAndId(pair,id).toString();
     }
 
     public String getFlightForBooking(int serialNo,String dest,String airway,int count){

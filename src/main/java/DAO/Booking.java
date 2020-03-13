@@ -13,6 +13,7 @@ public class Booking implements Serializable {
    public int idBooking;
   public  List<Passenger> passenger;
    public  String flight;
+   public Pair pair;
 
     private static int counter;
 
@@ -21,10 +22,10 @@ public class Booking implements Serializable {
         counter = all.stream().map(b -> b.idBooking).max((id1, id2) -> id1 - id2).orElse(0);
     }
 
-    public Booking( List<Passenger> passenger, String flight) {
+    public Booking( List<Passenger> passenger, String flight,Pair pair) {
 
         this.idBooking=++counter;
-        //this.username = username;
+        this.pair = pair;
         this.passenger = passenger;
         this.flight = flight;
     }
@@ -66,7 +67,9 @@ public class Booking implements Serializable {
             booking.append("\n");
         }
         booking.append(String.format("%s\n%s\n%s\n%s\n ",dash,str,dash,flight));
-
+        booking.append("\n---");
+        booking.append(pair.toString());
+        booking.append("\n");
         return booking.toString();
 //        return String.format("Booking ID: %d \n|%-20s\n%s\n%s\n%s\n%s\n ",
 //                idBooking, passenger.toString(),dash,str,dash,flightId);

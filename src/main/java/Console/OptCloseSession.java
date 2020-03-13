@@ -1,6 +1,10 @@
 package Console;
 
-public class OptCloseSession implements Option{
+import DAO.Pair;
+
+public class OptCloseSession implements Option {
+
+
     @Override
     public int optNumber() {
         return 6;
@@ -12,12 +16,12 @@ public class OptCloseSession implements Option{
     }
 
     @Override
-    public void execution() {
+    public void execution(Pair pair) {
         console.start();
     }
 
     @Override
     public boolean isExit() {
-        return false;
+        return true;
     }
 }
