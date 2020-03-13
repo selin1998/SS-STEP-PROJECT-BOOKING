@@ -45,21 +45,6 @@ public class BookingService implements Serializable {
 
 
 
-//    public int passengerSize(int id) {
-//
-//
-//        return daoBooking.get(id).get().passenger.size();
-//
-//
-//    }
-//
-//    public String bookingFlightid(int id){
-//        return daoBooking.get(id).get().flight;
-//    }
-
-
-
-
     public void saveBookings(Booking booking){
         daoBooking.save(booking);
     }

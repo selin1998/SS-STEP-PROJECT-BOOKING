@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="login-register" />
         <module name="ss" />
         <module name="SS" />
         <module name="SS-STEP-PROJECT-BOOKING" />

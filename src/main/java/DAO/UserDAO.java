@@ -1,93 +1,65 @@
-//package DAO;
-//
-//import java.io.*;
-//import java.util.List;
-//import java.util.Optional;
-//import java.util.stream.Collectors;
-//
-//public class UserDAO implements DAO<User> {
-//    String filename;
-//    @Override
-//    public Optional<User> get(int index) {
-//        return getAll().stream().filter(f->f.userId==index).findFirst();
-//    }
-//
-//    @Override
-//    public List<User> getAll() {
-//        try {
-//            return new BufferedReader(new FileReader(new File(filename))).lines()
-//                    .map(s -> User.parse(s))
-//                    .collect(Collectors.toList());
-//        } catch (IOException e) {
-//            throw new RuntimeException("No users were found");
-//        }
-//    }
-//
-//
-//    @Override
-//    public void delete(int index) {
-//        try {
-//            BufferedWriter bw = new BufferedWriter(new FileWriter(new File(filename)));
-//            getAll().stream()
-//                    .filter(f -> f.userId != index)
-//                    .forEach(f -> {
-//                        try {
-//                            bw.write(f.displayUserInfo());
-//                            bw.write("\n");
-//                        } catch (IOException e) {
-//                            throw new RuntimeException("smth went wrong during user creation");
-//                        }
-//                    });
-//            bw.close();
-//        } catch (IOException e) {
-//            throw new RuntimeException("smth went wrong during user creation");
-//        }
-//    }
-//
-//    @Override
-//    public void loadData(User user) {
-//
-//    }
-//
-//    @Override
-//    public void readData(User user) {
-//
-//    }
-//
-//    @Override
-//    public void saveData(User user) {
-//
-//    }
-//
-//    @Override
-//    public void delete(User user) {
-//        try {
-//            BufferedWriter bw = new BufferedWriter(new FileWriter(new File(filename)));
-//            getAll().stream()
-//                    .filter(f -> !f.equals(user))
-//                    .forEach(f -> {
-//                        try {
-//                            bw.write(f.displayUserInfo());
-//                            bw.write("\n");
-//                        } catch (IOException e) {
-//                            throw new RuntimeException("smth went wrong during user creation");
-//                        }
-//                    });
-//            bw.close();
-//        } catch (IOException e) {
-//            throw new RuntimeException("smth went wrong during user creation");
-//        }
-//    }
-//
-//    @Override
-//    public void create(User user) {
-//        try {
-//            BufferedWriter bw = new BufferedWriter(new FileWriter(new File(filename), true));
-//            bw.write(user.displayUserInfo());
-//            bw.write("\n");
-//            bw.close();
-//        } catch (IOException e) {
-//            throw new RuntimeException("smth went wrong during user creation");
-//        }
-//    }
-//}
+package DAO;
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+public class UserDAO implements DAO_U<User> {
+    String filename;
+    List <User> users= new ArrayList<User>();
+
+    public UserDAO(String filename) {
+        this.filename = filename;
+    }
+
+    @Override
+    public Optional<User> get(Pair pair) {
+        return getAll().stream().filter(x->x.credential.equals(pair)).findAny();
+    }
+
+    @Override
+    public List<User> getAll() {
+        try {
+            FileInputStream is = new FileInputStream(filename);
+            ObjectInputStream ois = new ObjectInputStream(is);
+            Object readed = ois.readObject();
+            ArrayList<User> data = (ArrayList<User>) readed;
+            ois.close();
+            is.close();
+            return data;
+        } catch (IOException | ClassNotFoundException e) {
+            return new ArrayList<User>();
+        }
+    }
+
+    @Override
+    public void delete(Pair pair) {
+        List<User> listUsers = getAll().stream().filter(b -> !(b.credential.equals(pair))).collect(Collectors.toList());
+        write(listUsers);
+    }
+
+    @Override
+    public void save(User user) {
+        List<User> data = getAll();
+        data.add(user);
+        write(data);
+    }
+
+
+
+    private void write(List<User> data) {
+        try {
+            FileOutputStream outputStream=new FileOutputStream(filename);
+            ObjectOutputStream objectOutputStream=new ObjectOutputStream(outputStream);
+            objectOutputStream.writeObject(data);
+            objectOutputStream.close();
+            outputStream.close();
+        } catch (IOException e) {
+            throw new RuntimeException("IOException:", e);
+        }
+    }
+}
+
+

@@ -48,29 +48,33 @@ public class OptBookFlight implements Option {
         //BOOKING PART
         System.out.println("Enter Serial NO of flight you would like to book or press 0 to return to main menu:");
         int serialNo = sc.nextInt();
-        String firstname;
-        String lastname;
-        Scanner scanner=new Scanner(System.in);
-        for (int i = 1; i <=count; i++) {
-            System.out.printf("Passenger %d:\n",i);
-            System.out.println("Enter the firstname:");
-            firstname=scanner.nextLine();
-            System.out.println("Enter the lastname:");
-             lastname=scanner.nextLine();
-            passengersList.add(new Passenger(firstname,lastname));
+        if(serialNo>0){
+            String firstname;
+            String lastname;
+            Scanner scanner=new Scanner(System.in);
+            for (int i = 1; i <=count; i++) {
+                System.out.printf("Passenger %d:\n",i);
+                System.out.println("Enter the firstname:");
+                firstname=scanner.nextLine();
+                System.out.println("Enter the lastname:");
+                lastname=scanner.nextLine();
+                passengersList.add(new Passenger(firstname,lastname));
+            }
+            String flight = bc.getFlightForBooking(serialNo, dest, airway, count);
+
+            Booking book1=new Booking(passengersList,flight);
+
+            String flightId = flight.split("\\|")[1].trim();
+
+            fc.decreaseSeats(flightId,count);
+
+            bc.saveBooking(book1);
+            bc.displayAllBookings();
+
+            passengersList.clear();
+
         }
-        String flight = bc.getFlightForBooking(serialNo, dest, airway, count);
 
-        Booking book1=new Booking(passengersList,flight);
-
-        String flightId = flight.split("\\|")[1].trim();
-
-        fc.decreaseSeats(flightId,count);
-
-        bc.saveBooking(book1);
-        bc.displayAllBookings();
-
-        passengersList.clear();
 
 
 

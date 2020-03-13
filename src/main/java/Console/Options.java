@@ -9,12 +9,9 @@ public class Options {
         return new ArrayList<Option>() {{
             add(new OptOnlineBoard());
             add(new OptFlightInfo());
-           // add(new OptSearchFlight());
             add(new OptBookFlight());
             add(new OptCancelBooking());
             add(new OptCloseSession());
-            add(new OptLogin());
-            add(new OptRegister());
             add(new OptMyFlights());
             add(new OptExit());
 

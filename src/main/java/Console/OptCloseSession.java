@@ -13,7 +13,7 @@ public class OptCloseSession implements Option{
 
     @Override
     public void execution() {
-
+        console.start();
     }
 
     @Override

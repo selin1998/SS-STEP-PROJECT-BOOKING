@@ -50,16 +50,6 @@ public class BookingDAO1 implements DAO_B<Booking> {
         write(data);
     }
 
-    @Override
-    public List<Booking> getAllBy(Predicate<Booking> p) {
-        List<Booking> data=new ArrayList<Booking>();
-        for (Booking booking : getAll()) {
-            if(p.test(booking)){
-                data.add(booking);
-            }
-        }
-        return data;
-    }
 
     private void write(List<Booking> data) {
         try {

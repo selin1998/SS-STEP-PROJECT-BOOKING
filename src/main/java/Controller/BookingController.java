@@ -25,16 +25,12 @@ public class BookingController {
     public void displayAllBookings() {
         service.getAllBookings().stream().forEach(x -> System.out.println(x));
     }
+
     public Booking getBookingbyId(int id){
         return service.getBookingByID(id);
     }
 
 
-
-//
-//    public boolean makeBooking(Booking booking) {
-//        return service.makeBooking(booking);
-//    }
 
     public void cancelBooking(int id) {
         service.cancelBooking(id);
