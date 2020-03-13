@@ -44,11 +44,21 @@ public class BookingDAO implements DAO_B<Booking> {
     }
 
     @Override
+    public void deleteAll() {
+        List<Booking> data=getAll();
+        data.clear();
+        write(data);
+
+    }
+
+    @Override
     public void save(Booking booking) {
         List<Booking> data = getAll();
         data.add(booking);
         write(data);
     }
+
+
 
 
     private void write(List<Booking> data) {
@@ -63,14 +73,6 @@ public class BookingDAO implements DAO_B<Booking> {
         }
     }
 
-    public boolean create(Booking booking) {
-        if (booking == null) return false;
-        if (getAll().contains(booking)) {
-            return false;
-        } else {
-            getAll().add(booking);
-            return true;
-        }
-    }
+
 
 }

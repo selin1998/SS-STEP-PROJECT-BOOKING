@@ -11,5 +11,7 @@ public interface DAO_B<T> {
     List<T> getAll();
     void save(T t);
     void delete (int index);
+    void deleteAll();
+
 
 }

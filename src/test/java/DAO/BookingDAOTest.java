@@ -1,6 +1,7 @@
 package DAO;
 
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -10,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class BookingDAOTest {
 
-    private BookingDAO bookingDAO;
+    private DAO_B<Booking> bookingDAO=new BookingDAO("./INFO/Test.bin");
     User user;
     Passenger passenger1;
     Passenger passenger2;
@@ -18,13 +19,14 @@ class BookingDAOTest {
     Booking booking1;
     Booking booking2;
     List<Passenger> listPassenger=new ArrayList<Passenger>();
+    Pair pair;
 
-    @BeforeAll
+    @BeforeEach
     public void setUp() {
-        bookingDAO=new BookingDAO("./INFO/booking.bin");
+        bookingDAO.deleteAll();
 
-        Pair pair=new Pair("sidiqa97","sidiqa97");
-        user=new User(pair,"Sidiqa","Qadirova");
+       pair=new Pair("sidiqa","sidiqa");
+        user=new User(pair,"Sidiqaa","Qadirovaa");
 
         passenger1=new Passenger("Sevda","Qadirova");
         passenger2=new Passenger("Seyran","Qadirov");
@@ -33,37 +35,42 @@ class BookingDAOTest {
 
         flight=new Flight("SK9440","09:50","Vienna","SAS",100);
 
-        booking1=new Booking(listPassenger,flight.toString());
-        booking2=new Booking(listPassenger,flight.toString());
+        booking1=new Booking(listPassenger,flight.toString(),pair);
+        booking2=new Booking(listPassenger,flight.toString(),pair);
 
-        bookingDAO.create(booking1);
-        bookingDAO.create(booking2);
+        bookingDAO.save(booking1);
+        bookingDAO.save(booking2);
+
     }
 
 
     @Test
     void get() {
-        assertEquals("Sevda",bookingDAO.get(1).get().passenger.get(1).name);
+        assertEquals("Seyran",bookingDAO.get(1).get().passenger.get(1).name);
+//        bookingDAO.deleteAll();
+
     }
 
 
     @Test
     void getAll() {
         assertEquals(2,bookingDAO.getAll().size());
+//        bookingDAO.deleteAll();
     }
+
 
     @Test
     void delete() {
         Passenger passenger=new Passenger("Ali","Aliyev");
         List<Passenger> passengers=new ArrayList<Passenger>();
-        Booking booking3=new Booking(passengers,flight.toString());
-        bookingDAO.create(booking3);
+        passengers.add(passenger);
+        Pair pair2=new Pair("ali1","ali1");
+        Booking booking3=new Booking(passengers,flight.toString(),pair2);
+        bookingDAO.save(booking3);
         assertEquals(3,bookingDAO.getAll().size());
 
-        bookingDAO.delete(3);
+        bookingDAO.delete(1);
         assertEquals(2,bookingDAO.getAll().size());
-
-
 
     }
 }
