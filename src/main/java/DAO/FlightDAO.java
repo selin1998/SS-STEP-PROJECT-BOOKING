@@ -60,6 +60,13 @@ public class FlightDAO implements DAO<Flight> {
     }
 
     @Override
+    public void deleteAll(){
+        List<Flight> data=getAll();
+        data.clear();
+        write(data);
+    }
+
+    @Override
     public void save(Flight flight) {
         List<Flight> data = getAll();
         data.add(flight);

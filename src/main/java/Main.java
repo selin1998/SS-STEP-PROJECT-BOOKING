@@ -7,7 +7,7 @@ import DAO.Flight;
 import Service.BookingService;
 import Service.FlightService;
 import DAO.Pair;
-import DAO.Booking;
+import DAO.BookingDAO;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -18,11 +18,14 @@ import java.util.HashMap;
 public class Main {
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
- //      FlightController fc= new FlightController("./INFO/flight.bin");
+//       FlightController fc= new FlightController("./INFO/flight.bin");
 //       FlightService service= new FlightService("./INFO/flight.bin");
    //   BookingController bc1=new BookingController("./INFO/booking.bin");
+        FlightDAO dao=new FlightDAO("./INFO/TestFlight.bin");
+        int size = dao.getAll().size();
+        System.out.println(size);
 
-    //  bc1.displayAllBookings();
+        //  bc1.displayAllBookings();
 
 
 
@@ -65,9 +68,11 @@ public class Main {
 
 //        OptBookFlight obf=new OptBookFlight();
 //        obf.execution();
+//
+//       ConsoleApp app= new ConsoleApp();
+//        app.start();
 
-       ConsoleApp app= new ConsoleApp();
-        app.start();
+
 
 //        HashMap<Pair, Integer> map=new HashMap<Pair, Integer>();
 //        Pair pair=new Pair("selinka","qwerty");
