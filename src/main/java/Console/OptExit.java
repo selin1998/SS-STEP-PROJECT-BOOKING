@@ -19,6 +19,7 @@ public class OptExit implements UserOption, Option {
     public void execution(Pair pair) {
         System.out.println("Bye!");
         this.pair=pair;
+
     }
 
 

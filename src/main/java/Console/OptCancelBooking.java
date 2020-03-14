@@ -4,6 +4,8 @@ import Controller.BookingController;
 import DAO.Pair;
 import Service.BookingService;
 
+import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class OptCancelBooking implements Option {
@@ -23,18 +25,22 @@ public class OptCancelBooking implements Option {
     @Override
     public void execution(Pair pair) {
         System.out.println("Enter the booking id for canceling booking:");
-        int id = sc.nextInt();
-        if(bc.userPossession(pair,id)){
+
+        try{
+            int id = sc.nextInt();
             int seats= bc.getBookingbyId(id).passenger.size();
             String idFlight=  bc.getBookingbyId(id).flight.split("\\|")[1].trim();
             fc.inreaseSeats(idFlight,seats);
             bc.cancelBooking(id);
         }
-        else{
-            System.out.println("You do not have booking with such id!!!\n");
+
+        catch(InputMismatchException ex){
+            System.out.println("Your input is mismatching. Enter a number!!!\n");
         }
 
-
+        catch (NoSuchElementException ex){
+            System.out.println("You do not have booking with such ID!!!\n");
+        }
 
 
     }

@@ -53,7 +53,7 @@ public class Passenger implements Serializable {
     }
 
     public String toString(){
-        return String.format("Passenger: %-10s %-15s", name,lastname);
+        return String.format("Passenger: %-5s %-5s", name,lastname);
 
     }
 }

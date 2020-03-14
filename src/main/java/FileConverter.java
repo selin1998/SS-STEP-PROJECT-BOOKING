@@ -1,8 +1,12 @@
-package DAO;
+import DAO.Flight;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+
+
+//This class is used for converting flight.txt file to flight.bin file.
+
 
 public class FileConverter  {
 

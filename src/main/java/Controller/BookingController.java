@@ -50,10 +50,6 @@ public class BookingController {
 
     }
 
-    public boolean userPossession (Pair pair,int id){
-        return service.userPossession(pair,id);
-    }
-
     public String getBookingbyPairandId(Pair pair, int id){
         return service.getBookingbyPairAndId(pair,id).toString();
     }

@@ -37,10 +37,10 @@ public class FlightService implements Serializable {
             }
             catch (NoSuchElementException ex){
                 System.out.println("Flight with such ID Not Found!");
-                return null;
+                return "";
             }
 
-          //  return dao.get(id).get().toString();
+
         }
 
        public List<String> getAllby( String destination,String airline, int numberofPlaces){
@@ -53,10 +53,6 @@ public class FlightService implements Serializable {
 
        }
 
-        public List<String> searchFlight(String destination, String airline,int numberofPlaces){
-          return  dao.getAll().stream().filter(f->f.destination.equals(destination)).filter(f->f.airline.equals(airline)).filter(f->f.numberOfFreePlaces==numberofPlaces).map(x->x.toString()).collect(Collectors.toList());
-
-        }
 
       public  int availableSeatsFlight(String id){
 
@@ -83,14 +79,6 @@ public class FlightService implements Serializable {
             dao.save(flight);
 
         }
-
-
-
-        public int countFlights(){
-            return dao.getAll().size();
-        }
-
-
 
 
 

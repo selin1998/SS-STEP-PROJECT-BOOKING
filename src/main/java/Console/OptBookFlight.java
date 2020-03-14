@@ -34,6 +34,7 @@ public class OptBookFlight implements Option {
 
     @Override
     public void execution(Pair pair) {
+
         //SEARCH PART
         Scanner sc=new Scanner(System.in);
         System.out.println("Enter destination, airline and number of passengers to search for matching flights: ");
@@ -48,35 +49,46 @@ public class OptBookFlight implements Option {
         System.out.println(String.format("| %-8s | %-10s | %-8s | %-15s | %-28s | %-5s |", "Serial No", "FlightID", "Date", "Destination", "Airline", "Seats"));
         System.out.println(DASHES2);
         fc.displayFlightsBy(dest, airway, count);
+
         //BOOKING PART
         System.out.println("Enter Serial NO of flight you would like to book or press 0 to return to main menu:");
         int serialNo = sc.nextInt();
-        if(serialNo>0){
-            String firstname;
-            String lastname;
-            Scanner scanner=new Scanner(System.in);
-            for (int i = 1; i <=count; i++) {
-                System.out.printf("Passenger %d:\n",i);
-                System.out.println("Enter the firstname:");
-                firstname=scanner.nextLine();
-                System.out.println("Enter the lastname:");
-                lastname=scanner.nextLine();
-                passengersList.add(new Passenger(firstname,lastname));
+
+            String flight="";
+
+            try{
+
+                flight = bc.getFlightForBooking(serialNo, dest, airway, count);
+                Booking book1=new Booking(passengersList,flight,pair);
+                String flightId = flight.split("\\|")[1].trim();
+
+                String firstname;
+                String lastname;
+                Scanner scanner=new Scanner(System.in);
+
+                for (int i = 1; i <=count; i++) {
+                    System.out.printf("Passenger %d:\n",i);
+                    System.out.println("Enter the firstname:");
+                    firstname=scanner.nextLine();
+                    System.out.println("Enter the lastname:");
+                    lastname=scanner.nextLine();
+                    passengersList.add(new Passenger(firstname,lastname));
+                }
+
+
+
+                fc.decreaseSeats(flightId,count);
+
+                bc.saveBooking(book1);
+                bc.displayBookigsbyPair(pair);
+
+                passengersList.clear();
+
             }
-            String flight = bc.getFlightForBooking(serialNo, dest, airway, count);
 
-            Booking book1=new Booking(passengersList,flight,pair);
-
-            String flightId = flight.split("\\|")[1].trim();
-
-            fc.decreaseSeats(flightId,count);
-
-            bc.saveBooking(book1);
-            bc.displayBookigsbyPair(pair);
-
-            passengersList.clear();
-
-        }
+            catch (NullPointerException ex){
+                System.out.println("No flight with such serial number exists!!!");
+            }
 
 
 

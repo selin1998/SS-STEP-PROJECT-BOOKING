@@ -10,17 +10,17 @@ import java.util.Scanner;
 public interface Option {
 
     final String DASHES = new String(new char[82]).replace("\0", "-");
-    FlightController fc= new FlightController("./INFO/flight.bin");
-   BookingController bc=new BookingController("./INFO/booking.bin");
-   UserController uc= new UserController("./INFO/user.bin");
-   ConsoleApp console= new ConsoleApp();
+    FlightController fc = new FlightController("./INFO/flight.bin");
+    BookingController bc = new BookingController("./INFO/booking.bin");
+    UserController uc = new UserController("./INFO/user.bin");
+    ConsoleApp c = new ConsoleApp();
 
 
     int optNumber();
+
     String text();
 
-      void execution(Pair pair) ;
-
+    void execution(Pair pair);
 
 
     boolean isExit();

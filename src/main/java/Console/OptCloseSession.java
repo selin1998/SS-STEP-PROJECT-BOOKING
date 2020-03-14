@@ -17,7 +17,7 @@ public class OptCloseSession implements Option {
 
     @Override
     public void execution(Pair pair) {
-        console.start();
+        c.start();
     }
 
     @Override

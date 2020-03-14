@@ -26,10 +26,8 @@ public class OptLogin implements UserOption {
         Pair pair= new Pair(username,password);
         if(uc.userExists(pair)){
             ConsoleApp c= new ConsoleApp();
-
-
-                c.flightAndBooking(new Pair(username,password));
-              //  c.isExitUser=false;
+            c.flightAndBooking(new Pair(username,password));
+            c.isExitUser=true;
         }
         else{
             System.out.println("Wrong username or password!");
