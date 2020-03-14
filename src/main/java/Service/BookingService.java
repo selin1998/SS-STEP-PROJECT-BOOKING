@@ -44,6 +44,10 @@ public class BookingService implements Serializable {
         daoBooking.delete(id);
     }
 
+    public void clearBookings(){
+        daoBooking.deleteAll();
+    }
+
     public boolean userPossession(Pair pair, int id) {
         return getBookingsbyPair(pair).stream().anyMatch(x -> x.idBooking == id);
     }
