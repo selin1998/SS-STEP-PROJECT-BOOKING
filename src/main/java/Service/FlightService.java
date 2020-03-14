@@ -76,6 +76,10 @@ public class FlightService implements Serializable {
 
     }
 
+    public void clearAllFlights(){
+        dao.deleteAll();
+    }
+
     public int countFlights() {
         return dao.getAll().size();
     }

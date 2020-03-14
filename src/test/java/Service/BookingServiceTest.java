@@ -46,15 +46,8 @@ class BookingServiceTest {
     @Test
     void getAllBookings() {
         List<String> allBookings = bookingService.getAllBookings();
-        assertEquals(2, allBookings.size());
+        assertTrue(!allBookings.isEmpty());
     }
-
-//    @Test
-//    void getBookingByID() {
-//        Booking booking = bookingService.getBookingByID(1);
-//        assertEquals("Sevda",booking.);
-//
-//    }
 
     @Test
     void getBookingsByPair() {
@@ -65,7 +58,7 @@ class BookingServiceTest {
     @Test
     void getBookingsByPair_isExist() {
         List<String> bookingsByPair = bookingService.getBookingsByPair(pair);
-        assertFalse(bookingsByPair.isEmpty());
+        assertTrue(!bookingsByPair.isEmpty());
     }
 
     @Test

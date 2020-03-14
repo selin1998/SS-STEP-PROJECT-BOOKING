@@ -36,6 +36,10 @@ public class UserService {
         daoUser.delete(pair);
     }
 
+    public void clearAll(){
+        daoUser.deleteAll();
+    }
+
     public void saveUser(User user) {
         daoUser.save(user);
     }
