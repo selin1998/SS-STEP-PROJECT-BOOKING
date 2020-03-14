@@ -35,7 +35,6 @@ public class FlightDAO implements DAO<Flight> {
             }
         }
         return data;
-      //  return getAll().stream().filter(p.test(getAll())).collect(Collectors.toList());
     }
 
     @Override

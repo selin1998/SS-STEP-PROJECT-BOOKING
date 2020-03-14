@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 
 public class BookingDAO implements DAO_B<Booking> {
     private File file;
-   // List<Booking> bookings = new ArrayList<>();
 
     public BookingDAO(String filename) {
         file = new File(filename);
@@ -16,10 +15,8 @@ public class BookingDAO implements DAO_B<Booking> {
 
     @Override
     public Optional<Booking> get(int id) {
-        return getAll().stream().filter(x->x.idBooking==id).findAny();
+        return getAll().stream().filter(x -> x.idBooking == id).findAny();
     }
-
-
 
     @Override
     public ArrayList<Booking> getAll() {
@@ -44,7 +41,7 @@ public class BookingDAO implements DAO_B<Booking> {
 
     @Override
     public void deleteAll() {
-        List<Booking> data=getAll();
+        List<Booking> data = getAll();
         data.clear();
         write(data);
 
@@ -58,12 +55,10 @@ public class BookingDAO implements DAO_B<Booking> {
     }
 
 
-
-
     private void write(List<Booking> data) {
         try {
-            FileOutputStream outputStream=new FileOutputStream(file);
-            ObjectOutputStream objectOutputStream=new ObjectOutputStream(outputStream);
+            FileOutputStream outputStream = new FileOutputStream(file);
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
             objectOutputStream.writeObject(data);
             objectOutputStream.close();
             outputStream.close();
@@ -71,7 +66,5 @@ public class BookingDAO implements DAO_B<Booking> {
             throw new RuntimeException("IOException:", e);
         }
     }
-
-
 
 }
