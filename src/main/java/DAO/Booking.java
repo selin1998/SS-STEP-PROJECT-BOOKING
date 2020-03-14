@@ -7,13 +7,11 @@ import java.util.Objects;
 
 public class Booking implements Serializable {
     final String DASHES = new String(new char[82]).replace("\0", "-");
-  //  BookingController controllerBooking=new BookingController("./INFO/book.bin");
 
-
-   public int idBooking;
-  public  List<Passenger> passenger;
-   public  String flight;
-   public Pair pair;
+    public int idBooking;
+    public List<Passenger> passenger;
+    public String flight;
+    public Pair pair;
 
     private static int counter;
 
@@ -22,9 +20,9 @@ public class Booking implements Serializable {
         counter = all.stream().map(b -> b.idBooking).max((id1, id2) -> id1 - id2).orElse(0);
     }
 
-    public Booking( List<Passenger> passenger, String flight,Pair pair) {
+    public Booking(List<Passenger> passenger, String flight, Pair pair) {
 
-        this.idBooking=++counter;
+        this.idBooking = ++counter;
         this.pair = pair;
         this.passenger = passenger;
         this.flight = flight;
@@ -44,31 +42,29 @@ public class Booking implements Serializable {
         if (!(o instanceof Booking)) return false;
         Booking booking = (Booking) o;
         return idBooking == booking.idBooking &&
-              //  Objects.equals(username, booking.username) &&
+                //  Objects.equals(username, booking.username) &&
                 Objects.equals(passenger, booking.passenger) &&
                 Objects.equals(flight, booking.flight);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idBooking,  passenger, flight);
+        return Objects.hash(idBooking, passenger, flight);
     }  //username,
 
     @Override
     public String toString() {
+        String str = String.format("| %-10s | %-8s | %-15s | %-28s | %-5s |", "FlightID", "Date", "Destination", "Airline", "Seats");
+        String dash = DASHES;
+        StringBuilder booking = new StringBuilder();
+        booking.append(String.format("Booking ID: %d \n", idBooking));
 
 
-        String str=String.format("| %-10s | %-8s | %-15s | %-28s | %-5s |", "FlightID", "Date", "Destination", "Airline", "Seats");
-        String dash=DASHES;
-        StringBuilder booking= new StringBuilder();
-        booking.append(String.format("Booking ID: %d \n",idBooking));
-
-
-        for (Passenger p: passenger) {
+        for (Passenger p : passenger) {
             booking.append(p.toString());
             booking.append("\n");
         }
-        booking.append(String.format("%s\n%s\n%s\n%s\n ",dash,str,dash,flight));
+        booking.append(String.format("%s\n%s\n%s\n%s\n ", dash, str, dash, flight));
         booking.append("\n---");
         booking.append(pair.toString());
         booking.append("\n");

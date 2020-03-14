@@ -13,17 +13,16 @@ class FlightDAOTest {
     Flight flight3;
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         flightDao.deleteAll();
 
-        flight1=new Flight("AZ1345","13:45","Baku","AZAL",45);
+        flight1 = new Flight("AZ1345", "13:45", "Baku", "AZAL", 45);
         flightDao.save(flight1);
-        flight2=new Flight("AZ1234","10:00","Istanbul","AZAL",55);
+        flight2 = new Flight("AZ1234", "10:00", "Istanbul", "AZAL", 55);
         flightDao.save(flight2);
-        flight3=new Flight("AN1234","08:00","London","Ana",20);
+        flight3 = new Flight("AN1234", "08:00", "London", "Ana", 20);
         flightDao.save(flight3);
-}
-
+    }
 
     @Test
     void getAll() {

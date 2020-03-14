@@ -1,12 +1,8 @@
 package Controller;
 
-import DAO.Booking;
 import DAO.Pair;
 import DAO.User;
-import Service.BookingService;
 import Service.UserService;
-
-import java.util.HashMap;
 
 public class UserController {
 
@@ -16,7 +12,6 @@ public class UserController {
 
         service = new UserService(filename);
     }
-
 
 
     public void displayAllUsers() {
@@ -38,7 +33,5 @@ public class UserController {
     public void saveUser(User user) {
         service.saveUser(user);
     }
-
-
 
 }

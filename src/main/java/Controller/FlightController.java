@@ -1,11 +1,8 @@
 package Controller;
 
-import DAO.Flight;
-import DAO.FlightDAO;
 import Service.FlightService;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class FlightController {
@@ -36,11 +33,9 @@ public class FlightController {
         AtomicInteger index = new AtomicInteger(0);
         map= new HashMap<Integer, String>();
         service.getAllby(destination, airline,seats).stream().forEach(x->map.put(index.addAndGet(1),x));
-       // System.out.println(map.toString());
         return map;
         //   service.getAllby(destination, airline,seats).stream().forEach(x->System.out.printf("| %-8d %s\n", index.addAndGet(1),x));
     }
-
 
     public void decreaseSeats(String id, int count){
         service.decreaseAvailableSeats(id,count);
@@ -48,6 +43,5 @@ public class FlightController {
     public void inreaseSeats(String id, int count){
         service.increaseAvailableSeats(id,count);
     }
-
 
 }

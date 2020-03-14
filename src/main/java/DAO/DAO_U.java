@@ -10,4 +10,5 @@ public interface DAO_U<T> {
     List<T> getAll();
     void save(T t);
     void delete (Pair pair);
+    void deleteAll();
 }
