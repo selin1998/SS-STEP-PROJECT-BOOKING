@@ -1,11 +1,8 @@
 package Controller;
 
-import DAO.Flight;
-import DAO.FlightDAO;
 import Service.FlightService;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class FlightController {
@@ -40,13 +37,11 @@ public class FlightController {
 
     }
 
-
     public void decreaseSeats(String id, int count){
         service.decreaseAvailableSeats(id,count);
     }
     public void inreaseSeats(String id, int count){
         service.increaseAvailableSeats(id,count);
     }
-
 
 }

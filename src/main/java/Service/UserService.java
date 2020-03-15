@@ -18,34 +18,30 @@ public class UserService {
     }
 
 
-    public List<String> getAllUsers(){
-        return daoUser.getAll().stream().map(b->b.toString()).collect(Collectors.toList());
+    public List<String> getAllUsers() {
+        return daoUser.getAll().stream().map(b -> b.toString()).collect(Collectors.toList());
     }
 
 
-    public User getUserbyPair(Pair pair){
-
+    public User getUserbyPair(Pair pair) {
 
         return daoUser.get(pair).get();
-
-
     }
 
-    public boolean userExists(Pair pair){
-        return daoUser.get(pair).isPresent()?true:false;
-
-
+    public boolean userExists(Pair pair) {
+        return daoUser.get(pair).isPresent() ? true : false;
     }
 
     public void cancelUser(Pair pair) {
         daoUser.delete(pair);
     }
 
-
-
-    public void saveUser(User user){
-        daoUser.save(user);
+    public void clearAll(){
+        daoUser.deleteAll();
     }
 
+    public void saveUser(User user) {
+        daoUser.save(user);
+    }
 
 }

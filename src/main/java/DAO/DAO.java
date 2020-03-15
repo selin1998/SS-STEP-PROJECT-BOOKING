@@ -11,4 +11,5 @@ public interface DAO<T> {
     List<T> getAll();
     void save(T t);
     void delete (String id);
+    void deleteAll();
 }

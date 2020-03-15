@@ -35,7 +35,6 @@ public class FlightDAO implements DAO<Flight> {
             }
         }
         return data;
-      //  return getAll().stream().filter(p.test(getAll())).collect(Collectors.toList());
     }
 
     @Override
@@ -56,6 +55,13 @@ public class FlightDAO implements DAO<Flight> {
     @Override
     public void delete(String id) {
         List<Flight> data = getAll().stream().filter(f -> !f.flightId.equalsIgnoreCase(id)).collect(Collectors.toList());
+        write(data);
+    }
+
+    @Override
+    public void deleteAll(){
+        List<Flight> data=getAll();
+        data.clear();
         write(data);
     }
 

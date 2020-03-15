@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 public class UserDAO implements DAO_U<User> {
     String filename;
-    List <User> users= new ArrayList<User>();
+    List<User> users = new ArrayList<User>();
 
     public UserDAO(String filename) {
         this.filename = filename;
@@ -16,7 +16,7 @@ public class UserDAO implements DAO_U<User> {
 
     @Override
     public Optional<User> get(Pair pair) {
-        return getAll().stream().filter(x->x.credential.equals(pair)).findAny();
+        return getAll().stream().filter(x -> x.credential.equals(pair)).findAny();
     }
 
     @Override
@@ -41,6 +41,13 @@ public class UserDAO implements DAO_U<User> {
     }
 
     @Override
+    public void deleteAll() {
+        List<User> data = getAll();
+        data.clear();
+        write(data);
+    }
+
+    @Override
     public void save(User user) {
         List<User> data = getAll();
         data.add(user);
@@ -48,11 +55,10 @@ public class UserDAO implements DAO_U<User> {
     }
 
 
-
     private void write(List<User> data) {
         try {
-            FileOutputStream outputStream=new FileOutputStream(filename);
-            ObjectOutputStream objectOutputStream=new ObjectOutputStream(outputStream);
+            FileOutputStream outputStream = new FileOutputStream(filename);
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
             objectOutputStream.writeObject(data);
             objectOutputStream.close();
             outputStream.close();
