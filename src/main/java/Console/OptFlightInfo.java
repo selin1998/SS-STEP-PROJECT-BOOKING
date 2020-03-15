@@ -6,7 +6,7 @@ import DAO.Pair;
 
 import java.util.Scanner;
 
-public class OptFlightInfo implements Option {
+public class OptFlightInfo implements Option,UserOption {
 
 
 
@@ -34,6 +34,27 @@ public class OptFlightInfo implements Option {
 
     @Override
     public boolean isExit() {
+        return false;
+    }
+
+    @Override
+    public int userOptNumber() {
+        return 4;
+    }
+
+    @Override
+    public void operation() {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Please enter the flight id to get info:");
+        String input=sc.nextLine();
+        System.out.println(DASHES);
+        System.out.println(String.format("| %-10s | %-8s | %-15s | %-28s | %-5s |", "FlightID", "Date", "Destination", "Airline", "Seats"));
+        System.out.println(DASHES);
+        fc2.displayFlightbyId(input);
+    }
+
+    @Override
+    public boolean isExitUser() {
         return false;
     }
 }

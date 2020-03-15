@@ -31,7 +31,9 @@ public class Menu {
         loginRegister.append("\nWanna buy one way ticket to the blues?\n");
         loginRegister.append("\n1. Login.\n");
         loginRegister.append("2. Register.\n");
-        loginRegister.append("3. Exit.\n");
+        loginRegister.append("3. Online table.\n");
+        loginRegister.append("4. Flight information.\n");
+        loginRegister.append("5. Exit.\n");
 
     }
 

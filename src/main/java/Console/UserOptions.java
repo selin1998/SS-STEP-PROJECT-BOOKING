@@ -10,7 +10,10 @@ public class UserOptions {
 
             add(new OptRegister());
             add(new OptLogin());
+            add(new OptOnlineBoard());
+            add(new OptFlightInfo());
             add(new OptExit());
+
 
         }};
     }

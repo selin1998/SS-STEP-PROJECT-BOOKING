@@ -3,7 +3,9 @@ package Console;
 import Controller.FlightController;
 import DAO.Pair;
 
-public class OptOnlineBoard implements Option {
+import static Console.UserOption.fc2;
+
+public class OptOnlineBoard implements Option,UserOption {
 
 
 
@@ -28,6 +30,27 @@ public class OptOnlineBoard implements Option {
 
     @Override
     public boolean isExit() {
+        return false;
+    }
+
+    @Override
+    public int userOptNumber() {
+        return 3;
+    }
+
+    @Override
+    public void operation() {
+
+        System.out.println("ONLINE-BOARD");
+        System.out.println(DASHES);
+        System.out.println(String.format("| %-10s | %-8s | %-15s | %-28s | %-5s |", "FlightID", "Date", "Destination", "Airline", "Seats"));
+        System.out.println(DASHES);
+        fc2.displayAllFlights();
+
+    }
+
+    @Override
+    public boolean isExitUser() {
         return false;
     }
 }

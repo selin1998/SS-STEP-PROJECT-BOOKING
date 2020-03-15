@@ -25,7 +25,7 @@ public class OptExit implements UserOption, Option {
 
     @Override
     public int userOptNumber() {
-        return 3;
+        return 5;
     }
 
 

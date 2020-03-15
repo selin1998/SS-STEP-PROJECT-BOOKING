@@ -2,9 +2,7 @@ package Console;
 
 import DAO.Pair;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.Scanner;
+import java.util.*;
 
 public class ConsoleApp {
     List<UserOption> userOptions = UserOptions.all();
@@ -17,7 +15,7 @@ public class ConsoleApp {
     Optional<UserOption> userOpt;
 
 
-    public void start() {
+    public void start() throws InputMismatchException {
 
 
         Menu m = new Menu();
@@ -26,17 +24,32 @@ public class ConsoleApp {
 
             m.printLoginRegister();
             System.out.println("Please, enter option number: ");
-            int num = sc.nextInt();
-            userOpt = userOptions
-                    .stream()
-                    .filter(command -> command.userOptNumber() == num)
-                    .findFirst();
+           int num;
+            try{
+                num=sc.nextInt();
 
-            userOpt.ifPresent(UserOption::operation);
-            isExitUser = userOpt.get().isExitUser();
-            if (num == 1) {
-                break;
+
+
+                userOpt = userOptions
+                        .stream()
+                        .filter(command -> command.userOptNumber() == num)
+                        .findFirst();
+
+                userOpt.ifPresent(UserOption::operation);
+                isExitUser = userOpt.get().isExitUser();
+                if (num == 1) {
+                    break;
+
             }
+
+            }
+            catch (InputMismatchException ex){
+                System.out.println("Our options are numbers! Please enter valid number!");
+            }
+            catch (NoSuchElementException ex){
+                System.out.println("Enter valid option number!!!");
+            }
+
 
 
         }
@@ -50,16 +63,27 @@ public class ConsoleApp {
             m.printMenu();
 
             System.out.println("Please, enter option number: ");
-            int num = sc1.nextInt();
-            opt = options
-                    .stream()
-                    .filter(command -> command.optNumber() == num)
-                    .findFirst();
+            try{
+                int num = sc1.nextInt();
+                opt = options
+                        .stream()
+                        .filter(command -> command.optNumber() == num)
+                        .findFirst();
 
-            opt.ifPresent(Option::text);
-            opt.get().execution(pair);
+                opt.ifPresent(Option::text);
+                opt.get().execution(pair);
 
-            isExit = opt.get().isExit();
+                isExit = opt.get().isExit();
+            }
+
+
+            catch (InputMismatchException ex){
+                System.out.println("Our options are numbers! Please enter valid number!");
+            }
+            catch (Exception ex){
+                System.out.println("Enter valid option number!!!");
+            }
+
 
 
         }
