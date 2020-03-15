@@ -29,7 +29,12 @@ public class Booking implements Serializable {
         this.passenger = passenger;
         this.flight = flight;
     }
-
+    public Booking(int idBooking, List<Passenger> passenger, String flight, Pair pair) {
+        this.idBooking = idBooking;
+        this.passenger = passenger;
+        this.flight = flight;
+        this.pair = pair;
+    }
 
     public String displayBookingInfo() {
         return String.format("| %-10d |%-20s |%-10s |",

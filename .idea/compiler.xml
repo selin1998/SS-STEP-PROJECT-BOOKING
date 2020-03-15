@@ -6,10 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="SS-STEP-PROJECT-BOOKING" />
+        <module name="last-version-step-project" />
         <module name="login-register" />
         <module name="ss" />
         <module name="SS" />
+        <module name="SS-STEP-PROJECT-BOOKING" />
         <module name="step-project" />
         <module name="STEP-PROJECT-BOOKING" />
       </profile>
