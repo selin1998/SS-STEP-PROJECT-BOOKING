@@ -31,6 +31,7 @@ public class OptLogin implements UserOption {
         }
         else{
             System.out.println("Wrong username or password!");
+            c.start();
         }
     }
 

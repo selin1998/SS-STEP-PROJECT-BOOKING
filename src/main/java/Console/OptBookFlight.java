@@ -80,8 +80,8 @@ public class OptBookFlight implements Option {
                 fc.decreaseSeats(flightId,count);
 
                 bc.saveBooking(book1);
-                bc.displayBookigsbyPair(pair);
-
+             //   bc.displayBookigsbyPair(pair);
+                bc.displayBookingsbyPair(pair);
                 passengersList.clear();
 
             }

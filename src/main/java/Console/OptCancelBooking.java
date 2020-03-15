@@ -28,7 +28,7 @@ public class OptCancelBooking implements Option {
 
         try{
             int id = sc.nextInt();
-            int seats= bc.getBookingbyId(id).passenger.size();
+            int seats= bc.getBookingbyPairandId(pair,id).passenger.size();
             String idFlight=  bc.getBookingbyId(id).flight.split("\\|")[1].trim();
             fc.inreaseSeats(idFlight,seats);
             bc.cancelBooking(id);

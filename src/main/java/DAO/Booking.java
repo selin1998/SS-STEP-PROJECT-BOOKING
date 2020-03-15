@@ -67,7 +67,7 @@ public class Booking implements Serializable {
             booking.append("\n");
         }
         booking.append(String.format("%s\n%s\n%s\n%s\n ",dash,str,dash,flight));
-        booking.append("\n---");
+        booking.append("\n###");
         booking.append(pair.toString());
         booking.append("\n");
         return booking.toString();

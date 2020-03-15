@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 public class BookingDAO implements DAO_B<Booking> {
     private File file;
-   // List<Booking> bookings = new ArrayList<>();
+
 
     public BookingDAO(String filename) {
         file = new File(filename);

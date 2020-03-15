@@ -45,13 +45,13 @@ public class BookingController {
         controllerFlight.displayFlightsBy(destination, airline, numberPlaces);
     }
 
-    public void displayBookigsbyPair(Pair pair){
-        System.out.println(service.getBookingsByPair(pair));
+    public void displayBookingsbyPair(Pair pair){
+        service.getBookingsbyPair(pair).stream().map(x->x.toString().split("###")[0]).forEach(x-> System.out.println(x));
 
     }
 
-    public String getBookingbyPairandId(Pair pair, int id){
-        return service.getBookingbyPairAndId(pair,id).toString();
+    public Booking getBookingbyPairandId(Pair pair, int id){
+        return service.getBookingbyPairAndId(pair,id);
     }
 
     public String getFlightForBooking(int serialNo,String dest,String airway,int count){
