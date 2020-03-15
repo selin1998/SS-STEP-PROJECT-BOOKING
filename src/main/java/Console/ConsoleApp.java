@@ -15,7 +15,7 @@ public class ConsoleApp {
     Optional<UserOption> userOpt;
 
 
-    public void start() throws InputMismatchException {
+    public void start() {
 
 
         Menu m = new Menu();
@@ -26,26 +26,30 @@ public class ConsoleApp {
             System.out.println("Please, enter option number: ");
            int num;
             try{
-                num=sc.nextInt();
 
 
+                while(!sc.hasNextInt()){
+                    String input=sc.next();
+                    System.out.printf("\"%s\" is not a valid number.\n", input);
+                }
+                    num=sc.nextInt();
+                    userOpt = userOptions
+                            .stream()
+                            .filter(command -> command.userOptNumber() == num)
+                            .findFirst();
 
-                userOpt = userOptions
-                        .stream()
-                        .filter(command -> command.userOptNumber() == num)
-                        .findFirst();
 
                 userOpt.ifPresent(UserOption::operation);
                 isExitUser = userOpt.get().isExitUser();
+
+
                 if (num == 1) {
                     break;
 
-            }
+                  }
 
             }
-            catch (InputMismatchException ex){
-                System.out.println("Our options are numbers! Please enter valid number!");
-            }
+
             catch (NoSuchElementException ex){
                 System.out.println("Enter valid option number!!!");
             }
@@ -64,6 +68,12 @@ public class ConsoleApp {
 
             System.out.println("Please, enter option number: ");
             try{
+
+                while(!sc1.hasNextInt()){
+                    String input=sc1.next();
+                    System.out.printf("\"%s\" is not a valid number.\n", input);
+                }
+
                 int num = sc1.nextInt();
                 opt = options
                         .stream()
@@ -76,10 +86,6 @@ public class ConsoleApp {
                 isExit = opt.get().isExit();
             }
 
-
-            catch (InputMismatchException ex){
-                System.out.println("Our options are numbers! Please enter valid number!");
-            }
             catch (Exception ex){
                 System.out.println("Enter valid option number!!!");
             }

@@ -51,7 +51,7 @@ public class OptBookFlight implements Option {
         fc.displayFlightsBy(dest, airway, count);
 
         //BOOKING PART
-        System.out.println("Enter Serial NO of flight you would like to book or press 0 to return to main menu:");
+        System.out.println("Enter Serial NO of flight you would like to book :");
         int serialNo = sc.nextInt();
 
             String flight="";
@@ -80,7 +80,6 @@ public class OptBookFlight implements Option {
                 fc.decreaseSeats(flightId,count);
 
                 bc.saveBooking(book1);
-             //   bc.displayBookigsbyPair(pair);
                 bc.displayBookingsbyPair(pair);
                 passengersList.clear();
 

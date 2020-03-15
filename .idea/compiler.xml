@@ -13,6 +13,7 @@
         <module name="SS-STEP-PROJECT-BOOKING" />
         <module name="step-project" />
         <module name="STEP-PROJECT-BOOKING" />
+        <module name="STEP-PROJECT-FLIGHT-BOOKING" />
       </profile>
     </annotationProcessing>
   </component>
