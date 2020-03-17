@@ -1,11 +1,17 @@
 package Console;
 
+import io.Console;
+import io.UnixConsole;
+
+import java.util.Scanner;
+
 public class Menu {
     
    public static StringBuilder menu= new StringBuilder();
 
     public static StringBuilder loginRegister= new StringBuilder();
     final static String DASHES = new String(new char[30]).replace("\0", "-");
+   public static Console console = new UnixConsole(new Scanner(System.in));
     static {
         generateMenu();
         loginRegister();
@@ -41,12 +47,12 @@ public class Menu {
 
 
 
-        System.out.println(menu);
+        console.printLn(menu.toString());
 
     }
 
     public static void printLoginRegister(){
-        System.out.println(loginRegister);
+        console.printLn(loginRegister.toString());
     }
 
 

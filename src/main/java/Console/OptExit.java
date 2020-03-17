@@ -17,7 +17,7 @@ public class OptExit implements UserOption, Option {
 
     @Override
     public void execution(Pair pair) {
-        System.out.println("Bye!");
+        console.printLn("Bye!");
         this.pair=pair;
 
     }

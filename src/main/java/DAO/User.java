@@ -17,11 +17,6 @@ public class User implements Serializable {
 
     }
 
-//
-//    public String displayUserInfo(){
-//        return String.format("| %-20s |%-10s |%-15s |", credential,name,lastName);
-//
-//    }
 
 
     @Override

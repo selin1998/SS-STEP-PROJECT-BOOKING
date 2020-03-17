@@ -36,23 +36,24 @@ public class OptBookFlight implements Option {
     public void execution(Pair pair) {
 
         //SEARCH PART
-        Scanner sc=new Scanner(System.in);
-        System.out.println("Enter destination, airline and number of passengers to search for matching flights: ");
-        System.out.println("Destination:");
-        String dest = sc.nextLine();
-        System.out.println("Airline:");
-        String airway = sc.nextLine();
-        System.out.println("Number of passengers:");
-        int count = sc.nextInt();
-        System.out.println("FLIGHTS MATCHING YOUR CRITERIA:");
-        System.out.println(DASHES2);
-        System.out.println(String.format("| %-8s | %-10s | %-8s | %-15s | %-28s | %-5s |", "Serial No", "FlightID", "Date", "Destination", "Airline", "Seats"));
-        System.out.println(DASHES2);
+       // Scanner sc=new Scanner(System.in);
+        console2.printLn("Press Enter in order to fill destination, airline and number of passengers and search for matching flights: ");
+        console2.readLn();
+        console2.printLn("Destination:");
+        String dest = console2.readLn();
+        console2.printLn("Airline:");
+        String airway = console2.readLn();
+        console2.printLn("Number of passengers:");
+        int count = console2.readInt();
+        console2.printLn("FLIGHTS MATCHING YOUR CRITERIA:");
+        console2.printLn(DASHES2);
+        console2.printLn(String.format("| %-8s | %-10s | %-8s | %-15s | %-28s | %-5s |", "Serial No", "FlightID", "Date", "Destination", "Airline", "Seats"));
+        console2.printLn(DASHES2);
         fc.displayFlightsBy(dest, airway, count);
 
         //BOOKING PART
-        System.out.println("Enter Serial NO of flight you would like to book :");
-        int serialNo = sc.nextInt();
+        console2.printLn("Enter Serial NO of flight you would like to book :");
+        int serialNo = console2.readInt();
 
             String flight="";
 
@@ -64,14 +65,15 @@ public class OptBookFlight implements Option {
 
                 String firstname;
                 String lastname;
-                Scanner scanner=new Scanner(System.in);
 
                 for (int i = 1; i <=count; i++) {
-                    System.out.printf("Passenger %d:\n",i);
-                    System.out.println("Enter the firstname:");
-                    firstname=scanner.nextLine();
-                    System.out.println("Enter the lastname:");
-                    lastname=scanner.nextLine();
+                    console2.readLn();
+                   console2.printf("Passenger %d: ",i);
+
+                    console2.print("Enter the firstname:");
+                    firstname=console2.readLn();
+                    console2.print("Enter the lastname:");
+                    lastname=console2.readLn();
                     passengersList.add(new Passenger(firstname,lastname));
                 }
 
@@ -86,7 +88,7 @@ public class OptBookFlight implements Option {
             }
 
             catch (NullPointerException ex){
-                System.out.println("No flight with such serial number exists!!!");
+                console2.printLn("No flight with such serial number exists!!!");
             }
 
 

@@ -15,24 +15,29 @@ public class OptRegister implements UserOption {
 
     @Override
     public void operation() {
-        Scanner sc=new Scanner(System.in);
-        System.out.println("Please enter your name:");
-        String name=sc.nextLine();
-        System.out.println("Please enter your surname:");
-        String surname=sc.nextLine();
-        System.out.println("Please enter a username:");
-        String username=sc.nextLine();
-        System.out.println("Please enter a password:");
-        String password=sc.nextLine();
+
+        console.print("Please enter your name:");
+        String name=console.readLn();
+        console.printLn();
+        console.print("Please enter your surname:");
+        String surname=console.readLn();
+        console.printLn();
+        console.print("Please enter a username:");
+        String username=console.readLn();
+        console.printLn();
+        console.print("Please enter a password:");
+        String password=console.readLn();
+        console.printLn();
 
         Pair pair= new Pair(username,password);
         if(!uc.userExists(pair)){
             User user= new User(pair,name,surname);
             uc.saveUser(user);
-            System.out.println("You are registered, now login please!");
+            console.printLn("You are registered, now login please!");
         }
+
         else{
-            System.out.println("User with such credentials already exists!");
+            console.printLn("User with such credentials already exists!");
         }
     }
 

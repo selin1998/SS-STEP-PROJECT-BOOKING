@@ -23,13 +23,7 @@ public class OptFlightInfo implements Option,UserOption {
 
     @Override
     public void execution(Pair pair) {
-        Scanner sc=new Scanner(System.in);
-        System.out.println("Please enter the flight id to get info:");
-        String input=sc.nextLine();
-        System.out.println(DASHES);
-        System.out.println(String.format("| %-10s | %-8s | %-15s | %-28s | %-5s |", "FlightID", "Date", "Destination", "Airline", "Seats"));
-        System.out.println(DASHES);
-        fc.displayFlightbyId(input);
+        operation();
     }
 
     @Override
@@ -44,12 +38,11 @@ public class OptFlightInfo implements Option,UserOption {
 
     @Override
     public void operation() {
-        Scanner sc=new Scanner(System.in);
-        System.out.println("Please enter the flight id to get info:");
-        String input=sc.nextLine();
-        System.out.println(DASHES);
-        System.out.println(String.format("| %-10s | %-8s | %-15s | %-28s | %-5s |", "FlightID", "Date", "Destination", "Airline", "Seats"));
-        System.out.println(DASHES);
+        console.printLn("Please enter the flight id to get info:");
+        String input=console.readLn();
+        console.printLn(DASHES);
+        console.printLn(String.format("| %-10s | %-8s | %-15s | %-28s | %-5s |", "FlightID", "Date", "Destination", "Airline", "Seats"));
+        console.printLn(DASHES);
         fc2.displayFlightbyId(input);
     }
 

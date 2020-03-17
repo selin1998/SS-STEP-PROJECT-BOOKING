@@ -21,11 +21,7 @@ public class OptOnlineBoard implements Option,UserOption {
 
     @Override
     public void execution(Pair pair) {
-        System.out.println("ONLINE-BOARD");
-        System.out.println(DASHES);
-        System.out.println(String.format("| %-10s | %-8s | %-15s | %-28s | %-5s |", "FlightID", "Date", "Destination", "Airline", "Seats"));
-        System.out.println(DASHES);
-        fc.displayAllFlights();
+        operation();
     }
 
     @Override
@@ -41,10 +37,10 @@ public class OptOnlineBoard implements Option,UserOption {
     @Override
     public void operation() {
 
-        System.out.println("ONLINE-BOARD");
-        System.out.println(DASHES);
-        System.out.println(String.format("| %-10s | %-8s | %-15s | %-28s | %-5s |", "FlightID", "Date", "Destination", "Airline", "Seats"));
-        System.out.println(DASHES);
+        console.printLn("ONLINE-BOARD");
+        console.printLn(DASHES);
+        console.printLn(String.format("| %-10s | %-8s | %-15s | %-28s | %-5s |", "FlightID", "Date", "Destination", "Airline", "Seats"));
+        console.printLn(DASHES);
         fc2.displayAllFlights();
 
     }

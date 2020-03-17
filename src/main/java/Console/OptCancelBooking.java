@@ -9,7 +9,7 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class OptCancelBooking implements Option {
-    Scanner sc=new Scanner(System.in);
+
 
 
     @Override
@@ -27,7 +27,7 @@ public class OptCancelBooking implements Option {
         System.out.println("Enter the booking id for canceling booking:");
 
         try{
-            int id = sc.nextInt();
+            int id = console2.readInt();
             int seats= bc.getBookingbyPairandId(pair,id).passenger.size();
             String idFlight=  bc.getBookingbyId(id).flight.split("\\|")[1].trim();
             fc.inreaseSeats(idFlight,seats);
@@ -35,11 +35,11 @@ public class OptCancelBooking implements Option {
         }
 
         catch(InputMismatchException ex){
-            System.out.println("Your input is mismatching. Enter a number!!!\n");
+            console2.print("Your input is mismatching. Enter a number!!!\n");
         }
 
         catch (NoSuchElementException ex){
-            System.out.println("You do not have booking with such ID!!!\n");
+            console2.print("You do not have booking with such ID!!!\n");
         }
 
 

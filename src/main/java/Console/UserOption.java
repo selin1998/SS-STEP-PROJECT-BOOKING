@@ -3,6 +3,10 @@ package Console;
 import Controller.BookingController;
 import Controller.FlightController;
 import Controller.UserController;
+import io.Console;
+import io.UnixConsole;
+
+import java.util.Scanner;
 
 public interface UserOption {
 
@@ -10,7 +14,7 @@ public interface UserOption {
     BookingController bc2=new BookingController("./INFO/booking.bin");
     UserController uc= new UserController("./INFO/user.bin");
     ConsoleApp c=new ConsoleApp();
-
+    Console console = new UnixConsole(new Scanner(System.in));
     int userOptNumber();
     void operation();
     boolean isExitUser();

@@ -1,6 +1,8 @@
 package Console;
 
 import DAO.Pair;
+import io.Console;
+import io.UnixConsole;
 
 import java.util.*;
 
@@ -14,25 +16,25 @@ public class ConsoleApp {
     Optional<Option> opt;
     Optional<UserOption> userOpt;
 
+    Console console = new UnixConsole(new Scanner(System.in));
 
     public void start() {
 
 
         Menu m = new Menu();
-        Scanner sc = new Scanner(System.in);
         while (!isExitUser && !isExit) {
 
             m.printLoginRegister();
-            System.out.println("Please, enter option number: ");
+            console.printLn("Please, enter option number: ");
            int num;
             try{
 
 
-                while(!sc.hasNextInt()){
-                    String input=sc.next();
-                    System.out.printf("\"%s\" is not a valid number.\n", input);
+                while(!console.hasNextInt()){
+                    String input=console.readLnNext();
+                    console.print("Enter option in number format:\n");
                 }
-                    num=sc.nextInt();
+                    num=console.readInt();
                     userOpt = userOptions
                             .stream()
                             .filter(command -> command.userOptNumber() == num)
@@ -51,7 +53,7 @@ public class ConsoleApp {
             }
 
             catch (NoSuchElementException ex){
-                System.out.println("Enter valid option number!!!");
+                console.printLn("Enter valid option number!!!");
             }
 
 
@@ -62,19 +64,18 @@ public class ConsoleApp {
 
     public void flightAndBooking(Pair pair) {
         Menu m = new Menu();
-        Scanner sc1 = new Scanner(System.in);
         while (!isExit) {
             m.printMenu();
 
-            System.out.println("Please, enter option number: ");
+            console.printLn("Please, enter option number: ");
             try{
 
-                while(!sc1.hasNextInt()){
-                    String input=sc1.next();
-                    System.out.printf("\"%s\" is not a valid number.\n", input);
+                while(!console.hasNextInt()){
+                    String input=console.readLnNext();
+                   console.print("Enter option in number format:\n");
                 }
 
-                int num = sc1.nextInt();
+                int num = console.readInt();
                 opt = options
                         .stream()
                         .filter(command -> command.optNumber() == num)

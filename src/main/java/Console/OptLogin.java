@@ -18,11 +18,12 @@ public class OptLogin implements UserOption {
     @Override
     public void operation() {
 
-        Scanner sc=new Scanner(System.in);
-        System.out.println("Please enter your username:");
-        String username=sc.nextLine();
-        System.out.println("Please enter your password:");
-        String password=sc.nextLine();
+
+        console.print("Please enter your username:");
+        String username=console.readLn();
+        console.printLn();
+        console.print("Please enter your password:");
+        String password=console.readLn();
         Pair pair= new Pair(username,password);
         if(uc.userExists(pair)){
             ConsoleApp c= new ConsoleApp();
@@ -30,7 +31,7 @@ public class OptLogin implements UserOption {
             c.isExitUser=true;
         }
         else{
-            System.out.println("Wrong username or password!");
+            console.printLn("Wrong username or password!");
             c.start();
         }
     }
