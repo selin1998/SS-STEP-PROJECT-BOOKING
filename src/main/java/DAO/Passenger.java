@@ -4,25 +4,9 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class Passenger implements Serializable {
-    String name;
-    String lastname;
-    int passportId;
-    int pass_ID;
+    public String name;
+    public String lastname;
 
-
-
-    public String displayPassengerInfo(){
-        return String.format("| %-8d |%-12s |%-15s |%-10s |", pass_ID,name,lastname,passportId);
-
-    }
-
-    public Passenger(int pass_ID,String name, String lastname,int passportId) {
-        this.name = name;
-        this.lastname = lastname;
-        this.pass_ID=pass_ID;
-        this.passportId=passportId;
-
-    }
 
     public Passenger(String name, String lastname) {
         this.name = name;
@@ -32,28 +16,27 @@ public class Passenger implements Serializable {
     public static Passenger parse(String text) {
         String[] content = text.split("|");
         return new Passenger(
-                Integer.parseInt(content[0]),
                 content[1],
-                content[2],
-                Integer.parseInt(content[3])
-
+                content[2]
         );
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Passenger passenger = (Passenger) o;
-        return passportId == passenger.passportId;
+        return name.equals(passenger.name) &&
+                lastname.equals(passenger.lastname);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(passportId);
+        return Objects.hash(name, lastname);
     }
 
-    public String toString(){
-        return String.format("Passenger: %-5s %-5s", name,lastname);
+    public String toString() {
+        return String.format("Passenger: %-5s %-5s", name, lastname);
 
     }
 }
