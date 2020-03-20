@@ -19,7 +19,7 @@ public class OptMyFlights implements Option {
 
     @Override
     public void execution(Pair pair) {
-        console2.printLn("Your bookings:");
+        console2.printLn("YOUR BOOKINGS:");
         bc.displayBookingsbyPair(pair);
     }
 

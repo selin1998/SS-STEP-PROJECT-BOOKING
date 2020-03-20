@@ -41,7 +41,7 @@ public class OptFlightInfo implements Option,UserOption {
         console.printLn("Please enter the flight id to get info:");
         String input=console.readLn();
         console.printLn(DASHES);
-        console.printLn(String.format("| %-10s | %-8s | %-15s | %-28s | %-5s |", "FlightID", "Date", "Destination", "Airline", "Seats"));
+        console.printLn(String.format("| %-10s | %-8s | %-15s | %-28s | %-5s |", "FlightID", "Time", "Destination", "Airline", "Seats"));
         console.printLn(DASHES);
         fc2.displayFlightbyId(input);
     }

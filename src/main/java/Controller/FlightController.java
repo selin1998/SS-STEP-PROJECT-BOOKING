@@ -1,8 +1,10 @@
 package Controller;
 
+import DAO.Flight;
 import Service.FlightService;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class FlightController {
@@ -24,9 +26,18 @@ public class FlightController {
 
     }
 
-    public void displayFlightsBy( String destination, String airline,int seats) {
+    public boolean displayFlightsBy( String destination, String airline,int seats) {
         AtomicInteger index = new AtomicInteger(0);
-        service.getAllby(destination, airline, seats).stream().forEach(x -> System.out.printf("| %-8d %s\n", index.addAndGet(1), x));
+        List<String> list=service.getAllby(destination, airline, seats);
+        if(list.isEmpty()){
+            System.out.println("No corresponding flights were found!!!");
+            return false;
+        }
+        else{
+            list.stream().forEach(x -> System.out.printf("| %-8d %s\n", index.addAndGet(1), x));
+            return true;
+        }
+
     }
 
     public HashMap<Integer,String> getFlightsBymap( String destination, String airline,int seats){

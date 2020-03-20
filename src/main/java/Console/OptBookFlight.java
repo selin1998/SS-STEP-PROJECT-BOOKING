@@ -47,13 +47,14 @@ public class OptBookFlight implements Option {
         int count = console2.readInt();
         console2.printLn("FLIGHTS MATCHING YOUR CRITERIA:");
         console2.printLn(DASHES2);
-        console2.printLn(String.format("| %-8s | %-10s | %-8s | %-15s | %-28s | %-5s |", "Serial No", "FlightID", "Date", "Destination", "Airline", "Seats"));
+        console2.printLn(String.format("| %-8s | %-10s | %-8s | %-15s | %-28s | %-5s |", "Serial No", "FlightID", "Time", "Destination", "Airline", "Seats"));
         console2.printLn(DASHES2);
-        fc.displayFlightsBy(dest, airway, count);
 
-        //BOOKING PART
-        console2.printLn("Enter Serial NO of flight you would like to book :");
-        int serialNo = console2.readInt();
+        if(fc.displayFlightsBy(dest, airway, count)){
+
+            //BOOKING PART
+            console2.printLn("Enter Serial NO of flight you would like to book:");
+            int serialNo = console2.readInt();
 
             String flight="";
 
@@ -68,13 +69,13 @@ public class OptBookFlight implements Option {
 
                 for (int i = 1; i <=count; i++) {
                     console2.readLn();
-                   console2.printf("Passenger %d: ",i);
+                    console2.printf("Passenger %d: ",i);
 
                     console2.print("Enter the firstname:");
                     firstname=console2.readLn();
                     console2.print("Enter the lastname:");
                     lastname=console2.readLn();
-                    passengersList.add(new Passenger(firstname,lastname));
+                    passengersList.add(new Passenger(firstname.toUpperCase(),lastname.toUpperCase()));
                 }
 
 
@@ -92,7 +93,7 @@ public class OptBookFlight implements Option {
             }
 
 
-
+        }
 
     }
 

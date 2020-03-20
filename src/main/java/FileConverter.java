@@ -5,8 +5,8 @@
 //import java.util.List;
 //
 //
-////This class is used for converting flight.txt file to flight.bin file.
-////Already converted, so do not use again.
+////  This class is used for converting flight.txt file to flight.bin file.
+////  Already converted, so do not use again.
 //
 //
 //public class FileConverter  {

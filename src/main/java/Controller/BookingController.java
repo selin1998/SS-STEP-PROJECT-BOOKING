@@ -5,6 +5,7 @@ import DAO.Pair;
 import Service.BookingService;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class BookingController {
     BookingService service;
@@ -40,7 +41,13 @@ public class BookingController {
     }
 
     public void displayBookingsbyPair(Pair pair){
-        service.getBookingsbyPair(pair).stream().map(x->x.toString().split("###")[0]).forEach(x-> System.out.println(x));
+        List<Booking> list=service.getBookingsbyPair(pair);
+        if(list.isEmpty()){
+            System.out.println("No bookings were found!!!");
+        }
+        else{
+            list.stream().map(x->x.toString().split("###")[0]).forEach(x-> System.out.println(x));
+        }
 
     }
 

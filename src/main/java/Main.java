@@ -19,9 +19,8 @@ public class Main {
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
 
-
        ConsoleApp app= new ConsoleApp();
-        app.start();
+       app.start();
 
 
     }
