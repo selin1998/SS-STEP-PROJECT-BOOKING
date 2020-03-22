@@ -74,7 +74,7 @@ public class OptBookFlight extends Storage implements Option  {
                 String lastname;
 
                 for (int i = 1; i <= count; i++) {
-                    console2.readLn();
+
                     console2.printf("Passenger %d: ", i);
 
                     console2.print("Enter the firstname:");
