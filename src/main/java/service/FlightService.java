@@ -34,13 +34,14 @@ public class FlightService implements Serializable {
         }
     }
 
-    public List<String> getAllby(String destination, String airline, int numberofPlaces) {
+    public List<String> getAllby(String destination, String airline, int numberofPlaces, String date) {
 
         Predicate<Flight> a = x -> x.destination.equalsIgnoreCase(destination);
         Predicate<Flight> b = x -> x.airline.equalsIgnoreCase(airline);
         Predicate<Flight> c = x -> x.numberOfFreePlaces >= numberofPlaces;
+        Predicate<Flight> d = x -> x.departureDate.equalsIgnoreCase(date.trim());
 
-        return flightDao.getAllBy(a.and(b).and(c)).stream().map(x -> x.toString()).collect(Collectors.toList());
+        return flightDao.getAllBy(a.and(b).and(c).and(d)).stream().map(x -> x.toString()).collect(Collectors.toList());
 
     }
 
@@ -53,6 +54,14 @@ public class FlightService implements Serializable {
 
         return flightDao.get(id).get().numberOfFreePlaces;
 
+    }
+
+
+    public void read(){
+        flightDao.read();
+    }
+    public void write(){
+        flightDao.write();
     }
 
     public void decreaseAvailableSeats(String id, int count) {

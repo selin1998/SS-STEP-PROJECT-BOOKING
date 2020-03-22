@@ -10,11 +10,12 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class CollectionUserDAO implements UserDAO<User> {
-    String filename;
-    List<User> users = new ArrayList<User>();
+   private String filename;
+  private  List<User> usersList= new ArrayList<User>();
 
     public CollectionUserDAO(String filename) {
         this.filename = filename;
+
     }
 
     @Override
@@ -24,45 +25,67 @@ public class CollectionUserDAO implements UserDAO<User> {
 
     @Override
     public List<User> getAll() {
+        return this.usersList;
+
+    }
+
+    public void read(){
         try {
+            List<User> listLoaded = null;
             FileInputStream is = new FileInputStream(filename);
             ObjectInputStream ois = new ObjectInputStream(is);
             Object readed = ois.readObject();
-            ArrayList<User> data = (ArrayList<User>) readed;
+            listLoaded = (ArrayList<User>) readed;
             ois.close();
             is.close();
-            return data;
+            listLoaded.forEach(this::save);
+
+
+
         } catch (IOException | ClassNotFoundException e) {
-            return new ArrayList<User>();
+
+
+
         }
+
     }
 
     @Override
     public void delete(UserCredential userCredential) {
-        List<User> listUsers = getAll().stream().filter(b -> !(b.credential.equals(userCredential))).collect(Collectors.toList());
-        write(listUsers);
+        usersList = getAll().stream().filter(b -> !(b.credential.equals(userCredential))).collect(Collectors.toList());
+
     }
 
     @Override
     public void deleteAll() {
-        List<User> data = getAll();
-        data.clear();
-        write(data);
+
+        usersList.clear();
     }
 
     @Override
     public void save(User user) {
-        List<User> data = getAll();
-        data.add(user);
-        write(data);
+
+        if(user!=null){
+
+            if (usersList.contains(user)) {
+
+                usersList.set(usersList.indexOf(user), user);
+
+            } else {
+
+                usersList.add(user);
+
+            }
+        }
+
     }
 
 
-    private void write(List<User> data) {
+    public void write() {
         try {
             FileOutputStream outputStream = new FileOutputStream(filename);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
-            objectOutputStream.writeObject(data);
+            objectOutputStream.writeObject(usersList);
             objectOutputStream.close();
             outputStream.close();
         } catch (IOException e) {

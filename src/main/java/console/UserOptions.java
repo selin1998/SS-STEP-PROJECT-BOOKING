@@ -5,14 +5,14 @@ import java.util.List;
 
 public class UserOptions {
 
-    public static List<UserOption> all() {
+    public static List<UserOption> all(Database db) {
         return new ArrayList<UserOption>() {{
 
-            add(new OptRegister());
-            add(new OptLogin());
-            add(new OptOnlineBoard());
-            add(new OptFlightInfo());
-            add(new OptExit());
+            add(new OptRegister(db));
+            add(new OptLogin(db));
+            add(new OptOnlineBoard(db));
+            add(new OptFlightInfo(db));
+            add(new OptExit(db));
 
 
         }};

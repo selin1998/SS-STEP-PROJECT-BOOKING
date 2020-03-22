@@ -2,8 +2,12 @@ package console;
 
 import entity.UserCredential;
 
-public class OptCloseSession implements Option {
+public class OptCloseSession extends Storage implements Option {
 
+
+    public OptCloseSession(Database storage) {
+        super(storage);
+    }
 
     @Override
     public int optNumber() {
@@ -17,7 +21,9 @@ public class OptCloseSession implements Option {
 
     @Override
     public void execution(UserCredential userCredential) {
+        storage.writeData();
         c.start();
+
     }
 
     @Override

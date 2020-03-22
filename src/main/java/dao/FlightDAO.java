@@ -10,6 +10,8 @@ public interface FlightDAO<T> {
     List<T> getAllBy(Predicate<T> p);
     List<T> getAll();
     void save(T t);
+    void read();
+    void write();
     void delete (String id);
     void deleteAll();
 }

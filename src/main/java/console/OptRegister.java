@@ -3,8 +3,12 @@ package console;
 import entity.UserCredential;
 import entity.User;
 
-public class OptRegister implements UserOption {
+public class OptRegister extends Storage implements UserOption {
 
+
+    public OptRegister(Database storage) {
+        super(storage);
+    }
 
     @Override
     public int userOptNumber() {
@@ -28,10 +32,11 @@ public class OptRegister implements UserOption {
         console.printLn();
 
         UserCredential userCredential = new UserCredential(username,password);
-        if(!uc.userExists(userCredential)){
+        if(!storage.users.userExists(userCredential)){
             User user= new User(userCredential,name,surname);
-            uc.saveUser(user);
+            storage.users.saveUser(user);
             console.printLn("You are registered, now login please!");
+            storage.users.write();
         }
 
         else{

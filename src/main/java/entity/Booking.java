@@ -9,7 +9,6 @@ import java.util.Objects;
 
 public class Booking implements Serializable {
     final String DASHES = new String(new char[93]).replace("\0", "-");
-  //  BookingController controllerBooking=new BookingController("./INFO/book.bin");
 
 
    public int idBooking;
@@ -17,20 +16,7 @@ public class Booking implements Serializable {
    public  String flight;
    public UserCredential userCredential;
 
-    private static int counter;
 
-    {
-        ArrayList<Booking> all = new CollectionBookingDAO("./INFO/booking.bin").getAll();
-        counter = all.stream().map(b -> b.idBooking).max((id1, id2) -> id1 - id2).orElse(0);
-    }
-
-    public Booking(List<Passenger> passenger, String flight, UserCredential userCredential) {
-
-        this.idBooking=++counter;
-        this.userCredential = userCredential;
-        this.passenger = passenger;
-        this.flight = flight;
-    }
     public Booking(int idBooking, List<Passenger> passenger, String flight, UserCredential userCredential) {
         this.idBooking = idBooking;
         this.passenger = passenger;
@@ -78,7 +64,6 @@ public class Booking implements Serializable {
         booking.append(userCredential.toString());
         booking.append("\n");
         return booking.toString();
-//        return String.format("Booking ID: %d \n|%-20s\n%s\n%s\n%s\n%s\n ",
-//                idBooking, passenger.toString(),dash,str,dash,flightId);
+
     }
 }

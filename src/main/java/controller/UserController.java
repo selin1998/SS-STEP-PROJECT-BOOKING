@@ -13,9 +13,15 @@ public class UserController {
         service = new UserService(filename);
     }
 
+    public void read(){
+        service.read();
+    }
+    public void write(){
+        service.write();
+    }
 
     public void displayAllUsers() {
-        service.getAllUsers().stream().forEach(x -> System.out.println(x));
+        service.getAllUsers().forEach(x -> System.out.println(x));
     }
 
     public User getUserbyPair(UserCredential userCredential){

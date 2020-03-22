@@ -10,6 +10,8 @@ public interface BookingDAO<T> {
     void save(T t);
     void delete (int index);
     void deleteAll();
+    void read();
+    void write();
 
 
 }

@@ -1,22 +1,28 @@
 package console;
 
+import dao.CollectionBookingDAO;
 import entity.Booking;
 import entity.UserCredential;
 import entity.Passenger;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
-public class OptBookFlight implements Option {
+public class OptBookFlight extends Storage implements Option  {
 
 
     final String DASHES2 = new String(new char[103]).replace("\0", "-");
 
 
     HashMap<Integer, String> data;
-    ArrayList<Booking> bookingList = new ArrayList<>();
-    ArrayList<Passenger> passengersList = new ArrayList<>();
+    List<Booking> bookingList = new ArrayList<>();
     Passenger passenger;
+    List<Passenger> passengersList = new ArrayList<>();
+    int counter;
+    public OptBookFlight(Database storage) {
+        super(storage);
+    }
 
     @Override
     public int optNumber() {
@@ -41,15 +47,18 @@ public class OptBookFlight implements Option {
         String airway = console2.readLn();
         console2.printLn("Number of passengers:");
         int count = console2.readInt();
+        console2.readLn();
+        console2.printLn("Departure date in dd/mm/yyyy format (30/03/2019):");
+        String date = console2.readLn();
         console2.printLn("FLIGHTS MATCHING YOUR CRITERIA:");
         console2.printLn(DASHES2);
         console2.printLn(String.format("| %-7s | %-10s | %-10s | %-6s | %-15s | %-28s | %-5s |", "Ord No", "FlightID", "Date", "Time", "Destination", "Airline", "Seats"));
         console2.printLn(DASHES2);
 
-        if (fc.displayFlightsBy(dest, airway, count)) {
+        if (storage.flights.displayFlightsBy(dest, airway, count,date)) {
 
             //BOOKING PART
-            console2.readLn();
+
             console2.printLn("Enter Flight Id of flight you would like to book:");
             String serialNo = console2.readLn();
 
@@ -57,8 +66,8 @@ public class OptBookFlight implements Option {
 
             try {
 
-                flight = fc.getFlightbyId(serialNo);
-                Booking book1 = new Booking(passengersList, flight, userCredential);
+                flight = storage.flights.getFlightbyId(serialNo);
+
                 String flightId = flight.split("\\|")[1].trim();
 
                 String firstname;
@@ -75,10 +84,12 @@ public class OptBookFlight implements Option {
                     passengersList.add(new Passenger(firstname.toUpperCase(), lastname.toUpperCase()));
                 }
 
-
-                fc.decreaseSeats(flightId, count);
-                bc.saveBooking(book1);
-                bc.displayBookingsbyPair(userCredential);
+                counter = storage.bookings.getAll().stream().map(b -> b.idBooking).max((id1, id2) -> id1 - id2).orElse(0);
+                List <Passenger> lp=new ArrayList<>(passengersList);
+                Booking book = new Booking(++counter,lp, flight, userCredential);
+                storage.flights.decreaseSeats(flightId, count);
+                storage.bookings.saveBooking(book);
+                storage.bookings.displayBookingsbyPair(userCredential);
                 passengersList.clear();
 
             } catch (NullPointerException ex) {

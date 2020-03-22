@@ -12,9 +12,11 @@ import java.util.stream.Collectors;
 public class CollectionFlightDAO implements FlightDAO<Flight> {
 
     private File file;
+    private List<Flight> flightsList=new ArrayList();
 
     public CollectionFlightDAO(String filename) {
         file = new File(filename);
+
     }
 
 
@@ -41,44 +43,65 @@ public class CollectionFlightDAO implements FlightDAO<Flight> {
 
     @Override
     public List<Flight> getAll() {
+
+        return this.flightsList;
+    }
+
+
+    public void read(){
         try {
+            List<Flight> listLoaded = null;
             FileInputStream is = new FileInputStream(file);
             ObjectInputStream ois = new ObjectInputStream(is);
             Object readed = ois.readObject();
-            ArrayList<Flight> data = (ArrayList<Flight>) readed;
+            listLoaded= (ArrayList<Flight>) readed;
             ois.close();
             is.close();
-            return data;
+            listLoaded.forEach(this::save);
+
+
         } catch (IOException | ClassNotFoundException e) {
-            return new ArrayList<Flight>();
+            System.out.println("Class not found!");
+
         }
+
     }
 
     @Override
     public void delete(String id) {
-        List<Flight> data = getAll().stream().filter(f -> !f.flightId.equalsIgnoreCase(id)).collect(Collectors.toList());
-        write(data);
+        flightsList = getAll().stream().filter(f -> !f.flightId.equalsIgnoreCase(id)).collect(Collectors.toList());
+     //   write(data);
     }
 
     @Override
     public void deleteAll(){
-        List<Flight> data=getAll();
-        data.clear();
-        write(data);
+
+        flightsList.clear();
     }
 
     @Override
     public void save(Flight flight) {
-        List<Flight> data = getAll();
-        data.add(flight);
-        write(data);
+
+        if(flight!=null){
+            if (flightsList.contains(flight)) {
+
+                flightsList.set(flightsList.indexOf(flight), flight);
+
+            } else {
+
+                flightsList.add(flight);
+
+            }
+        }
+
     }
 
-    private void write(List<Flight> data) {
+    public void write() {
         try {
+
             FileOutputStream outputStream=new FileOutputStream(file);
             ObjectOutputStream objectOutputStream=new ObjectOutputStream(outputStream);
-            objectOutputStream.writeObject(data);
+            objectOutputStream.writeObject(flightsList);
             objectOutputStream.close();
             outputStream.close();
         } catch (IOException e) {

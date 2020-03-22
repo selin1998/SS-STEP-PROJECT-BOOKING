@@ -2,9 +2,14 @@ package console;
 
 import entity.UserCredential;
 
-public class OptExit implements UserOption, Option {
+public class OptExit extends Storage implements UserOption, Option {
 
     public UserCredential userCredential;
+
+    public OptExit(Database storage) {
+        super(storage);
+    }
+
     @Override
     public int optNumber() {
         return 7;
@@ -17,8 +22,10 @@ public class OptExit implements UserOption, Option {
 
     @Override
     public void execution(UserCredential userCredential) {
+        storage.writeData();
         console.printLn("Bye!");
         this.userCredential = userCredential;
+
 
     }
 

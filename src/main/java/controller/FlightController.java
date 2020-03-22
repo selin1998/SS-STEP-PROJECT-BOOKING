@@ -16,7 +16,7 @@ public class FlightController {
     }
 
     public void displayAllFlights(){
-        service.getAllFlights().stream().forEach(x->System.out.println(x));
+        service.getAllFlights().forEach(x->System.out.println(x));
     }
 
     public void displayFlightbyId(String id){
@@ -29,9 +29,17 @@ public class FlightController {
         return service.getFlightbyId(id);
 
     }
-    public boolean displayFlightsBy( String destination, String airline,int seats) {
+
+    public void read(){
+        service.read();
+    }
+    public void write(){
+        service.write();
+    }
+
+    public boolean displayFlightsBy( String destination, String airline,int seats,String date) {
         AtomicInteger index = new AtomicInteger(0);
-        List<String> list=service.getAllby(destination, airline, seats);
+        List<String> list=service.getAllby(destination, airline, seats,date);
         if(list.isEmpty()){
             System.out.println("No corresponding flights were found!!!");
             return false;
@@ -43,10 +51,10 @@ public class FlightController {
 
     }
 
-    public HashMap<Integer,String> getFlightsBymap( String destination, String airline,int seats){
+    public HashMap<Integer,String> getFlightsBymap( String destination, String airline,int seats,String date){
         AtomicInteger index = new AtomicInteger(0);
         map= new HashMap<Integer, String>();
-        service.getAllby(destination, airline,seats).stream().forEach(x->map.put(index.addAndGet(1),x));
+        service.getAllby(destination, airline,seats,date).stream().forEach(x->map.put(index.addAndGet(1),x));
         return map;
 
     }

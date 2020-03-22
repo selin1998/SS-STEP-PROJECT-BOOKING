@@ -1,5 +1,4 @@
 package console;
-
 import entity.UserCredential;
 import io.Console;
 import io.UnixConsole;
@@ -7,8 +6,8 @@ import io.UnixConsole;
 import java.util.*;
 
 public class ConsoleApp {
-    List<UserOption> userOptions = UserOptions.all();
-    List<Option> options = Options.all();
+    List<UserOption> userOptions ;
+    List<Option> options ;
 
     Boolean isExit = false;
     Boolean isExitUser = false;
@@ -18,9 +17,17 @@ public class ConsoleApp {
 
     Console console = new UnixConsole(new Scanner(System.in));
 
+   final Database db=new Database();
+
+    public ConsoleApp() {
+        userOptions = UserOptions.all(db);
+        options = Options.all(db);
+    }
+
     public void start() {
 
-
+        db.flights.read();
+        db.users.read();
         Menu m = new Menu();
         while (!isExitUser && !isExit) {
 
@@ -63,6 +70,9 @@ public class ConsoleApp {
 
 
     public void flightAndBooking(UserCredential userCredential) {
+        db.bookings.read();
+        db.flights.read();
+        db.users.read();
         Menu m = new Menu();
         while (!isExit) {
             m.printMenu();

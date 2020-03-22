@@ -35,6 +35,7 @@ public class Passenger implements Serializable {
         return Objects.hash(name, lastname);
     }
 
+    @Override
     public String toString() {
         return String.format("Passenger: %-5s %-5s", name, lastname);
 

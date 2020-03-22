@@ -12,4 +12,6 @@ public interface UserDAO<T> {
     void save(T t);
     void delete (UserCredential userCredential);
     void deleteAll();
+    void read();
+    void write();
 }

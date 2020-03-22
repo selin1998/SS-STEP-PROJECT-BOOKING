@@ -3,9 +3,12 @@ package console;
 import entity.UserCredential;
 
 
-public class OptLogin implements UserOption {
+public class OptLogin extends Storage implements UserOption {
 
 
+    public OptLogin(Database storage) {
+        super(storage);
+    }
 
     @Override
     public int userOptNumber() {
@@ -22,7 +25,7 @@ public class OptLogin implements UserOption {
         console.print("Please enter your password:");
         String password=console.readLn();
         UserCredential userCredential = new UserCredential(username,password);
-        if(uc.userExists(userCredential)){
+        if(storage.users.userExists(userCredential)){
             ConsoleApp c= new ConsoleApp();
             c.flightAndBooking(new UserCredential(username,password));
             c.isExitUser=true;

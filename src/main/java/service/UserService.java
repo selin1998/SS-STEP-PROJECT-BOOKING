@@ -44,4 +44,11 @@ public class UserService {
         daoUser.save(user);
     }
 
+    public void read(){
+        daoUser.read();
+    }
+    public void write(){
+        daoUser.write();
+    }
+
 }

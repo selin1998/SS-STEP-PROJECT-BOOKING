@@ -5,9 +5,12 @@ import entity.UserCredential;
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 
-public class OptCancelBooking implements Option {
+public class OptCancelBooking extends Storage implements Option {
 
 
+    public OptCancelBooking(Database storage) {
+        super(storage);
+    }
 
     @Override
     public int optNumber() {
@@ -25,10 +28,10 @@ public class OptCancelBooking implements Option {
 
         try{
             int id = console2.readInt();
-            int seats= bc.getBookingbyPairandId(userCredential,id).passenger.size();
-            String idFlight=  bc.getBookingbyId(id).flight.split("\\|")[1].trim();
-            fc.inreaseSeats(idFlight,seats);
-            bc.cancelBooking(id);
+            int seats= storage.bookings.getBookingbyPairandId(userCredential,id).passenger.size();
+            String idFlight=  storage.bookings.getBookingbyId(id).flight.split("\\|")[1].trim();
+            storage.flights.inreaseSeats(idFlight,seats);
+            storage.bookings.cancelBooking(id);
         }
 
         catch(InputMismatchException ex){

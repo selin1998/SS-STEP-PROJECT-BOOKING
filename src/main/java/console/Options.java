@@ -6,15 +6,15 @@ import java.util.List;
 public class Options {
 
 
-    public static List<Option> all() {
+    public static List<Option> all(Database db) {
         return new ArrayList<Option>() {{
-            add(new OptOnlineBoard());
-            add(new OptFlightInfo());
-            add(new OptBookFlight());
-            add(new OptCancelBooking());
-            add(new OptCloseSession());
-            add(new OptMyFlights());
-            add(new OptExit());
+            add(new OptOnlineBoard(db));
+            add(new OptFlightInfo(db));
+            add(new OptBookFlight(db));
+            add(new OptCancelBooking(db));
+            add(new OptCloseSession(db));
+            add(new OptMyFlights(db));
+            add(new OptExit(db));
 
         }};
     }

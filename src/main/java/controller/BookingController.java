@@ -36,6 +36,10 @@ public class BookingController {
         service.saveBookings(booking);
     }
 
+    public List<Booking> getAll(){
+        return service.getAll();
+    }
+
 
     public void displayBookingsbyPair(UserCredential userCredential){
         List<Booking> list=service.getBookingsbyPair(userCredential);
@@ -48,13 +52,19 @@ public class BookingController {
 
     }
 
+    public void read(){
+        service.read();
+    }
+    public void write(){
+        service.write();
+    }
     public Booking getBookingbyPairandId(UserCredential userCredential, int id){
         return service.getBookingbyPairAndId(userCredential,id);
     }
 
-    public String getFlightForBooking(int serialNo,String dest,String airway,int count){
+    public String getFlightForBooking(int serialNo,String dest,String airway,int count,String date){
         HashMap<Integer, String> data;
-        data = controllerFlight.getFlightsBymap(dest,airway,count);
+        data = controllerFlight.getFlightsBymap(dest,airway,count,date);
         String flight = data.get(serialNo);
         return flight;
     }

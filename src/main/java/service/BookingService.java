@@ -23,6 +23,10 @@ public class BookingService implements Serializable {
         return daoBooking.getAll().stream().map(b -> b.toString()).collect(Collectors.toList());
     }
 
+    public List<Booking> getAll(){
+        return daoBooking.getAll();
+    }
+
     public Booking getBookingByID(int index) {
         return daoBooking.get(index).get();
     }
@@ -38,6 +42,13 @@ public class BookingService implements Serializable {
     public Booking getBookingbyPairAndId(UserCredential userCredential, int bookingid) {
         return getBookingsbyPair(userCredential).stream().filter(x -> x.idBooking == bookingid).findAny().get();
 
+    }
+
+    public void read(){
+        daoBooking.read();
+    }
+    public void write(){
+        daoBooking.write();
     }
 
     public void cancelBooking(int id) {

@@ -2,9 +2,12 @@ package console;
 
 import entity.UserCredential;
 
-public class OptMyFlights implements Option {
+public class OptMyFlights extends Storage implements Option {
 
 
+    public OptMyFlights(Database storage) {
+        super(storage);
+    }
 
     @Override
     public int optNumber() {
@@ -19,7 +22,7 @@ public class OptMyFlights implements Option {
     @Override
     public void execution(UserCredential userCredential) {
         console2.printLn("YOUR BOOKINGS:\n");
-        bc.displayBookingsbyPair(userCredential);
+        storage.bookings.displayBookingsbyPair(userCredential);
     }
 
     @Override
