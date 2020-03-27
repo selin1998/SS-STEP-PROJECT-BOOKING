@@ -48,14 +48,14 @@ public class OptBookFlight extends Storage implements Option  {
         console2.printLn("Number of passengers:");
         int count = console2.readInt();
         console2.readLn();
-        console2.printLn("Departure date in dd/mm/yyyy format (30/03/2019):");
-        String date = console2.readLn();
+//        console2.printLn("Departure date in dd/mm/yyyy format (30/03/2019):");
+//        String date = console2.readLn();
         console2.printLn("FLIGHTS MATCHING YOUR CRITERIA:");
         console2.printLn(DASHES2);
-        console2.printLn(String.format("| %-7s | %-10s | %-10s | %-6s | %-15s | %-28s | %-5s |", "Ord No", "FlightID", "Date", "Time", "Destination", "Airline", "Seats"));
+        console2.printLn(String.format("| %-7s | %-10s | %-16s | %-15s | %-28s | %-5s |", "Ord No", "FlightID", "Date", "Time", "Destination", "Airline", "Seats"));
         console2.printLn(DASHES2);
 
-        if (storage.flights.displayFlightsBy(dest, airway, count,date)) {
+        if (storage.flights.displayFlightsBy(dest, airway, count)) {
 
             //BOOKING PART
 

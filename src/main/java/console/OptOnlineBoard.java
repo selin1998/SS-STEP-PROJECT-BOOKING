@@ -1,6 +1,8 @@
 package console;
 
+import entity.Flight;
 import entity.UserCredential;
+
 
 public class OptOnlineBoard extends Storage implements Option,UserOption {
 
@@ -39,8 +41,9 @@ public class OptOnlineBoard extends Storage implements Option,UserOption {
 
         console.printLn("ONLINE-BOARD");
         console.printLn(DASHES);
-        console.printLn(String.format("| %-10s | %-10s | %-6s | %-15s | %-28s | %-5s |", "FlightID","Date", "Time", "Destination", "Airline", "Seats"));
+        console.printLn(String.format("| %-10s | %-16s | %-15s | %-28s | %-5s |", "FlightID","Departure Time", "Destination", "Airline", "Seats"));
         console.printLn(DASHES);
+        storage.flights.changeDepartureTime();
         storage.flights.displayAllFlights();
 
     }

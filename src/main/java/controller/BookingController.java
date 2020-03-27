@@ -62,9 +62,9 @@ public class BookingController {
         return service.getBookingbyPairAndId(userCredential,id);
     }
 
-    public String getFlightForBooking(int serialNo,String dest,String airway,int count,String date){
+    public String getFlightForBooking(int serialNo,String dest,String airway,int count){
         HashMap<Integer, String> data;
-        data = controllerFlight.getFlightsBymap(dest,airway,count,date);
+        data = controllerFlight.getFlightsBymap(dest,airway,count);
         String flight = data.get(serialNo);
         return flight;
     }

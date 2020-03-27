@@ -49,7 +49,7 @@ public class Booking implements Serializable {
     public String toString() {
 
 
-        String str=String.format("| %-10s | %-10s | %-6s | %-15s | %-28s | %-5s |", "FlightID","Date", "Time", "Destination", "Airline", "Seats");
+        String str=String.format("| %-10s | %-16s | %-15s | %-28s | %-5s |", "FlightID","Departure Time", "Destination", "Airline", "Seats");
         String dash=DASHES;
         StringBuilder booking= new StringBuilder();
         booking.append(String.format("Booking ID: %d \n",idBooking));

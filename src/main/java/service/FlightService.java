@@ -5,6 +5,9 @@ import dao.FlightDAO;
 import entity.Flight;
 
 import java.io.Serializable;
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.function.Predicate;
@@ -24,6 +27,11 @@ public class FlightService implements Serializable {
 
     }
 
+    public List<Flight> flights(){
+        return flightDao.getAll();
+    }
+
+
     public String getFlightbyId(String id) {
 
         try {
@@ -34,14 +42,14 @@ public class FlightService implements Serializable {
         }
     }
 
-    public List<String> getAllby(String destination, String airline, int numberofPlaces, String date) {
+    public List<String> getAllby(String destination, String airline, int numberofPlaces) {
 
         Predicate<Flight> a = x -> x.destination.equalsIgnoreCase(destination);
         Predicate<Flight> b = x -> x.airline.equalsIgnoreCase(airline);
         Predicate<Flight> c = x -> x.numberOfFreePlaces >= numberofPlaces;
-        Predicate<Flight> d = x -> x.departureDate.equalsIgnoreCase(date.trim());
+     //   Predicate<Flight> d = x -> x.departureDate.equalsIgnoreCase(date.trim());
 
-        return flightDao.getAllBy(a.and(b).and(c).and(d)).stream().map(x -> x.toString()).collect(Collectors.toList());
+        return flightDao.getAllBy(a.and(b).and(c)).stream().map(x -> x.toString()).collect(Collectors.toList());
 
     }
 
@@ -50,11 +58,23 @@ public class FlightService implements Serializable {
 
     }
 
-    public int availableSeatsFlight(String id) {
 
-        return flightDao.get(id).get().numberOfFreePlaces;
+    public void changeDepartureTime(){
 
+        LocalDateTime time=LocalDateTime.now();
+        int index=5;int interval=0;
+        for (Flight flight : flightDao.getAll()) {
+            flight.departureTime=DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm").format(time.plus(Duration.ofMinutes(index)));
+            interval++;
+            if(interval==8){
+                index+=5;
+                interval=0;
+            }
+
+           flightDao.save(flight);
+        }
     }
+
 
 
     public void read(){
