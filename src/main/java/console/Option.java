@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public interface Option {
 
-    final String DASHES = new String(new char[93]).replace("\0", "-");
+    final String DASHES = new String(new char[113]).replace("\0", "-");
     Console console2 = new UnixConsole(new Scanner(System.in));
     ConsoleApp c = new ConsoleApp();
 

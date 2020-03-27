@@ -18,9 +18,9 @@ class FlightServiceTest {
     void setUp() {
         flightService.clearAllFlights();
 
-        flight1 = new Flight("AZ1345","30/03/2019 13:45", "Baku", "AZAL", 45);
+        flight1 = new Flight("AZ1345","30/03/2019 13:45","Oslo", "Baku", "AZAL", 45);
         flightService.saveFlight(flight1);
-        flight2 = new Flight("AZ1234", "30/03/2019 10:00", "Istanbul", "AZAL", 55);
+        flight2 = new Flight("AZ1234", "30/03/2019 10:00", "Oslo","Istanbul", "AZAL", 55);
         flightService.saveFlight(flight2);
 
     }
@@ -45,7 +45,7 @@ class FlightServiceTest {
 
     @Test
     void getAllby() {
-        List<String> allbyCriteria = flightService.getAllby("Istanbul", "AZAL", 55);
+        List<String> allbyCriteria = flightService.getAllby("Oslo","Istanbul",  55);
         assertTrue(!allbyCriteria.isEmpty());
     }
 
@@ -55,7 +55,7 @@ class FlightServiceTest {
         //before save flight3
         assertEquals(2,flightService.getAllFlights().size());
 
-        flight3 = new Flight("AN1234", "30/03/2019 08:00", "London", "Ana", 20);
+        flight3 = new Flight("AN1234", "30/03/2019 08:00","Oslo", "London", "Ana", 20);
         flightService.saveFlight(flight3);
 
         //after save flight3

@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class Booking implements Serializable {
-    final String DASHES = new String(new char[93]).replace("\0", "-");
+    final String DASHES = new String(new char[113]).replace("\0", "-");
 
 
    public int idBooking;
@@ -35,7 +35,6 @@ public class Booking implements Serializable {
         if (!(o instanceof Booking)) return false;
         Booking booking = (Booking) o;
         return idBooking == booking.idBooking &&
-              //  Objects.equals(username, booking.username) &&
                 Objects.equals(passenger, booking.passenger) &&
                 Objects.equals(flight, booking.flight);
     }
@@ -49,7 +48,7 @@ public class Booking implements Serializable {
     public String toString() {
 
 
-        String str=String.format("| %-10s | %-16s | %-15s | %-28s | %-5s |", "FlightID","Departure Time", "Destination", "Airline", "Seats");
+        String str=String.format("| %-10s | %-16s | %-15s | %-15s | %-28s | %-5s |", "FlightID","Departure Time","Origin", "Destination", "Airline", "Seats");
         String dash=DASHES;
         StringBuilder booking= new StringBuilder();
         booking.append(String.format("Booking ID: %d \n",idBooking));

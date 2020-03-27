@@ -29,10 +29,6 @@ public class FileConverter  {
             flist.add(f.parse(line));
 
         }
-//
-//      for (Flight flight : flist) {
-//            System.out.println(flight.toString());
-//        }
 
         oos.writeObject(flist);
 

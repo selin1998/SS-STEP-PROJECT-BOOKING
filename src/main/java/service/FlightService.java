@@ -8,6 +8,8 @@ import java.io.Serializable;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.function.Predicate;
@@ -27,10 +29,6 @@ public class FlightService implements Serializable {
 
     }
 
-    public List<Flight> flights(){
-        return flightDao.getAll();
-    }
-
 
     public String getFlightbyId(String id) {
 
@@ -42,16 +40,61 @@ public class FlightService implements Serializable {
         }
     }
 
-    public List<String> getAllby(String destination, String airline, int numberofPlaces) {
+    public List<String> getAllby(String origin,String destination,  int numberofPlaces) {
 
         Predicate<Flight> a = x -> x.destination.equalsIgnoreCase(destination);
-        Predicate<Flight> b = x -> x.airline.equalsIgnoreCase(airline);
+      //  Predicate<Flight> b = x -> x.airline.equalsIgnoreCase(airline);
         Predicate<Flight> c = x -> x.numberOfFreePlaces >= numberofPlaces;
+        Predicate<Flight> d = x -> x.origin.equalsIgnoreCase(origin);
      //   Predicate<Flight> d = x -> x.departureDate.equalsIgnoreCase(date.trim());
 
-        return flightDao.getAllBy(a.and(b).and(c)).stream().map(x -> x.toString()).collect(Collectors.toList());
+        return flightDao.getAllBy(a.and(c).and(d)).stream().map(x -> x.toString()).collect(Collectors.toList());
 
     }
+
+    public boolean hoursBetween(String depT1, String depT2){
+        LocalDateTime ldt1 = LocalDateTime.parse(depT1,DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
+        LocalDateTime ldt2 = LocalDateTime.parse(depT2,DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
+        long duration=ChronoUnit.HOURS.between(ldt1, ldt2);
+        if(duration<12&&duration>=3){
+            return  true;
+        }
+        else return false;
+    }
+
+
+    public List<Flight> getConnectingFlights(String origin,String destination, int numberofPlaces) {
+
+        List<Flight> result = new ArrayList<>();
+        List<Flight> connectingFlights = new ArrayList<>();
+
+        Predicate<Flight> a = x -> !x.destination.equalsIgnoreCase(destination);
+     //   Predicate<Flight> b = x -> x.airline.equalsIgnoreCase(airline);
+        Predicate<Flight> c = x -> x.numberOfFreePlaces >= numberofPlaces;
+        Predicate<Flight> d = x -> x.origin.equalsIgnoreCase(origin);
+        Predicate<Flight> e = x -> x.destination.equalsIgnoreCase(destination);
+
+        List<Flight> fromOrigin = flightDao.getAllBy(a.and(c).and(d));
+        List<Flight> toDestination = flightDao.getAllBy(e.and(c));
+
+
+
+        fromOrigin.stream().forEach(flight -> {
+            toDestination.stream().
+                    filter(cflight -> (cflight.origin.equalsIgnoreCase(flight.destination)) &&(hoursBetween(flight.departureTime, cflight.departureTime)) ).forEach(cflight -> {
+
+//                connectingFlights.add(flight);
+//                connectingFlights.add(cflight);
+                result.add(flight);
+                result.add(cflight);
+
+            });
+
+        });
+        return  result;
+
+    }
+
 
     public List<String> searchFlight(String destination, String airline, int numberofPlaces) {
         return flightDao.getAll().stream().filter(f -> f.destination.equals(destination)).filter(f -> f.airline.equals(airline)).filter(f -> f.numberOfFreePlaces == numberofPlaces).map(x -> x.toString()).collect(Collectors.toList());
@@ -66,8 +109,8 @@ public class FlightService implements Serializable {
         for (Flight flight : flightDao.getAll()) {
             flight.departureTime=DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm").format(time.plus(Duration.ofMinutes(index)));
             interval++;
-            if(interval==8){
-                index+=5;
+            if(interval==6){
+                index+=4;
                 interval=0;
             }
 

@@ -33,7 +33,7 @@ class CollectionBookingFlightDAOTest {
         listPassenger.add(passenger1);
         listPassenger.add(passenger2);
 
-        flight=new Flight("SK9440","30/03/2019 09:50","Vienna","SAS",100);
+        flight=new Flight("SK9440","30/03/2019 09:50","London","Vienna","SAS",100);
 
         booking1=new Booking(1,listPassenger,flight.toString(), userCredential);
         booking2=new Booking(2,listPassenger,flight.toString(), userCredential);

@@ -33,7 +33,7 @@ class BookingServiceTest {
         listPassenger.add(passenger1);
         listPassenger.add(passenger2);
 
-        flight = new Flight("SK9440", "30/03/2019 09:50", "Vienna", "SAS", 100);
+        flight = new Flight("SK9440", "30/03/2019 09:50", "Oslo","Vienna", "SAS", 100);
 
         booking1 = new Booking(1, listPassenger, flight.toString(), userCredential);
         booking2 = new Booking(2, listPassenger, flight.toString(), userCredential);
@@ -78,7 +78,7 @@ class BookingServiceTest {
         List<Passenger> listPassenger2 = new ArrayList<Passenger>();
         listPassenger2.add(passenger1);
 
-        Flight flight2 = new Flight("VA9440", "30/03/2019 09:30", "Vienna", "ANA", 50);
+        Flight flight2 = new Flight("VA9440", "30/03/2019 09:30","Oslo", "Vienna", "ANA", 50);
 
         Booking booking3 = new Booking(3, listPassenger2, flight2.toString(), userCredential2);
         bookingService.saveBookings(booking3);

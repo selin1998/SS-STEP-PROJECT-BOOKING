@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class FlightController {
+  final String DASHES2 = new String(new char[123]).replace("\0", "-");
   public  HashMap<Integer, String> map;
     FlightService service;
 
@@ -42,11 +43,11 @@ public class FlightController {
         service.write();
     }
 
-    public boolean displayFlightsBy( String destination, String airline,int seats) {
+    public boolean displayFlightsBy( String origin,String destination, int seats) {
         AtomicInteger index = new AtomicInteger(0);
-        List<String> list=service.getAllby(destination, airline, seats);
+        List<String> list=service.getAllby(origin,destination, seats);
         if(list.isEmpty()){
-            System.out.println("No corresponding flights were found!!!");
+            System.out.println("No direct flights were found!!!");
             return false;
         }
         else{
@@ -55,11 +56,37 @@ public class FlightController {
         }
 
     }
+    public boolean displayConnectingFlightsBy(String origin,String destination,int seats){
+        AtomicInteger index = new AtomicInteger(0);
+        List<Flight> conFlights=service.getConnectingFlights(origin,destination,seats);
+        if(conFlights.isEmpty()){
+            System.out.println("No connecting flights were found!!!");
+            return false;
+        }
+        else{
+            System.out.println("CONNECTING FLIGHTS");
 
-    public HashMap<Integer,String> getFlightsBymap( String destination, String airline,int seats){
+            for (Flight conFlight : conFlights) {
+                System.out.println(DASHES2);
+                System.out.printf("| %-8d %s ---->\n", index.addAndGet(1), conFlight);
+
+            }
+
+
+//
+//            conFlights.stream().
+//                    forEach(x->x.stream().forEach(y-> System.out.printf("| %-8d %s ---->\n", index.addAndGet(1), y)));
+           return true;
+        }
+
+    }
+
+
+
+    public HashMap<Integer,String> getFlightsBymap( String origin,String destination, String airline,int seats){
         AtomicInteger index = new AtomicInteger(0);
         map= new HashMap<Integer, String>();
-        service.getAllby(destination, airline,seats).stream().forEach(x->map.put(index.addAndGet(1),x));
+        service.getAllby(origin,destination,seats).stream().forEach(x->map.put(index.addAndGet(1),x));
         return map;
 
     }
