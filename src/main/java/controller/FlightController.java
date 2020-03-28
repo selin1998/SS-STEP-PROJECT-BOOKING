@@ -43,9 +43,9 @@ public class FlightController {
         service.write();
     }
 
-    public boolean displayFlightsBy( String origin,String destination, int seats) {
+    public boolean displayFlightsBy( String origin,String destination,String date, int seats) {
         AtomicInteger index = new AtomicInteger(0);
-        List<String> list=service.getAllby(origin,destination, seats);
+        List<String> list=service.getAllby(origin,destination,date, seats);
         if(list.isEmpty()){
             System.out.println("No direct flights were found!!!");
             return false;
@@ -72,10 +72,6 @@ public class FlightController {
 
             }
 
-
-//
-//            conFlights.stream().
-//                    forEach(x->x.stream().forEach(y-> System.out.printf("| %-8d %s ---->\n", index.addAndGet(1), y)));
            return true;
         }
 
@@ -83,10 +79,10 @@ public class FlightController {
 
 
 
-    public HashMap<Integer,String> getFlightsBymap( String origin,String destination, String airline,int seats){
+    public HashMap<Integer,String> getFlightsBymap( String origin,String destination, String date,int seats){
         AtomicInteger index = new AtomicInteger(0);
         map= new HashMap<Integer, String>();
-        service.getAllby(origin,destination,seats).stream().forEach(x->map.put(index.addAndGet(1),x));
+        service.getAllby(origin,destination,date,seats).stream().forEach(x->map.put(index.addAndGet(1),x));
         return map;
 
     }

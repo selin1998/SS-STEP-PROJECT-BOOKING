@@ -6,7 +6,7 @@ public class OptFlightInfo extends Storage implements Option,UserOption {
 
 
 
-    final String DASHES = new String(new char[93]).replace("\0", "-");
+    final String DASHES = new String(new char[108]).replace("\0", "-");
 
     public OptFlightInfo(Database storage) {
         super(storage);
@@ -42,7 +42,7 @@ public class OptFlightInfo extends Storage implements Option,UserOption {
         console.printLn("Please enter the flight id to get info:");
         String input=console.readLn();
         console.printLn(DASHES);
-        console.printLn(String.format("| %-10s | %-16s | %-15s | %-28s | %-5s |", "FlightID","Departure Time", "Destination", "Airline", "Seats"));
+        console.printLn(String.format("| %-10s | %-16s | %-15s | %-15s | %-28s | %-5s |", "FlightID","Departure Time","Origin", "Destination", "Airline", "Seats"));
         console.printLn(DASHES);
         storage.flights.displayFlightbyId(input);
     }

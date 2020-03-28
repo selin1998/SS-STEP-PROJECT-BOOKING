@@ -40,15 +40,15 @@ public class FlightService implements Serializable {
         }
     }
 
-    public List<String> getAllby(String origin,String destination,  int numberofPlaces) {
+    public List<String> getAllby(String origin,String destination,String date,  int numberofPlaces) {
 
         Predicate<Flight> a = x -> x.destination.equalsIgnoreCase(destination);
-      //  Predicate<Flight> b = x -> x.airline.equalsIgnoreCase(airline);
+        Predicate<Flight> b = x -> x.departureTime.contains(date);
         Predicate<Flight> c = x -> x.numberOfFreePlaces >= numberofPlaces;
         Predicate<Flight> d = x -> x.origin.equalsIgnoreCase(origin);
      //   Predicate<Flight> d = x -> x.departureDate.equalsIgnoreCase(date.trim());
 
-        return flightDao.getAllBy(a.and(c).and(d)).stream().map(x -> x.toString()).collect(Collectors.toList());
+        return flightDao.getAllBy(a.and(c).and(d).and(b)).stream().map(x -> x.toString()).collect(Collectors.toList());
 
     }
 
@@ -66,10 +66,8 @@ public class FlightService implements Serializable {
     public List<Flight> getConnectingFlights(String origin,String destination, int numberofPlaces) {
 
         List<Flight> result = new ArrayList<>();
-        List<Flight> connectingFlights = new ArrayList<>();
-
         Predicate<Flight> a = x -> !x.destination.equalsIgnoreCase(destination);
-     //   Predicate<Flight> b = x -> x.airline.equalsIgnoreCase(airline);
+    //    Predicate<Flight> b = x -> x.departureTime.contains(date);
         Predicate<Flight> c = x -> x.numberOfFreePlaces >= numberofPlaces;
         Predicate<Flight> d = x -> x.origin.equalsIgnoreCase(origin);
         Predicate<Flight> e = x -> x.destination.equalsIgnoreCase(destination);
@@ -83,8 +81,6 @@ public class FlightService implements Serializable {
             toDestination.stream().
                     filter(cflight -> (cflight.origin.equalsIgnoreCase(flight.destination)) &&(hoursBetween(flight.departureTime, cflight.departureTime)) ).forEach(cflight -> {
 
-//                connectingFlights.add(flight);
-//                connectingFlights.add(cflight);
                 result.add(flight);
                 result.add(cflight);
 
@@ -92,12 +88,6 @@ public class FlightService implements Serializable {
 
         });
         return  result;
-
-    }
-
-
-    public List<String> searchFlight(String destination, String airline, int numberofPlaces) {
-        return flightDao.getAll().stream().filter(f -> f.destination.equals(destination)).filter(f -> f.airline.equals(airline)).filter(f -> f.numberOfFreePlaces == numberofPlaces).map(x -> x.toString()).collect(Collectors.toList());
 
     }
 

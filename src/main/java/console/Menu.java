@@ -10,7 +10,7 @@ public class Menu {
    public static StringBuilder menu= new StringBuilder();
 
     public static StringBuilder loginRegister= new StringBuilder();
-    final static String DASHES = new String(new char[30]).replace("\0", "-");
+    final static String DASHES = new String(new char[38]).replace("\0", "-");
    public static Console console = new UnixConsole(new Scanner(System.in));
     static {
         generateMenu();

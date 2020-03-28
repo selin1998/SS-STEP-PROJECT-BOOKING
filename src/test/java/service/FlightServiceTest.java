@@ -45,7 +45,7 @@ class FlightServiceTest {
 
     @Test
     void getAllby() {
-        List<String> allbyCriteria = flightService.getAllby("Oslo","Istanbul",  55);
+        List<String> allbyCriteria = flightService.getAllby("Oslo","Istanbul","28/09/2020",  55);
         assertTrue(!allbyCriteria.isEmpty());
     }
 

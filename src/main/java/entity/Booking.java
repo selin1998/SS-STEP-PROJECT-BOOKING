@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class Booking implements Serializable {
-    final String DASHES = new String(new char[113]).replace("\0", "-");
+    final String DASHES = new String(new char[107]).replace("\0", "-");
 
 
    public int idBooking;
@@ -24,10 +24,6 @@ public class Booking implements Serializable {
         this.userCredential = userCredential;
     }
 
-    public String displayBookingInfo() {
-        return String.format("| %-10d |%-20s |%-10s |",
-                idBooking, passenger.toString(),flight);   //username,
-    }
 
     @Override
     public boolean equals(Object o) {

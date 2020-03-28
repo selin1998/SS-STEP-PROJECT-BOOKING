@@ -12,7 +12,7 @@ import java.util.List;
 public class OptBookFlight extends Storage implements Option  {
 
 
-    final String DASHES2 = new String(new char[123]).replace("\0", "-");
+    final String DASHES2 = new String(new char[119]).replace("\0", "-");
 
 
     HashMap<Integer, String> data;
@@ -39,7 +39,7 @@ public class OptBookFlight extends Storage implements Option  {
 
         //SEARCH PART
 
-        console2.printLn("Press Enter in order to fill destination, airline and number of passengers and search for matching flights: ");
+        console2.printLn("Press Enter in order to fill origin, destination, day, number of passengers and search for matching flights: ");
         console2.readLn();
         console2.printLn("Origin:");
         String origin = console2.readLn();
@@ -52,10 +52,10 @@ public class OptBookFlight extends Storage implements Option  {
         console2.readLn();
         console2.printLn("FLIGHTS MATCHING YOUR CRITERIA:");
         console2.printLn(DASHES2);
-        console2.printLn(String.format("| %-7s | %-10s | %-16s | %-15s | %-15s | %-30s | %-5s |", "Ord No", "FlightID", "Date", "Origin", "Destination", "Airline", "Seats"));
+        console2.printLn(String.format("| %-8s | %-10s | %-16s | %-15s | %-15s | %-28s | %-5s |", "Ord No", "FlightID", "Date", "Origin", "Destination", "Airline", "Seats"));
         console2.printLn(DASHES2);
 
-        if (storage.flights.displayFlightsBy(origin,dest,count)) {
+        if (storage.flights.displayFlightsBy(origin,dest,date,count)) {
 
             //BOOKING PART
 
@@ -129,7 +129,6 @@ public class OptBookFlight extends Storage implements Option  {
                 for (int i = 1; i <= count; i++) {
 
                     console2.printf("Passenger %d: ", i);
-
                     console2.print("Enter the firstname:");
                     firstname = console2.readLn();
                     console2.print("Enter the lastname:");
